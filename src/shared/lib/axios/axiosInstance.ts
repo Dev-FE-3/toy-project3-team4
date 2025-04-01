@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_SUPABASE_URL
-const PROJECT_API_KEY = import.meta.env.VITE_SUPABASE_KEY
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY
 
 const axiosInstance = axios.create({
-  baseURL: `${BASE_URL}/rest/v1`,
+  baseURL: `${SUPABASE_URL}/rest/v1`,
   headers: {
-    apikey: `${PROJECT_API_KEY}`,
+    apikey: `${SUPABASE_KEY}`,
     'Content-Type': 'application/json',
   },
 })

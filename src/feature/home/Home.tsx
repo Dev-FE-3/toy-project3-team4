@@ -1,46 +1,32 @@
 import React from 'react'
-import { useQuery } from '@tanstack/react-query'
-import axiosInstance from '@/shared/lib/axios/axiosInstance'
-
-export interface User {
-  id: number
-  name: string
-}
-
-const fetchUsers = async (): Promise<User[]> => {
-  const response = await axiosInstance.get('/users')
-  return response.data
-}
+import { useYoutubeVideo } from '@/shared/util/youtube'
+import { useUserList } from './api/useUserList'
 
 const UserList: React.FC = () => {
-  const {
-    data: users,
-    error,
-    isLoading,
-  } = useQuery<User[], Error>({
-    queryKey: ['users'],
-    queryFn: fetchUsers,
-  })
+  const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
+  const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideo('60YQrsnduUc')
 
-  if (isLoading) return <p>Loading...</p>
-  if (error instanceof Error) return <p>{error.message}</p>
+  if (isUsersLoading || isVideoLoading) return <p>Loading...</p>
+  if (userError instanceof Error) return <p>{userError.message}</p>
+  if (videoError instanceof Error) return <p>{videoError.message}</p>
 
   return (
-    <div>
-      <h1 className="mt-10 p-8">margin top tailwind</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+      <h1 className="mt-10 p-8">Supabase 연동</h1>
       <ul>
         {users?.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li className="font-black text-4xl" key={user.id}>
+            {user.name}
+          </li>
         ))}
       </ul>
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-        <h1 className="font-black text-4xl">🚀 Tailwind + Pretendard Variable</h1>
-        <p className="font-light text-lg mt-4">이 텍스트는 Light (300)입니다.</p>
-        <p className="font-normal text-lg">이 텍스트는 Regular (400)입니다.</p>
-        <p className="font-medium text-lg">이 텍스트는 Medium (500)입니다.</p>
-        <p className="font-bold text-lg">이 텍스트는 Bold (700)입니다.</p>
-        <p className="font-black text-lg">이 텍스트는 Black (900)입니다.</p>
-      </div>
+      <h1 className="mt-10 p-8">Youtube API 연동</h1>
+      <ul>
+        <li>ID: {video.items[0].id}</li>
+        <li>TITLE: {video.items[0].snippet.localized.title}</li>
+        <li>DESCRIPTION: {video.items[0].snippet.localized.description}</li>
+        <li>IMG URL: {video.items[0].snippet.thumbnails.standard.url}</li>
+      </ul>
     </div>
   )
 }
