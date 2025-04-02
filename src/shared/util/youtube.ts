@@ -51,3 +51,35 @@ export const useYoutubePlayListVideoInfo = (playListId: string) => {
     staleTime: 1000 * 60 * 5,
   })
 }
+
+/**
+ * 유튜브 검색 API (동영상,재생목록,채널 등 모든 정보가 나옵니다)
+ */
+export const useYoutubeSearch = (search: string) => {
+  const fetchYoutubeSearchResult = async (search: string) => {
+    const response = await axios.get(`/api/youtube/search?part=snippet&q=${search}&key=${YOUTUBE_KEY}`)
+    return response.data
+  }
+  return useQuery({
+    queryKey: ['YoutubeSearchResult', search], // 캐시 키
+    queryFn: () => fetchYoutubeSearchResult(search),
+    enabled: !!search,
+    staleTime: 1000 * 60 * 5,
+  })
+}
+
+/**
+ * 유튜브 채널 정보를 가져옵니다.
+ */
+export const useYoutubeChannel = (channel: string) => {
+  const fetchYoutubeChannel = async (channel: string) => {
+    const response = await axios.get(`/api/youtube/channels?part=snippet,statistics,brandingSettings&id=${channel}&key=${YOUTUBE_KEY}`)
+    return response.data
+  }
+  return useQuery({
+    queryKey: ['fetchYoutubeChannel', channel], // 캐시 키
+    queryFn: () => fetchYoutubeChannel(channel),
+    enabled: !!channel,
+    staleTime: 1000 * 60 * 5,
+  })
+}
