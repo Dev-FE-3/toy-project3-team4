@@ -1,10 +1,10 @@
 import React from 'react'
-import { useYoutubeVideo } from '@/shared/util/youtube'
+import { useYoutubeVideoInfo } from '@/shared/util/youtube'
 import { useUserList } from './api/useUserList'
 
 const UserList: React.FC = () => {
   const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
-  const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideo('60YQrsnduUc')
+  const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideoInfo('60YQrsnduUc')
 
   if (isUsersLoading || isVideoLoading) return <p>Loading...</p>
   if (userError instanceof Error) return <p>{userError.message}</p>
