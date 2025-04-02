@@ -83,3 +83,41 @@ export const useYoutubeChannel = (channel: string) => {
     staleTime: 1000 * 60 * 5,
   })
 }
+
+/**
+ * 유튜브 해당 채널의 전체 재생목록 ID를 가져옵니다
+ *
+ * Step1. useYoutubeChannelPlayList
+ * Stem2. useYoutubePlayListVideoInfo
+ *
+ * 해당 채널의 전체 재생목록을 가져온 후 재생목록ID를 통해 모든 동영상 정보를 가져올 수 있습니다
+ *
+ */
+export const useYoutubeChannelPlayList = (channel: string) => {
+  const fetchYoutubeChannelPlayList = async (channel: string) => {
+    const response = await axios.get(`/api/youtube/channels?part=contentDetails&id=${channel}&key=${YOUTUBE_KEY}`)
+    return response.data
+  }
+  return useQuery({
+    queryKey: ['fetchYoutubeChannelPlayList', channel], // 캐시 키
+    queryFn: () => fetchYoutubeChannelPlayList(channel),
+    enabled: !!channel,
+    staleTime: 1000 * 60 * 5,
+  })
+}
+
+/**
+ * 유튜브 특정 지역(한국)의 인기 동영상 가져오기
+ */
+export const useYoutubePopularVideo = () => {
+  const fetchYoutubePopularVideo = async () => {
+    const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&key=${YOUTUBE_KEY}`)
+    return response.data
+  }
+  return useQuery({
+    queryKey: ['fetchYoutubePopularVideo'], // 캐시 키
+    queryFn: () => fetchYoutubePopularVideo(),
+    enabled: true,
+    staleTime: 1000 * 60 * 5,
+  })
+}
