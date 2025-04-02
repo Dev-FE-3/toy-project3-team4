@@ -8,3 +8,29 @@
   font-weight: 100 900;
   font-style: normal;
 }
+
+:root {
+  --basic-black: #262729;
+  --basic-white: #ffffff;
+  --gray-light: #f3f4f8;
+  --gray-light-medium: #eaebef;
+  --gray-medium: #b3b6bb;
+  --gray-medium-dark: #78787e;
+  --gray-dark: #525252;
+  --gray-dark-reply: #3b3c3f;
+  --main-primary: #0866ff;
+  --main-warning: #e33e38;
+  --main-success: #33b257;
+}
+
+/* 다크모드 적용 */
+.dark {
+  --basic-black: #ffffff;
+  --basic-white: #262729;
+  --gray-light: #3b3c3f;
+  --gray-light-medium: #525252;
+  --gray-medium: #78787e;
+  --gray-medium-dark: #b3b6bb;
+  --gray-dark: #eaebef;
+  --gray-dark-reply: #f3f4f8;
+}
