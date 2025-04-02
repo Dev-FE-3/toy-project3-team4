@@ -23,9 +23,9 @@
     "noUncheckedSideEffectImports": true,
 
     /* @ 설정 */
-    "baseUrl": "./src", // baseUrl을 src로 설정
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"] // @로 시작하는 경로는 src 아래의 경로로 매핑
+      "@/*": ["src/*"]
     }
   },
 
