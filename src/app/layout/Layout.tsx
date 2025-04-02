@@ -1,13 +1,11 @@
-import { Outlet } from 'react-router'
 import Aside from './Aside'
+import MobileView from './MobileView'
 
 function Layout() {
   return (
     <main className="flex justify-center gap-10">
       <Aside />
-      <section className="w-[372px] border">
-        <Outlet />
-      </section>
+      <MobileView />
     </main>
   )
 }
