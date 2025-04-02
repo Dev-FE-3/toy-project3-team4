@@ -23,6 +23,10 @@
   --main-success: #33b257;
 }
 
+body {
+  background-color: #c1c1ff;
+}
+
 /* 다크모드 적용 */
 .dark {
   --basic-black: #ffffff;

@@ -2,7 +2,7 @@ import React from 'react'
 import { useYoutubeVideoInfo } from '@/shared/util/youtube'
 import { useUserList } from './api/useUserList'
 
-const UserList: React.FC = () => {
+const Home: React.FC = () => {
   const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
   const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideoInfo('60YQrsnduUc')
 
@@ -11,7 +11,7 @@ const UserList: React.FC = () => {
   if (videoError instanceof Error) return <p>{videoError.message}</p>
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <h1 className="mt-10 p-8">Supabase 연동</h1>
       <ul>
         {users?.map((user) => (
@@ -31,4 +31,4 @@ const UserList: React.FC = () => {
   )
 }
 
-export default UserList
+export default Home

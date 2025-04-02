@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Layout from '../layout/Layout'
-import Home from '@/feature/home/Home'
+import Home from '@/feature/home'
 import Design from '@/feature/design/Design'
 
 function AppRoutes() {
