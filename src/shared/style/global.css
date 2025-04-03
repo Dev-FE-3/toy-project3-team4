@@ -24,7 +24,8 @@
 }
 
 body {
-  background-color: #c1c1ff;
+  font-size: 16px;
+  background-color: #fff;
 }
 
 /* 다크모드 적용 */
