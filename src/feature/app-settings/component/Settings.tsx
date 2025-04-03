@@ -5,7 +5,7 @@ const Settings = () => {
   const [isToggled, setIsToggled] = useState(false)
 
   return (
-    <ul className="ml-[15px] mr-[15px]">
+    <ul>
       <li className="flex h-[50px] items-center justify-between gap-[15px]">
         <div className="flex items-center gap-[15px]">
           <SunMoon />
