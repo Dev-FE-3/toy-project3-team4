@@ -12,21 +12,21 @@ const ViewHistory = () => {
         </Button>
       </div>
 
-      <div className="mb-[15px] mt-[15px]">
+      <ul className="mb-[15px] mt-[15px]">
         <Swiper spaceBetween={15} slidesPerView={'auto'}>
           {['동영상1', '동영상2', '동영상3', '동영상4', '동영상5', '동영상6'].map((item, idx) => (
             <SwiperSlide key={idx} style={{ width: '140px' }}>
-              <div className="flex h-[130px] w-[140px] flex-col">
+              <li className="flex h-[130px] w-[140px] flex-col">
                 <img className="h-[86px] rounded-md border-none" src="https://i.ytimg.com/vi/Ht17A6Sb_og/mqdefault.jpg"></img>
                 <div className="mt-[5px]">
                   <p className="overflow-hidden text-ellipsis whitespace-nowrap">아이유의 전성기 노래를 들어</p>
                   <p className="overflow-hidden text-ellipsis whitespace-nowrap text-[12px] text-gray-medium-dark">아이유팬1호</p>
                 </div>
-              </div>
+              </li>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </ul>
     </article>
   )
 }
