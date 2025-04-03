@@ -4,7 +4,7 @@ import Footer from './Footer'
 
 const MobileView = () => {
   return (
-    <section id="view-container" className="flex w-[372px] flex-col border">
+    <section id="view-container" className="flex w-[430px] flex-col border">
       <Header />
       <Outlet />
       <Footer />
