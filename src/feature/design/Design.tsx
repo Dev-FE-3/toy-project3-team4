@@ -1,4 +1,8 @@
+import useThemeStore from '@/shared/store/theme/useThemeStore'
+
 const Design = () => {
+  const { isDark, toggleTheme } = useThemeStore()
+
   return (
     <>
       <p className="bg-basic-white text-basic-black">bg-basic-white text-basic-black 입니다</p>
@@ -12,6 +16,9 @@ const Design = () => {
       <p className="text-main-primary">text-main-primary 입니다</p>
       <p className="text-main-warning">text-main-warning 입니다</p>
       <p className="text-main-success">text-main-success 입니다</p>
+      <button onClick={toggleTheme} className="px-4 py-2 bg-blue-500 text-white rounded">
+        {isDark ? '라이트 모드' : '다크 모드'}
+      </button>
     </>
   )
 }
