@@ -1,51 +1,69 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Search, ChevronLeft, X } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import useHeaderStore from '@/shared/store/header/useHeaderStore'
+import { HeaderType } from '../type/HeaderType'
+
+const DEFAULT_HEADER_PATHS = ['/', '/follow', '/channel', '/settings']
 
 const Header = () => {
   const navigate = useNavigate()
-
-  const { type, prevType, setType } = useHeaderStore()
+  const location = useLocation()
 
   const searchInputRef = useRef<HTMLInputElement>(null)
-  const [showClearButton, setShowClearButton] = useState(false)
+  const [type, setType] = useState<HeaderType>('default')
+  const [previousType, setPreviousType] = useState<HeaderType>('default')
 
-  // 헤더 type 바뀔때 검색어 삭제 아이콘 상태 변경
+  // URL이 변경될 때마다 헤더 타입 체크
   useEffect(() => {
-    setShowClearButton(false)
-  }, [type])
+    if (DEFAULT_HEADER_PATHS.includes(location.pathname)) {
+      setType('default')
+    }
+
+    // 검색 페이지에서 뒤로가기했을 때 검색어 복원
+    if (location.pathname === '/search' && searchInputRef.current) {
+      const searchParams = new URLSearchParams(location.search)
+      const query = searchParams.get('q')
+      if (query) {
+        searchInputRef.current.value = decodeURIComponent(query)
+        setType('searchInput')
+      }
+    }
+  }, [location.pathname, location.search])
 
   // 뒤로가기 버튼 이벤트 핸들러
   const handleBackClick = () => {
-    if (type === 'search') {
-      setType(prevType)
+    if (searchInputRef.current?.value === '') {
+      setType(previousType)
     } else {
-      // window.history.state가 null이면 이전 페이지가 없는 것
-      if (window.history.state === null) {
-        setType(prevType)
-      } else {
-        navigate(-1)
-      }
+      navigate(-1)
     }
   }
 
   // 검색 헤더 활성화 핸들러(검색 아이콘 클릭 시 입력창 활성화)
   const handleSearchClick = () => {
-    setType('search')
+    setPreviousType(type)
+    setType('searchInput')
   }
 
-  // 검색어 지우기 이벤트 핸들러
-  const handleClearSearch = () => {
-    if (searchInputRef.current) {
-      searchInputRef.current.value = ''
-      setShowClearButton(false)
+  // 검색창 닫기 이벤트 핸들러
+  const handleSearchInputHidden = () => {
+    if (searchInputRef.current?.value === '') {
+      setType(previousType)
+    } else {
+      setType('searchIcon')
     }
   }
 
-  // 검색어 지우기 아이콘 표시 핸들러(검색어 길이가 1이상일때 아이콘 표시)
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setShowClearButton(e.target.value.length > 0)
+  // 엔터키 누르면 검색
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return // 한글 검색어 입력 시 이벤트 두번 실행되는 상황 방지...
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      const searchQuery = searchInputRef.current?.value.trim()
+      if (!searchQuery) return
+
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`)
+    }
   }
 
   // 공통 헤더 스타일
@@ -71,7 +89,7 @@ const Header = () => {
         </div>
       </>
     ),
-    search: (
+    searchInput: (
       <>
         <button onClick={handleBackClick} className="cursor-pointer">
           <ChevronLeft {...iconProps} />
@@ -80,19 +98,17 @@ const Header = () => {
           <input
             ref={searchInputRef}
             type="text"
-            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
             placeholder="검색어를 입력하세요"
             className="h-auto w-full rounded-full bg-gray-light-medium py-2 pl-4 pr-10 outline-none"
           />
-          {showClearButton && (
-            <button onClick={handleClearSearch} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
-              <X size={20} strokeWidth={1.5} className="stroke-gray-medium-dark" />
-            </button>
-          )}
+          <button onClick={handleSearchInputHidden} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
+            <X size={20} strokeWidth={1.5} className="stroke-gray-medium-dark" />
+          </button>
         </div>
       </>
     ),
-    detail: (
+    searchIcon: (
       <>
         <button onClick={handleBackClick} className="cursor-pointer">
           <ChevronLeft {...iconProps} />
@@ -104,7 +120,7 @@ const Header = () => {
     ),
   }
 
-  return <header className={`${baseHeaderClass} ${type === 'search' ? 'gap-2' : 'justify-between'}`}>{headerContent[type]}</header>
+  return <header className={`${baseHeaderClass} ${type === 'searchInput' ? 'gap-2' : 'justify-between'}`}>{headerContent[type]}</header>
 }
 
 export default Header
