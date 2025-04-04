@@ -8,7 +8,7 @@ const Settings = () => {
     <ul>
       <li className="flex h-[50px] items-center justify-between gap-[15px]">
         <div className="flex items-center gap-[15px]">
-          <SunMoon />
+          <SunMoon size={24} className="stroke-gray-dark" strokeWidth={1.25} />
           <p>다크 모드</p>
         </div>
         <button
@@ -21,19 +21,19 @@ const Settings = () => {
         </button>
       </li>
       <li className="flex h-[50px] items-center gap-[15px]">
-        <UsersRound />
+        <UsersRound size={24} className="stroke-gray-dark" strokeWidth={1.25} />
         <p>팔로우 목록 </p>
       </li>
       <li className="flex h-[50px] items-center gap-[15px]">
-        <Settings2 />
+        <Settings2 size={24} className="stroke-gray-dark" strokeWidth={1.25} />
         <p>계정 설정</p>
       </li>
       <li className="flex h-[50px] items-center gap-[15px]">
-        <Headset />
+        <Headset size={24} className="stroke-gray-dark" strokeWidth={1.25} />
         <p>고객센터</p>
       </li>
       <li className="flex h-[50px] items-center gap-[15px]">
-        <Handshake />
+        <Handshake size={24} className="stroke-gray-dark" strokeWidth={1.25} />
         <p>약관</p>
       </li>
     </ul>
