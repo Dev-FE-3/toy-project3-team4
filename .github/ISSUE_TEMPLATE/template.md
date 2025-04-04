@@ -1,12 +1,3 @@
----
-name: template
-about: template
-title: ''
-labels: ''
-assignees: ''
-
----
-
 ## #️⃣연관된 이슈
 
 > ex) #이슈번호, #이슈번호
