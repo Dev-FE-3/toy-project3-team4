@@ -2,11 +2,11 @@ import { Button } from '@/shared/lib/shadcn/ui/button'
 
 const Aside = () => {
   return (
-    <aside className="flex h-screen w-[512px] flex-col">
+    <aside className="fixed right-1/2 top-0 -z-10 hidden h-full w-[512px] flex-col lg:flex lg:justify-between">
       <section className="mt-8">
-        <img src="/public/image/logo/logo.png" alt="로고" className="w-24" />
+        <img src="/public/image/logo/logo.svg" alt="로고" className="w-24" />
       </section>
-      <section className="mt-80 text-5xl font-bold">
+      <section className="text-5xl font-bold">
         <p>
           스트리밍 <span className="text-main-primary">1등</span> 플랫폼
         </p>
@@ -17,7 +17,7 @@ const Aside = () => {
           <Button className="bg-main-success text-white hover:bg-purple-600"># 오직 플레이요에서</Button>
         </div>
       </section>
-      <footer className="mt-auto flex">
+      <footer className="mb-8 flex">
         <img src="/public/image/download/google-play-rd.png" className="w-2/6" />
         <img src="/public/image/download/app-store-rd.png" className="w-2/6" />
       </footer>
