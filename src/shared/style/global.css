@@ -24,8 +24,11 @@
 }
 
 body {
-  font-size: 16px;
-  background-color: #98c0ff;
+  height: 100vh;
+  background: url('/image/download/background.svg') no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-y: scroll;
 }
 
 /* 다크모드 적용 */
