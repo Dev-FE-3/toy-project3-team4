@@ -1,4 +1,4 @@
-type HeaderType = 'basic' | 'search' | 'detail'
+type HeaderType = 'default' | 'search' | 'detail'
 
 export interface IHeaderState {
   type: HeaderType

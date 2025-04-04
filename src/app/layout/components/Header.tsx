@@ -59,7 +59,7 @@ const Header = () => {
   }
 
   const headerContent = {
-    basic: (
+    default: (
       <>
         <div>
           <Link to={'/'}>
