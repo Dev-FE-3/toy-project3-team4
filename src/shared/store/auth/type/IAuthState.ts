@@ -1,8 +1,8 @@
 import { User } from '@supabase/supabase-js'
 
-interface IAuthState {
+export default interface IAuthState {
   user: User | null
-  setUser: (user: User | null) => void
+  user_id: number | null
+  setUser: (user: User) => void
+  setUserId: (id: number) => void
 }
-
-export default IAuthState

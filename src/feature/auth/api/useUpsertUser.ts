@@ -16,6 +16,7 @@ const insertUser = async (user: User) => {
     img: '/public/image/profile/myself.png',
     name: user.user_metadata?.full_name || '아이유팬1호', // 기본 이름 설정
     follower: 14421,
+    provider: user.app_metadata.provider,
   })
 }
 
