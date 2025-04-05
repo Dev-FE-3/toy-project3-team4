@@ -19,7 +19,7 @@ const Footer = () => {
           <AvatarImage className="rounded-full border border-gray-medium object-cover" src={profileImage} alt="프로필사진" />
         </Avatar>
       </NavItem>
-      <NavItem path="/설정" menu="설정" icon="setting" />
+      <NavItem path="/settings" menu="설정" icon="setting" />
     </nav>
   )
 }
