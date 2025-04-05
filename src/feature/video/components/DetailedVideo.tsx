@@ -24,10 +24,12 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
       <div className="px-[15px] pt-[15px] font-bold">
         조째즈 (ZO ZAZZ) - 서쪽하늘 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 250322 방송
       </div>
+
       <div className="px-[15px] pb-[8px] pt-[8px] text-xs">
         <span>조회수 {viewCount}회 • </span>
         <span>{publishedAt}</span>
       </div>
+
       <div className="flex items-center justify-between px-[15px]">
         <div className="flex items-center gap-4">
           <Avatar className="h-10 w-10">
@@ -37,21 +39,22 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
           <div>Beginagain 비긴어게인</div>
         </div>
 
-        <Button className="h-[30px] w-[72px] rounded-full bg-main-primary px-9 py-1">
+        <Button className="h-[30px] w-[77px] rounded-full bg-main-primary px-9 py-1 text-sm font-normal">
           <UserPlus />
           팔로우
         </Button>
       </div>
-      <div className="flex gap-[10px] px-[15px]">
-        <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-gray-dark">
+
+      <div className="flex gap-[10px] px-[15px] py-[8px]">
+        <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
           <Heart />
-          {likeCount}
+          {likeCount}+
         </Button>
-        <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-gray-dark">
-          <Share2 />
+        <Button className="h-[30px] w-[62px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Share2 fill="#525252" />
           공유
         </Button>
-        <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-gray-dark">
+        <Button className="h-[30px] w-[62px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
           <Bookmark />
           저장
         </Button>

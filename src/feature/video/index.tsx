@@ -1,7 +1,7 @@
 import { useYoutubePopularVideo, useYoutubeSearch, useYoutubeVideoInfo } from '@/shared/util/youtube'
 import { useParams } from 'react-router-dom'
 import DetailedVideo from './components/DetailedVideo'
-import Comment from './components/Comment'
+import CommentContainer from './components/CommentContainer'
 
 const Video: React.FC = () => {
   const id = useParams<string>().id ?? ''
@@ -14,7 +14,7 @@ const Video: React.FC = () => {
   return (
     <main className="h-dvh w-full">
       <DetailedVideo id={id} />
-      <Comment />
+      <CommentContainer />
     </main>
   )
 }
