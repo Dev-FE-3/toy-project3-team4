@@ -12,23 +12,40 @@ const Header = () => {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [type, setType] = useState<HeaderType>('default')
   const [previousType, setPreviousType] = useState<HeaderType>('default')
+  const [searchQuery, setSearchQuery] = useState('')
 
   // URL이 변경될 때마다 헤더 타입 체크
   useEffect(() => {
     if (DEFAULT_HEADER_PATHS.includes(location.pathname)) {
+      // 기본 페이지인 경우 default 타입으로 변경
       setType('default')
-    }
-
-    // 검색 페이지에서 뒤로가기했을 때 검색어 복원
-    if (location.pathname === '/search' && searchInputRef.current) {
+      setSearchQuery('')
+    } else if (location.pathname === '/search') {
+      // 검색 페이지에서는 searchInput 타입으로 변경
       const searchParams = new URLSearchParams(location.search)
       const query = searchParams.get('q')
+
       if (query) {
-        searchInputRef.current.value = decodeURIComponent(query)
-        setType('searchInput')
+        const decodedQuery = decodeURIComponent(query)
+        setSearchQuery(decodedQuery)
+        if (searchInputRef.current) {
+          searchInputRef.current.value = decodedQuery
+        }
       }
+
+      setType('searchInput')
+    } else {
+      // 검색 페이지가 아니면 searchIcon 타입으로 변경
+      setType('searchIcon')
     }
   }, [location.pathname, location.search])
+
+  // 검색창이 열릴 때마다 저장된 검색어 복원
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.value = searchQuery
+    }
+  }, [type, searchQuery, location.pathname, location.search])
 
   // 뒤로가기 버튼 이벤트 핸들러
   const handleBackClick = () => {
@@ -47,22 +64,27 @@ const Header = () => {
 
   // 검색창 닫기 이벤트 핸들러
   const handleSearchInputHidden = () => {
-    if (searchInputRef.current?.value === '') {
-      setType(previousType)
-    } else {
-      setType('searchIcon')
-    }
+    const inputValue = searchInputRef.current?.value.trim() ?? ''
+
+    // 검색 페이지이거나 input에 값이 있으면 searchIcon으로, 그 외에는 이전 타입으로
+    setType(location.pathname === '/search' || inputValue ? 'searchIcon' : previousType)
   }
 
   // 엔터키 누르면 검색
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.nativeEvent.isComposing) return // 한글 검색어 입력 시 이벤트 두번 실행되는 상황 방지...
+    if (e.nativeEvent.isComposing) return
     if (e.key === 'Enter') {
-      e.preventDefault()
-      const searchQuery = searchInputRef.current?.value.trim()
-      if (!searchQuery) return
+      const inputValue = searchInputRef.current?.value.trim()
+      if (!inputValue) {
+        alert('검색어를 입력해주세요')
+        return
+      }
 
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`)
+      if (inputValue !== searchQuery) {
+        // 검색어가 변경됐을 때만 검색가능하도록
+        setSearchQuery(inputValue)
+        navigate(`/search?q=${encodeURIComponent(inputValue)}`)
+      }
     }
   }
 
@@ -97,6 +119,7 @@ const Header = () => {
         <div className="relative flex-1">
           <input
             ref={searchInputRef}
+            name="search"
             type="text"
             onKeyDown={handleKeyDown}
             placeholder="검색어를 입력하세요"
