@@ -3,8 +3,8 @@ import { EllipsisVertical } from 'lucide-react'
 
 const Comment: React.FC = () => {
   return (
-    <div className="mb-[15px] flex-col gap-[30px] text-sm">
-      <div className="flex w-full justify-between">
+    <div className="mb-[15px] flex-col gap-[30px]">
+      <div className="flex w-full justify-between text-sm">
         <div className="flex">
           <Avatar className="h-[25px] w-[25px]">
             <AvatarImage className="rounded-full border border-gray-medium object-cover" src="https://github.com/shadcn.png" />
@@ -12,7 +12,7 @@ const Comment: React.FC = () => {
           </Avatar>
           <div className="pl-[5px]">@15ya_egg • 1시간전</div>
         </div>
-        <EllipsisVertical />
+        <EllipsisVertical className="h-[15px] w-[15px]" />
       </div>
 
       <div className="pl-[30px]">
