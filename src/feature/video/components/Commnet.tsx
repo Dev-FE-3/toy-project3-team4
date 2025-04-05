@@ -3,7 +3,7 @@ import { EllipsisVertical } from 'lucide-react'
 
 const Comment: React.FC = () => {
   return (
-    <div className="mb-[15px] flex-col gap-[30px]">
+    <article className="mb-[15px] flex-col gap-[30px]">
       <div className="flex w-full justify-between text-sm">
         <div className="flex">
           <Avatar className="h-[25px] w-[25px]">
@@ -15,10 +15,8 @@ const Comment: React.FC = () => {
         <EllipsisVertical className="h-[15px] w-[15px]" />
       </div>
 
-      <div className="pl-[30px]">
-        <div>와 플레이리스트 나온지 얼마나 됐다고 이런걸 또... 네코드 고마워요! 언제나 최고!</div>
-      </div>
-    </div>
+      <p className="pl-[30px]">와 플레이리스트 나온지 얼마나 됐다고 이런걸 또... 네코드 고마워요! 언제나 최고!</p>
+    </article>
   )
 }
 

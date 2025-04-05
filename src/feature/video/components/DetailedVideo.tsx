@@ -10,27 +10,29 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
   const [likeCount, setLickCount] = useState<number>(1000)
 
   return (
-    <div className="aspect-video w-full">
-      <iframe
-        height="240"
-        className="w-full border-0"
-        src={`https://www.youtube.com/embed/${id}`}
-        title="조째즈 (ZO ZAZZ) - 서쪽하늘 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 250322 방송"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
+    <article className="aspect-video w-full">
+      <section>
+        <iframe
+          height="240"
+          className="w-full border-0"
+          src={`https://www.youtube.com/embed/${id}`}
+          title="조째즈 (ZO ZAZZ) - 서쪽하늘 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 250322 방송"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </section>
 
-      <div className="px-[15px] pt-[15px] font-bold">
+      <header className="px-[15px] pt-[15px] font-bold">
         조째즈 (ZO ZAZZ) - 서쪽하늘 [불후의 명곡2 전설을 노래하다/Immortal Songs 2] | KBS 250322 방송
-      </div>
+      </header>
 
-      <div className="px-[15px] pb-[8px] pt-[8px] text-xs">
+      <p className="px-[15px] pb-[8px] pt-[8px] text-xs">
         <span>조회수 {viewCount}회 • </span>
         <span>{publishedAt}</span>
-      </div>
+      </p>
 
-      <div className="flex items-center justify-between px-[15px]">
+      <section className="flex items-center justify-between px-[15px]">
         <div className="flex items-center gap-4">
           <Avatar className="h-10 w-10">
             <AvatarImage className="rounded-full border border-gray-medium object-cover" src="https://github.com/shadcn.png" />
@@ -43,9 +45,9 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
           <UserPlus />
           팔로우
         </Button>
-      </div>
+      </section>
 
-      <div className="flex gap-[10px] px-[15px] py-[8px]">
+      <section className="flex gap-[10px] px-[15px] py-[8px]">
         <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
           <Heart />
           {likeCount}+
@@ -58,8 +60,8 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
           <Bookmark />
           저장
         </Button>
-      </div>
-    </div>
+      </section>
+    </article>
   )
 }
 
