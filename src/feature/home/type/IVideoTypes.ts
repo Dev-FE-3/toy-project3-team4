@@ -1,4 +1,4 @@
-export interface YouTubeItem {
+export interface YouTubeVideoItem {
   id: string
   snippet: {
     channelId: string
@@ -16,5 +16,5 @@ export interface YouTubeItem {
 }
 
 export interface VideoItemProps {
-  item: YouTubeItem
+  item: YouTubeVideoItem
 }
