@@ -7,7 +7,7 @@ const DEFAULT_HEADER_PATHS = ['/', '/follow', '/channel', '/settings']
 
 const Header = () => {
   const navigate = useNavigate()
-  const location = useLocation()
+  const {pathname, search} = useLocation()
 
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [type, setType] = useState<HeaderType>('default')
@@ -16,13 +16,13 @@ const Header = () => {
 
   // URL이 변경될 때마다 헤더 타입 체크
   useEffect(() => {
-    if (DEFAULT_HEADER_PATHS.includes(location.pathname)) {
+    if (DEFAULT_HEADER_PATHS.includes(pathname)) {
       // 기본 페이지인 경우 default 타입으로 변경
       setType('default')
       setSearchQuery('')
-    } else if (location.pathname === '/search') {
+    } else if (pathname === '/search') {
       // 검색 페이지에서는 searchInput 타입으로 변경
-      const searchParams = new URLSearchParams(location.search)
+      const searchParams = new URLSearchParams(search)
       const query = searchParams.get('q')
 
       if (query) {
@@ -38,14 +38,14 @@ const Header = () => {
       // 검색 페이지가 아니면 searchIcon 타입으로 변경
       setType('searchIcon')
     }
-  }, [location.pathname, location.search])
+  }, [pathname, search])
 
   // 검색창이 열릴 때마다 저장된 검색어 복원
   useEffect(() => {
     if (searchInputRef.current) {
       searchInputRef.current.value = searchQuery
     }
-  }, [type, searchQuery, location.pathname, location.search])
+  }, [type, searchQuery, pathname, search])
 
   // 뒤로가기 버튼 이벤트 핸들러
   const handleBackClick = () => {
@@ -67,7 +67,7 @@ const Header = () => {
     const inputValue = searchInputRef.current?.value.trim() ?? ''
 
     // 검색 페이지이거나 input에 값이 있으면 searchIcon으로, 그 외에는 이전 타입으로
-    setType(location.pathname === '/search' || inputValue ? 'searchIcon' : previousType)
+    setType(pathname === '/search' || inputValue ? 'searchIcon' : previousType)
   }
 
   // 엔터키 누르면 검색
