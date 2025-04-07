@@ -2,7 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Layout from '../layout/Layout'
 import Home from '@/feature/home'
 import Design from '@/feature/design/Design'
-import PlayList from '@/feature/playlist'
+import AppSettings from '@/feature/app-settings'
+import Login from '@/feature/login'
+import AuthCallback from '@/feature/auth/AuthCallback'
+import PlaylistView from '@/feature/playlist'
 
 function AppRoutes() {
   return (
@@ -10,8 +13,11 @@ function AppRoutes() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/design-guide" element={<Design />} />
-          <Route path="/playlist" element={<PlayList />} />
+          <Route path="/settings" element={<AppSettings />} />
+          <Route path="/playlist" element={<PlaylistView />} />
         </Route>
       </Routes>
     </Router>
