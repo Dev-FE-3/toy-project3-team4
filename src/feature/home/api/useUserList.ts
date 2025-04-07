@@ -3,7 +3,7 @@ import { IUser } from '../type/IUser'
 import { useQuery } from '@tanstack/react-query'
 
 const fetchUsers = async (): Promise<IUser[]> => {
-  const response = await axiosInstance.get('/user')
+  const response = await axiosInstance.get('/users')
   return response.data
 }
 

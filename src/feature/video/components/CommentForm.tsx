@@ -1,19 +1,45 @@
+import { useUserList } from '@/feature/home/api/useUserList'
 import { Input } from '@/shared/lib/shadcn/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { postComment } from '../service/postComment'
+import { ICommentFormProps } from '../type/IVideo'
 
-const CommentForm: React.FC = () => {
-  const [comment, setComment] = useState<string>('')
+const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess }) => {
+  const videoId = useParams<{ id: string }>().id ?? ''
+  const [comment, setComment] = useState('')
+  // 임시 유저 id
+  const userId = 12
+  // 임시 유저  data
+  const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
+
+  if (isUsersLoading) return <p>Loading...</p>
+  if (userError) return <p>Error...</p>
+
+  // 임시 유저  img
+  const userImg = users[1].img
 
   // 댓글 슈퍼베이스에 저장하기
-  const handleSubmit = () => {
-    return 0
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const newCommnet = await postComment({
+        video_id: videoId,
+        content: comment,
+        user_id: userId,
+      })
+      onSuccess(newCommnet)
+      setComment('')
+    } catch (error) {
+      console.error('댓글 저장 실패:', error)
+    }
   }
 
   return (
     <form className="flex items-center justify-between gap-[5px] pb-[15px]" onSubmit={handleSubmit}>
       <Avatar className="h-[25px] w-[25px]">
-        <AvatarImage className="rounded-full border border-gray-medium object-cover" src="https://github.com/shadcn.png" />
+        <AvatarImage className="rounded-full border border-gray-medium object-cover" src={userImg} />
         <AvatarFallback>User</AvatarFallback>
       </Avatar>
 
