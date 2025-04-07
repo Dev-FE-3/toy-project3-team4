@@ -49,7 +49,7 @@ const Header = () => {
 
   // 뒤로가기 버튼 이벤트 핸들러
   const handleBackClick = () => {
-    if (searchInputRef.current?.value === '') {
+    if (DEFAULT_HEADER_PATHS.includes(pathname)) {
       setType(previousType)
     } else {
       navigate(-1)
