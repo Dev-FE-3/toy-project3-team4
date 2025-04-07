@@ -1,6 +1,5 @@
 // 조회수 포맷팅 (예: 1234567 -> 123.4만회)
-export const formatViewCount = (viewCount: string) => {
-  const count = parseInt(viewCount)
+export const formatViewCount = (count: number) => {
   if (count >= 100000000) {
     return `${(count / 100000000).toFixed(1)}억회`
   }
@@ -11,8 +10,7 @@ export const formatViewCount = (viewCount: string) => {
 }
 
 // 좋아요 수 포맷팅 (1000+ 형식)
-export const formatLikeCount = (likeCount: string) => {
-  const count = parseInt(likeCount)
+export const formatLikeCount = (count: number) => {
   if (count >= 1000) {
     return '1000+'
   }
@@ -20,8 +18,7 @@ export const formatLikeCount = (likeCount: string) => {
 }
 
 // 구독자 수 포맷팅 (유튜브 스타일)
-export const formatSubscriberCount = (subscriberCount: string) => {
-  const count = parseInt(subscriberCount)
+export const formatSubscriberCount = (count: number) => {
   if (count >= 10000000) {
     return `${(count / 10000000).toFixed(1)}천만명`
   }
