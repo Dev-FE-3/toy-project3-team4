@@ -1,12 +1,19 @@
 import { Avatar, AvatarImage } from '@/shared/lib/shadcn/ui/avatar'
 import { Bookmark } from 'lucide-react'
-import { useYoutubeChannel } from '@/shared/util/youtube'
 import { formatUploadDate, formatViewCount } from '@/shared/util/format'
 import { VideoItemProps } from '../type/IYouTubeItem'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { fetchYoutubeChannel } from '@/shared/util/youtube'
 
 const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
-  const { data: channelData } = useYoutubeChannel(item.snippet.channelId)
+  const { data: channelData } = useQuery({
+    queryKey: ['fetchYoutubeChannel', item.snippet.channelId], // 캐시 키
+    queryFn: () => fetchYoutubeChannel(item.snippet.channelId),
+    enabled: !!item.snippet.channelId,
+    staleTime: 1000 * 60 * 5,
+  })
+
   const channelThumbnail = channelData?.items[0]?.snippet?.thumbnails?.default?.url
 
   const handleBookmarkClick = () => {
@@ -17,7 +24,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
     <li className="mb-5 w-full">
       {/* 동영상 썸네일 */}
       <Link to={`/video/${item.id}`} className="mb-[14px] block aspect-video w-full overflow-hidden rounded-[10px] bg-gray-100">
-        <img className="h-full w-full object-cover" src={item.snippet.thumbnails.high.url} alt={item.snippet.title} />
+        <img className="h-full w-full object-cover rounded-[10px]" src={item.snippet.thumbnails.high.url} alt={item.snippet.title} />
       </Link>
 
       <div className="flex items-start gap-3">
@@ -33,7 +40,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
         </Link>
 
         {/* 동영상 제목, 조회수, 업로드 날짜 */}
-        <div className="flex flex-1 flex-col gap-2">
+        <div className="flex flex-1 flex-col gap-1">
           <Link to={`/video/${item.id}`} className="line-clamp-2 text-base font-medium">
             {item.snippet.title}
           </Link>
