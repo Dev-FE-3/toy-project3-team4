@@ -1,5 +1,5 @@
-import Aside from './components/Aside'
-import MobileView from './components/MobileView'
+import Aside from "./aside"
+import MobileView from "./mobile-view"
 
 function Layout() {
   return (
