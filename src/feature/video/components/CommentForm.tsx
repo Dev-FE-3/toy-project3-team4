@@ -23,6 +23,11 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess }) => {
   // 댓글 슈퍼베이스에 저장하기
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (comment === '') {
+      return
+    }
+
     try {
       const newCommnet = await postComment({
         video_id: videoId,

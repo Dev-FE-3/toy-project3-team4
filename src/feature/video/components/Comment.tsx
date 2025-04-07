@@ -15,10 +15,10 @@ const Comment: React.FC<ICommentProps> = ({ comment, userId, userImg, createdAt 
             {userId} • {createdAt}
           </div>
         </div>
-        <EllipsisVertical className="h-[15px] w-[15px]" />
+        <EllipsisVertical size={15} strokeWidth={2} className="stroke-gray-dark" />
       </div>
 
-      <p className="pl-[30px]">{comment}</p>
+      <p className="mr-[15px] pl-[30px]">{comment}</p>
     </article>
   )
 }

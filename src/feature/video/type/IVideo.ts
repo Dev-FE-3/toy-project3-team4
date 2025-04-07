@@ -37,3 +37,9 @@ export interface ICommentList {
   user_id: number
   created_at: string
 }
+
+// ✅ 팔로우 버튼 Props
+export interface IFollowButtonProps {
+  userId: number
+  channelId: string
+}

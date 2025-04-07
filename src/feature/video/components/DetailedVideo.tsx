@@ -1,17 +1,32 @@
 import { IDetailedVideoProps } from '../type/IVideo'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Button } from '@/shared/lib/shadcn/ui/button'
-import { Bookmark, Heart, Share2, UserPlus } from 'lucide-react'
-import { useYoutubeChannel, useYoutubeVideoInfo } from '@/shared/util/youtube'
+import { Bookmark, Heart, Share2 } from 'lucide-react'
 import { formatLikeCount, formatTimeAgo, formatViewCount } from '../service/formatters'
 import CommentContainer from './CommentContainer'
+import { useYoutubeVideoInfo } from '../api/useYoutubeVideoInfo'
+import { useYoutubeChannel } from '../api/useYoutubeChannel'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import FollowButton from './FollowButton'
 
 const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
   const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideoInfo(id)
 
   const channelId = video?.items?.[0]?.snippet?.channelId
 
+  console.log(channelId)
+
+  // 전역으로 저장된 유저 정보 가져오기
+  // const user = useAuthStore((state) => state.user)
+  // const userId = useAuthStore((state) => state.user_id)
+  const userId = 19
+
   const { data: channel, isLoading: isChannelLoading, error: channelError } = useYoutubeChannel(channelId)
+
+  const saveButton = () => {
+    // 재생목록에 영상 저장
+    console.log('저장 버튼 클릭!')
+  }
 
   if (isVideoLoading || isChannelLoading) return <div>Loading...</div>
   if (videoError || channelError) return <div>Error</div>
@@ -23,10 +38,6 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
   const videoViewCount = Number(video.items[0].statistics.viewCount)
   const videoLikeCount = Number(video.items[0].statistics.likeCount)
   const videoPublishedAt = video.items[0].snippet.publishedAt
-
-  const saveButton = () => {
-    console.log('저장버튼 클릭')
-  }
 
   return (
     <article className="aspect-video w-full">
@@ -58,10 +69,7 @@ const DetailedVideo: React.FC<IDetailedVideoProps> = ({ id }) => {
           <h1>{videoChannelTitle}</h1>
         </div>
 
-        <Button className="h-[30px] w-[77px] rounded-full bg-main-primary px-9 py-1 text-sm font-normal">
-          <UserPlus />
-          팔로우
-        </Button>
+        <FollowButton userId={userId} channelId={channelId} />
       </section>
 
       <section className="flex gap-[10px] px-[15px] py-[8px]">

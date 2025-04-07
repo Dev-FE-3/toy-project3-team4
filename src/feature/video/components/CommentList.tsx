@@ -1,10 +1,11 @@
 import Comment from './Comment'
-import './../util/index.css'
+import './../util/video.css'
 import { useUserList } from '@/feature/home/api/useUserList'
 import { formatTimeAgo } from '../service/formatters'
 import { ICommentListProps } from '../type/IVideo'
 
 const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment }) => {
+  // 새로운 댓글을 입력시 보여주기 위함
   const fullList = newlyAddedComment ? [newlyAddedComment, ...comments] : comments
 
   // 임시 유저 id
