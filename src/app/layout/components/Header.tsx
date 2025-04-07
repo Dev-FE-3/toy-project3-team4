@@ -123,6 +123,7 @@ const Header = () => {
             type="text"
             onKeyDown={handleKeyDown}
             placeholder="검색어를 입력하세요"
+            autoComplete="off"
             className="h-auto w-full rounded-full bg-gray-light-medium py-2 pl-4 pr-10 outline-none"
           />
           <button onClick={handleSearchInputHidden} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
