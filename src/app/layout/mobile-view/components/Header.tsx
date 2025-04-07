@@ -89,7 +89,7 @@ const Header = () => {
   }
 
   // 공통 헤더 스타일
-  const baseHeaderClass = 'fixed top-0 mx-auto flex h-[56px] w-[430px] items-center border-b border-gray-light-medium bg-basic-white px-[15px]'
+  const baseHeaderClass = 'fixed top-0 mx-auto flex h-[56px] w-[430px] items-center border-b border-gray-light-medium bg-basic-white px-[15px] z-50'
 
   // 공통 아이콘 스타일
   const iconProps = {
