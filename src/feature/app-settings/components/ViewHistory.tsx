@@ -1,8 +1,14 @@
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+import useViewHistory from '../api/useViewHistory'
 
 const ViewHistory = () => {
+  const { data: view, isLoading, error } = useViewHistory()
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error occurred</div>
+
   return (
     <article className="md-[15px] mt-[15px]">
       <div className="flex items-center justify-between">
@@ -14,7 +20,7 @@ const ViewHistory = () => {
 
       <ul className="mb-[15px] mt-[15px]">
         <Swiper spaceBetween={15} slidesPerView={'auto'}>
-          {['동영상1', '동영상2', '동영상3', '동영상4', '동영상5', '동영상6'].map((item, idx) => (
+          {view.map((item, idx) => (
             <SwiperSlide key={idx} style={{ width: '140px' }}>
               <li className="flex h-[130px] w-[140px] flex-col">
                 <img className="h-[86px] rounded-md border-none" src="https://i.ytimg.com/vi/Ht17A6Sb_og/mqdefault.jpg"></img>
