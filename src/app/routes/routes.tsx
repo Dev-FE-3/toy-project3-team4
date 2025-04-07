@@ -5,7 +5,7 @@ import Design from '@/feature/design/Design'
 import AppSettings from '@/feature/app-settings'
 import Login from '@/feature/login'
 import AuthCallback from '@/feature/auth/AuthCallback'
-import PlaylistView from '@/feature/playlist'
+import VideoDetailPage from '@/feature/playlist'
 
 function AppRoutes() {
   return (
@@ -17,7 +17,7 @@ function AppRoutes() {
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/design-guide" element={<Design />} />
           <Route path="/settings" element={<AppSettings />} />
-          <Route path="/playlist" element={<PlaylistView />} />
+          <Route path="/playlist" element={<VideoDetailPage />} />
         </Route>
       </Routes>
     </Router>

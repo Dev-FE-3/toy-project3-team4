@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Playlist } from '../type/playlist'
+import { Playlist } from '../types/IPlayList'
 
 export const getPlaylist = async (playlistId: string): Promise<Playlist> => {
   const res = await axios.get(`/api/playlists/${playlistId}`)

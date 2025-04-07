@@ -1,4 +1,4 @@
-export interface Video {
+export interface IVideo {
   id: string
   title: string
   thumbnailUrl: string
@@ -6,11 +6,10 @@ export interface Video {
   createdAt: string
 }
 
-export interface Playlist {
+export interface IPlayList {
   id: string
   title: string
-  isMyPlaylist: boolean
+  ownerName: string
   isPublic: boolean
-  authorName: string
-  videos: Video[]
+  videos: IVideo[]
 }

@@ -1,28 +1,20 @@
-import { Video } from '../type/playlist'
-import { EllipsisVertical } from 'lucide-react'
+import React from 'react'
+import { IVideo } from '../types/IPlayList'
+import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
 
-interface Props {
-  video: Video
-  onClick: () => void
-}
+const PlaylistVideoItem: React.FC<{ video: IVideo; index: number }> = ({ video, index }) => {
+  const { currentIndex, setCurrentIndex } = usePlaylistStore()
+  const isActive = index === currentIndex
 
-export default function PlaylistVideoItem({ video }: Props) {
   return (
-    <div className="flex h-[132px] items-start gap-[15px] bg-white px-[15px] py-[10px]">
-      {/* 썸네일 */}
-      <img src={video.thumbnailUrl} alt={video.title} className="h-[112px] w-[180px] flex-shrink-0 rounded-[5px] object-cover" />
-
-      {/* 영상 정보 */}
-      <div className="flex flex-1 flex-col items-start gap-2 self-stretch bg-white">
-        {/* 완료 */}
-        <div className="flex items-start justify-between gap-[10px]">
-          <p className="font-[Pretendard] text-[14px] font-medium leading-[20px] text-[#262729]">{video.title}</p>
-          <EllipsisVertical className="#2D3648 cursor-pointer" />
-        </div>
-        <p className="font-[Pretendard] text-[12px] font-medium leading-[16px] text-[#78787E]">
-          조회수 {video.views.toLocaleString()}회 · {video.createdAt}
-        </p>
+    <div className={`flex cursor-pointer gap-3 px-4 py-2 ${isActive ? 'bg-gray-100' : ''}`} onClick={() => setCurrentIndex(index)}>
+      <img src={video.thumbnailUrl} className="h-[60px] w-[100px] rounded-md object-cover" />
+      <div>
+        <p className="text-sm font-semibold">{video.title}</p>
+        <p className="text-xs text-gray-500">조회수 {video.views.toLocaleString()}회</p>
       </div>
     </div>
   )
 }
+
+export default PlaylistVideoItem
