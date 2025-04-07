@@ -47,7 +47,17 @@ export const fetchYoutubeChannelPlayList = async (channelId: string) => {
 }
 
 /** 유튜브 인기 동영상 (한국) */
-export const fetchYoutubePopularVideo = async () => {
-  const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&key=${YOUTUBE_KEY}`)
+export const fetchYoutubePopularVideo = async ({ pageParam }: { pageParam: string }) => {
+  const response = await axios.get(
+    `/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+  )
+  return response.data
+}
+
+/** 유튜브 인기 재생목록 (한국) */
+export const fetchYoutubePopularPlaylist = async ({ pageParam }: { pageParam: string }) => {
+  const response = await axios.get(
+    `/api/youtube/search?part=snippet&type=playlist&q=인기|예능|개발자|&relevanceLanguage=ko&regionCode=KR&safeSearch=strict&maxResults=10&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+  )
   return response.data
 }
