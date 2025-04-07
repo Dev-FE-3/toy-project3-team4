@@ -1,6 +1,6 @@
-import UserChannel from '@/shared/component/UserChannel'
-import Settings from './component/Settings'
-import ViewHistory from './component/ViewHistory'
+import UserChannel from '@/shared/components/UserChannel'
+import Settings from './components/Settings'
+import ViewHistory from './components/ViewHistory'
 
 const AppSettings = () => {
   return (
