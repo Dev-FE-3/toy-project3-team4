@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const YOUTUBE_KEY = import.meta.env.VITE_YOUTUBE_KEY
@@ -110,14 +110,18 @@ export const useYoutubeChannelPlayList = (channel: string) => {
  * 유튜브 특정 지역(한국)의 인기 동영상 가져오기
  */
 export const useYoutubePopularVideo = () => {
-  const fetchYoutubePopularVideo = async () => {
-    const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&key=${YOUTUBE_KEY}`)
+  const fetchYoutubePopularVideo = async ({ pageParam = '' }) => {
+    const response = await axios.get(
+      `/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+    )
     return response.data
   }
-  return useQuery({
-    queryKey: ['fetchYoutubePopularVideo'], // 캐시 키
-    queryFn: () => fetchYoutubePopularVideo(),
-    enabled: true,
+
+  return useInfiniteQuery({
+    queryKey: ['fetchYoutubePopularVideo'],
+    queryFn: fetchYoutubePopularVideo,
+    getNextPageParam: (lastPage) => lastPage.nextPageToken || undefined,
+    initialPageParam: '',
     staleTime: 1000 * 60 * 5,
   })
 }
