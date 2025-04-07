@@ -4,6 +4,8 @@ import Home from '@/feature/home'
 import Design from '@/feature/design/Design'
 import Video from '@/feature/video'
 import AppSettings from '@/feature/app-settings'
+import Login from '@/feature/login'
+import AuthCallback from '@/feature/auth/AuthCallback'
 
 function AppRoutes() {
   return (
@@ -11,6 +13,8 @@ function AppRoutes() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/design-guide" element={<Design />} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/settings" element={<AppSettings />} />
