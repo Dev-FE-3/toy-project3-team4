@@ -1,13 +1,13 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Search, ChevronLeft, X } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import { HeaderType } from '../type/HeaderType'
 
+type HeaderType = 'default' | 'searchInput' | 'searchIcon'
 const DEFAULT_HEADER_PATHS = ['/', '/follow', '/channel', '/settings']
 
 const Header = () => {
   const navigate = useNavigate()
-  const {pathname, search} = useLocation()
+  const { pathname, search } = useLocation()
 
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [type, setType] = useState<HeaderType>('default')
