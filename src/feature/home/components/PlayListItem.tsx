@@ -2,7 +2,7 @@ import { Avatar, AvatarImage } from '@/shared/lib/shadcn/ui/avatar'
 import { Bookmark, ListVideo } from 'lucide-react'
 import { fetchYoutubeChannel, fetchYoutubePlayListInfo, fetchYoutubePlayListVideoInfo } from '@/shared/util/youtube'
 import { formatUploadDate } from '@/shared/util/format'
-import { PlaylistItemProps, PlaylistVideoItem } from '../type/IYouTubeItem'
+import { PlaylistItemProps, PlaylistVideoItem } from '../type/IPlaylistTypes'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 
