@@ -1,22 +1,32 @@
-// src/components/Playlist/VideoDetailPage.tsx
+// components/VideoDetailPage.tsx
 import { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { fetchPlaylistById } from '../services/fetchPlaylist'
+import { usePlaylistStore } from '../stores/usePlaylistStore'
 import PlaylistPlayer from './PlaylistPlayer'
 import PlaylistFullModal from './PlaylistFullModal'
 import PlaylistMiniModal from './PlaylistMiniModal'
-import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
 
 const VideoDetailPage = () => {
-  const { current, setCurrentIndex } = usePlaylistStore()
+  const [params] = useSearchParams()
+  const { openPlaylist } = usePlaylistStore()
 
-  // 기본적으로 첫 번째 트랙에서 시작
+  const playlistId = params.get('playlist')
+  const videoId = params.get('video')
+
   useEffect(() => {
-    if (current) setCurrentIndex(0)
-  }, [current])
+    if (playlistId && videoId) {
+      fetchPlaylistById(playlistId).then((playlist) => {
+        const index = playlist.videos.findIndex((v) => v.id === videoId)
+        openPlaylist(playlist, index >= 0 ? index : 0)
+      })
+    }
+  }, [playlistId, videoId])
 
   return (
     <div className="relative">
       <PlaylistPlayer />
-      <div className="p-4">여기에 동영상 상세 내용</div>
+      <div className="text-sm text-gray-600">여기에 동영상 상세 내용</div>
       <PlaylistFullModal />
       <PlaylistMiniModal />
     </div>

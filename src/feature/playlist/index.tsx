@@ -1,8 +1,8 @@
 // src/App.tsx 또는 pages/index.tsx
 import PlaylistTestPage from './components/PlaylistTestPage'
 
-const App = () => {
+const PlayListView = () => {
   return <PlaylistTestPage />
 }
 
-export default App
+export default PlayListView

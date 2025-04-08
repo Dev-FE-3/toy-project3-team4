@@ -1,4 +1,5 @@
-import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
+// components/PlaylistPlayer.tsx
+import { usePlaylistStore } from '../stores/usePlaylistStore'
 
 const PlaylistPlayer = () => {
   const { current, currentIndex } = usePlaylistStore()
@@ -7,7 +8,7 @@ const PlaylistPlayer = () => {
   const video = current.videos[currentIndex]
 
   return (
-    <div className="relative aspect-video w-full bg-black">
+    <div className="relative aspect-video w-full">
       <iframe className="h-full w-full" src={`https://www.youtube.com/embed/${video.id}?autoplay=1`} allowFullScreen title={video.title} />
     </div>
   )

@@ -1,5 +1,5 @@
-import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
-import { PlaylistMock } from '../mock/playlistMock'
+import { usePlaylistStore } from '../stores/usePlaylistStore'
+import { PlaylistMock } from '../mock/PlaylistMock'
 
 const PlaylistTestPage = () => {
   const open = () => {

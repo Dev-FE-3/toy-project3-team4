@@ -1,5 +1,5 @@
 import React from 'react'
-import { useYoutubeVideoInfo } from '@/shared/util/youtube'
+// import { useYoutubeVideoInfo } from '@/shared/util/youtube'
 import { useUserList } from './api/useUserList'
 
 const Home: React.FC = () => {

@@ -1,7 +1,7 @@
 // src/playlist/components/PlaylistTestPage.tsx
 import { useState } from 'react'
-import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
-import { PlaylistMock } from '../mock/playlistMock'
+import { usePlaylistStore } from '../stores/usePlaylistStore'
+import { PlaylistMock } from '../mock/PlaylistMock'
 import VideoDetailPage from './VideoDetailPage'
 
 const PlaylistTestPage = () => {
@@ -13,7 +13,7 @@ const PlaylistTestPage = () => {
   }
 
   return (
-    <div className="p-4">
+    <div>
       {!isOpened && (
         <button onClick={open} className="rounded bg-blue-500 px-4 py-2 text-white">
           플레이리스트 테스트 열기
