@@ -4,10 +4,10 @@ import IAuthState from './type/IAuthState'
 
 export const useAuthStore = createDevtoolsStore<IAuthState>(
   (set) => ({
+    auth: null,
     user: null,
-    user_id: null,
+    setAuth: (auth) => set({ auth }, false, 'setAuth'),
     setUser: (user) => set({ user }, false, 'setUser'),
-    setUserId: (user_id) => set({ user_id }, false, 'setUserId'),
   }),
   'AuthStore',
 )
