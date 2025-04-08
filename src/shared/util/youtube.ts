@@ -54,11 +54,3 @@ export const fetchYoutubePopularVideo = async ({ pageParam }: { pageParam: strin
   )
   return response.data
 }
-
-/** 유튜브 인기 재생목록 (한국) */
-export const fetchYoutubePopularPlaylist = async ({ pageParam }: { pageParam: string }) => {
-  const response = await axios.get(
-    `/api/youtube/search?part=snippet&type=playlist&q=인기|예능|개발자|&relevanceLanguage=ko&regionCode=KR&safeSearch=strict&maxResults=10&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
-  )
-  return response.data
-}
