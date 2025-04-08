@@ -1,4 +1,5 @@
-import PlayListModal from '@/shared/components/playlist-modal/PlaylistModal'
+import NewPlayListModal from '@/shared/components/newplaylist-modal/NewPlayListModal'
+import PlayListModal from '@/shared/components/playlist-modal/PlayListModal'
 
 const Design = () => {
   return (
@@ -15,7 +16,8 @@ const Design = () => {
       <p className="text-main-warning">text-main-warning 입니다</p>
       <p className="text-main-success">text-main-success 입니다</p>
 
-      <PlayListModal />
+      {/* <PlayListModal /> */}
+      <NewPlayListModal />
     </>
   )
 }
