@@ -1,9 +1,8 @@
+import useThemeStore from '@/shared/store/theme/useThemeStore'
 import { SunMoon, UsersRound, Settings2, Headset, Handshake } from 'lucide-react'
-import { useState } from 'react'
 
 const Settings = () => {
-  const [isToggled, setIsToggled] = useState(false)
-
+  const { isDark, setToggleTheme } = useThemeStore()
   return (
     <ul>
       <li className="flex h-[50px] items-center justify-between gap-[15px]">
@@ -12,11 +11,13 @@ const Settings = () => {
           <p>다크 모드</p>
         </div>
         <button
-          onClick={() => setIsToggled(!isToggled)}
+          onClick={setToggleTheme}
           className="flex h-[20px] w-[40px] items-center rounded-full bg-gray-light p-[2px] transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <div
-            className={`h-[16px] w-[16px] transform rounded-full bg-basic-white shadow-md transition-transform ${isToggled ? 'translate-x-[20px] bg-blue-500' : 'translate-x-0'}`}
+            className={`h-[16px] w-[16px] transform rounded-full bg-basic-white shadow-md transition-transform ${
+              isDark ? 'translate-x-[20px] bg-blue-500' : 'translate-x-0'
+            }`}
           />
         </button>
       </li>

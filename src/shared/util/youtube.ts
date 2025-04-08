@@ -5,6 +5,7 @@ const YOUTUBE_KEY = import.meta.env.VITE_YOUTUBE_KEY
 /** 유튜브 비디오 ID로 정보 가져오기 */
 export const fetchYoutubeVideoInfo = async (videoId: string) => {
   const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&id=${videoId}&key=${YOUTUBE_KEY}`)
+
   return response.data
 }
 
