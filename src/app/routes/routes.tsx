@@ -16,7 +16,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/design-guide" element={<Design />} />
-          <Route path="/video/:id" element={<Video />} />
+          <Route path="/watch" element={<Video />} />
           <Route path="/settings" element={<AppSettings />} />
         </Route>
       </Routes>

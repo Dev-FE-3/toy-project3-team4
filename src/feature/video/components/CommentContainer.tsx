@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
-import { ICommentPayload, IDetailedVideoProps } from '../type/IVideo'
+import { ICommentContainerProps, ICommentPayload } from '../type/IVideo'
 import { useCommentList } from '../api/useCommentList'
 
-const CommentContainer: React.FC<IDetailedVideoProps> = ({ id }) => {
+const CommentContainer: React.FC<ICommentContainerProps> = ({ id }) => {
   const [newComment, setNewComment] = useState<ICommentPayload | null>(null)
 
   const { data: comments, isLoading: isCommentsLoading, error: commentsError, refetch } = useCommentList(id)
@@ -20,7 +20,7 @@ const CommentContainer: React.FC<IDetailedVideoProps> = ({ id }) => {
 
   return (
     <section className="mx-[15px] rounded-xl bg-gray-light px-[15px] pt-[10px]">
-      <CommentForm onSuccess={handleNewComment} />
+      <CommentForm onSuccess={handleNewComment} videoId={id} />
       <div className="h-[1px] w-full bg-gray-medium"></div>
       <CommentList comments={comments} newlyAddedComment={newComment} />
     </section>

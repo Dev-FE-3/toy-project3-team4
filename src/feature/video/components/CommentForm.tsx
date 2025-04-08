@@ -2,12 +2,11 @@ import { useUserList } from '@/feature/home/api/useUserList'
 import { Input } from '@/shared/lib/shadcn/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { postComment } from '../service/postComment'
-import { ICommentFormProps } from '../type/IVideo'
 
-const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess }) => {
-  const videoId = useParams<{ id: string }>().id ?? ''
+import { ICommentFormProps } from '../type/IVideo'
+import { postComment } from '../service/comment'
+
+const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   const [comment, setComment] = useState('')
   // 임시 유저 id
   const userId = 12

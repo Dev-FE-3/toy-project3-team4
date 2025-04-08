@@ -1,11 +1,12 @@
-// ✅ 비디오 상세 조회 시 사용하는 Props
-export interface IDetailedVideoProps {
+// ✅ 댓글 컨테이너 (CommnetContainer) Props
+export interface ICommentContainerProps {
   id: string
 }
 
 // ✅ 댓글 작성 후 CommentContainer(부모) 컴포넌트에 전달할 때 사용하는 Props
 export interface ICommentFormProps {
   onSuccess: (newComment: ICommentPayload) => void
+  videoId: string
 }
 
 // ✅ 댓글 리스트 렌더링 시 사용하는 Props
@@ -27,6 +28,7 @@ export interface ICommentPayload {
   video_id: string
   content: string
   user_id: number
+  created_at?: string
 }
 
 // ✅ Supabase에 저장된 댓글 들을 받아올 때 (GET)
@@ -42,4 +44,10 @@ export interface ICommentList {
 export interface IFollowButtonProps {
   userId: number
   channelId: string
+}
+
+// ✅ 좋아요 버튼 Props
+export interface ILikeButtonProps {
+  videoId: string
+  userId: number
 }
