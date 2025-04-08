@@ -2,6 +2,7 @@ import { Avatar, AvatarImage } from '../../lib/shadcn/ui/avatar'
 import { Button } from '../../lib/shadcn/ui/button'
 import { UserRoundPlus } from 'lucide-react'
 import IUserChannelProps from './type/IUserChannelProps'
+import { formatSubscriberCount } from '@/shared/util/format'
 
 const UserChannel = ({ isMe, channelName, username, followers, profileUrl, isFollowing = false }: IUserChannelProps) => {
   return (
@@ -15,7 +16,7 @@ const UserChannel = ({ isMe, channelName, username, followers, profileUrl, isFol
           <div className="flex text-sm text-gray-medium-dark">
             <span>{username}</span>
             <span className="relative flex items-center before:mx-2 before:block before:h-[12px] before:w-[1px] before:bg-gray-medium before:content-['']">
-              팔로워 {followers}
+              팔로워 {formatSubscriberCount(followers)}
             </span>
           </div>
           {!isMe && (

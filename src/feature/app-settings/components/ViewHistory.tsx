@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import useViewHistory from '../api/useViewHistory'
 import useYoutubeLinkInfo from '../api/useYoutubeLinkInfo'
+import { Link } from 'react-router-dom'
 
 const ViewHistory = () => {
   const { data: view, isLoading, error } = useViewHistory()
@@ -36,13 +37,15 @@ const ViewHistory = () => {
 
             return (
               <SwiperSlide key={idx} style={{ width: '140px' }}>
-                <li className="flex flex-col">
-                  <img className="h-[86px] max-h-[86px] min-h-[86px] w-full rounded-md border-none object-cover" src={thumbnailUrl} />
-                  <div className="mt-[5px]">
-                    <h4 className="overflow-hidden text-ellipsis whitespace-nowrap">{title}</h4>
-                    <p className="overflow-hidden text-ellipsis whitespace-nowrap text-[12px] text-gray-medium-dark">{channelTitle}</p>
-                  </div>
-                </li>
+                <Link to={`/watch?video=${id}`}>
+                  <li className="flex flex-col">
+                    <img className="h-[86px] max-h-[86px] min-h-[86px] w-full rounded-md border-none object-cover" src={thumbnailUrl} />
+                    <div className="mt-[5px]">
+                      <h4 className="overflow-hidden text-ellipsis whitespace-nowrap">{title}</h4>
+                      <p className="overflow-hidden text-ellipsis whitespace-nowrap text-[12px] text-gray-medium-dark">{channelTitle}</p>
+                    </div>
+                  </li>
+                </Link>
               </SwiperSlide>
             )
           })}
