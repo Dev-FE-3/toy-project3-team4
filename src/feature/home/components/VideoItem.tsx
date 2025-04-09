@@ -1,17 +1,20 @@
 import { Bookmark } from 'lucide-react'
 import { VideoItemProps } from '../type/IVideoTypes'
+import useChannelInfo from '../api/useChannelInfo'
 import VideoThumbnail from '@/shared/components/video/VideoThumnail'
 import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import VideoInfo from '@/shared/components/video/VideoInfo'
-import useChannelInfo from '../api/useChannelInfo'
+import HomeSkeleton from './HomeSkeleton'
 
 const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
-  const { data: channelData } = useChannelInfo(item.snippet.channelId)
+  const { data: channelData, isLoading: isChannelLoading } = useChannelInfo(item.snippet.channelId)
   const channelThumbnail = channelData?.items[0]?.snippet?.thumbnails?.default?.url
 
   const handleBookmarkClick = () => {
     console.log('bookmark clicked')
   }
+
+  if (isChannelLoading) return <HomeSkeleton />
 
   return (
     <li className="mb-5 w-full">
