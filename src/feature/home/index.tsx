@@ -20,11 +20,7 @@ const Home: React.FC = () => {
   return (
     <ul className="flex min-h-screen flex-col items-center p-[15px]">
       {data?.pages.map((page) => page.items.map((item: YouTubeVideoItem) => <VideoItem key={item.id} item={item} />))}
-      {isFetchingNextPage && (
-        <li className="mb-5 w-full">
-          <VideoItemSkeleton />
-        </li>
-      )}
+      {isFetchingNextPage && <VideoItemSkeleton />}
     </ul>
   )
 }
