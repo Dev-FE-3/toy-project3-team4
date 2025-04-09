@@ -59,7 +59,7 @@ const PlayListModal = ({ closeModal, setModalStates }: IPlayListModalProps) => {
                       <span className="text-sm text-gray-medium-dark">비공개</span>
                     </div>
                   </div>
-                  <BookmarkPlus onClick={addToPlayList} className="size-6 cursor-pointer" />
+                  <BookmarkPlus onClick={addToPlayList} size={24} className="cursor-pointer stroke-gray-dark" />
                 </div>
               </SwiperSlide>
             ))}
