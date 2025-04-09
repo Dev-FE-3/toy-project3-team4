@@ -1,8 +1,8 @@
 import { Bookmark } from 'lucide-react'
 import { VideoItemProps } from '../type/IVideoTypes'
-import VideoThumbnail from '@/shared/component/video/VideoThumnail'
-import ChannelAvatar from '@/shared/component/video/ChannelAvatar'
-import VideoInfo from '@/shared/component/video/VideoInfo'
+import VideoThumbnail from '@/shared/components/video/VideoThumnail'
+import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
+import VideoInfo from '@/shared/components/video/VideoInfo'
 import useChannelInfo from '../api/useChannelInfo'
 
 const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
