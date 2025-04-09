@@ -35,7 +35,7 @@ const NewPlayListModal = ({ video_id }) => {
         </div>
         <div className="mt-5 flex justify-end gap-2 text-sm">
           <Button className="bg-gray-light text-gray-dark shadow-none">취소</Button>
-          <Button className="bg-main-primary">만들기</Button>
+          <Button className="bg-main-primary">저장</Button>
         </div>
       </div>
     </div>
