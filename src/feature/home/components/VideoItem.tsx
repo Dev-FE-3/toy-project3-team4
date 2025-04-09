@@ -1,3 +1,4 @@
+import React from 'react'
 import { Bookmark } from 'lucide-react'
 import { VideoItemProps } from '../type/IVideoTypes'
 import useChannelInfo from '../api/useChannelInfo'
@@ -6,13 +7,13 @@ import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import VideoInfo from '@/shared/components/video/VideoInfo'
 import VideoItemSkeleton from './VideoItemSkeleton'
 
-const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
+const VideoItem = React.memo(({ item }: VideoItemProps) => {
   const { data: channelData, isLoading: isChannelLoading } = useChannelInfo(item.snippet.channelId)
   const channelThumbnail = channelData?.items[0]?.snippet?.thumbnails?.default?.url
 
-  const handleBookmarkClick = () => {
+  const handleBookmarkClick = React.useCallback(() => {
     console.log('bookmark clicked')
-  }
+  }, [])
 
   if (isChannelLoading) return <VideoItemSkeleton />
 
@@ -33,6 +34,8 @@ const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
       </div>
     </li>
   )
-}
+})
+
+VideoItem.displayName = 'VideoItem'
 
 export default VideoItem
