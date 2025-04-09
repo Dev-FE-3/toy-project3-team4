@@ -6,17 +6,29 @@ import IPlayListModalProps from './type/IPlayListModalProps'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import { useFindPlayList } from './api/useFindPlaylist'
 
-const PlayListModal = ({ closeModal, setModalStates }: IPlayListModalProps) => {
+const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalProps) => {
   const [container, setContainer] = useState<HTMLElement | null>(null)
+  const userId = useAuthStore((store) => store.user?.id) || 18
+
+  const { data: playList, isLoading, error } = useFindPlayList(userId)
 
   useEffect(() => {
     const target = document.getElementById('view-container')
     setContainer(target)
   }, [])
 
-  const addToPlayList = () => {
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error occurred</div>
+
+  console.log(playList)
+
+  const addToPlayList = (playListId: number) => {
     //해당 재생목록에 내 동영상 ID insert, supabase
+    console.log(videoId)
+    console.log(playListId)
   }
 
   const addNewPlayList = () => {
@@ -49,20 +61,26 @@ const PlayListModal = ({ closeModal, setModalStates }: IPlayListModalProps) => {
             modules={[FreeMode, Mousewheel]}
             className="min-h-0 w-full flex-1"
           >
-            {[...Array(3)].map((_, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex items-center justify-between py-2">
-                  <div className="flex gap-4">
-                    <img className="size-14 rounded-lg" src="/public/image/logo/main-logo.png" alt="재생목록 사진" />
-                    <div>
-                      <p className="font-bold">권진아 노래모음 {index + 1}</p>
-                      <span className="text-sm text-gray-medium-dark">비공개</span>
+            {playList.map((item, index: number) => {
+              return (
+                <SwiperSlide key={index}>
+                  <div className="flex items-center justify-between py-2">
+                    <div className="flex gap-4">
+                      <img
+                        className="size-16 rounded-lg"
+                        src={`https://img.youtube.com/vi/${item.videolist[0].video_id}/maxresdefault.jpg`}
+                        alt="재생목록 사진"
+                      />
+                      <div className="flex w-[250px] flex-col justify-center">
+                        <p className="text-sm font-bold">{item.name}</p>
+                        <span className="mt-1 text-xs text-gray-medium-dark">{item.access ? '공개' : '비공개'}</span>
+                      </div>
                     </div>
+                    <BookmarkPlus onClick={() => addToPlayList(item.id)} size={24} className="cursor-pointer stroke-gray-dark" />
                   </div>
-                  <BookmarkPlus onClick={addToPlayList} size={24} className="cursor-pointer stroke-gray-dark" />
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              )
+            })}
           </Swiper>
         </div>
       </div>
