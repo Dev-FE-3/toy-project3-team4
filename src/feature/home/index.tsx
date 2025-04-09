@@ -1,34 +1,27 @@
 import React from 'react'
-// import { useYoutubeVideoInfo } from '@/shared/util/youtube'
-import { useUserList } from './api/useUserList'
+import { useVideoList } from './api/useVideoList'
+import { useInfiniteScroll } from './hooks/useInfiniteScroll'
+import { YouTubeVideoItem } from './type/IVideoTypes'
+import VideoItem from './components/VideoItem'
+import VideoItemSkeleton from './components/VideoItemSkeleton'
 
 const Home: React.FC = () => {
-  const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
-  // const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideoInfo('60YQrsnduUc')
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } = useVideoList()
 
-  // if (isUsersLoading || isVideoLoading) return <p>Loading...</p>
-  if (isUsersLoading) return <p>Loading...</p>
-  if (userError instanceof Error) return <p>{userError.message}</p>
-  // if (videoError instanceof Error) return <p>{videoError.message}</p>
+  useInfiniteScroll({
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  })
+
+  // 에러 처리 추후 수정 필요
+  if (error) return <p>{(error as Error).message}</p>
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6">
-      <h1 className="mt-10 p-8">Supabase 연동</h1>
-      <ul>
-        {users?.map((user) => (
-          <li className="text-4xl font-black" key={user.id}>
-            {user.name}
-          </li>
-        ))}
-      </ul>
-      <h1 className="mt-10 p-8">Youtube API 연동</h1>
-      <ul>
-        {/* <li>ID: {video.items[0].id}</li>
-        <li>TITLE: {video.items[0].snippet.localized.title}</li>
-        <li>DESCRIPTION: {video.items[0].snippet.localized.description}</li>
-        <li>IMG URL: {video.items[0].snippet.thumbnails.standard.url}</li> */}
-      </ul>
-    </div>
+    <ul className="flex min-h-screen flex-col items-center p-[15px]">
+      {data?.pages.map((page) => page.items.map((item: YouTubeVideoItem) => <VideoItem key={item.id} item={item} />))}
+      {isFetchingNextPage && <VideoItemSkeleton />}
+    </ul>
   )
 }
 
