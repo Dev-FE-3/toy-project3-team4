@@ -23,7 +23,7 @@ const PlaylistVideoItem = ({ video, index }: IPlaylistVideoItemProps) => {
           <h3 className="text-[14px] font-medium leading-[20px]">{video.title}</h3>
           <EllipsisVertical size={14} className="flex-shrink-0 stroke-gray-dark" />
         </div>
-        <p className="text-[12px] font-medium leading-[16px]">
+        <p className="text-[12px] font-medium leading-[16px] text-gray-medium-dark">
           조회수 {formatViewCount(video.views)} • {formatUploadDate(video.createdAt)}
         </p>
       </div>
