@@ -15,6 +15,8 @@ export interface IPlayList {
 }
 
 export interface IPlaylistVideoItemProps {
-  video: IVideo
   index: number
+  thumbnailUrl: string
+  title: string
+  videoId: string
 }

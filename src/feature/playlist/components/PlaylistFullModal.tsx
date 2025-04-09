@@ -2,9 +2,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItem from './PlayListVideoItem'
+import useYoutubePlayListVideoInfo from '../api/useYoutubePlayListVideoInfo'
 
-const PlaylistFullModal = () => {
+const PlaylistFullModal = ({ videoId = 'JSFG-IE8n_c', playlistId = 'RDJSFG-IE8n_c', myself = false }) => {
   const { current, isFullOpen } = usePlaylistStore()
+  const { data: playlist, isLoading, error } = useYoutubePlayListVideoInfo(playlistId)
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error occurred</div>
+  console.log(playlist.items[0])
 
   return (
     <AnimatePresence>
@@ -19,10 +25,16 @@ const PlaylistFullModal = () => {
           {/* 헤더 */}
           <PlaylistHeader />
 
-          {/* 바디 (스크롤 영역) */}
+          {/* 바디 (스크롤 영역)*/}
           <div className="scrollbar-hide flex-1 overflow-y-auto px-[2px]">
-            {current.videos.map((video, idx) => (
-              <PlaylistVideoItem key={video.id} video={video} index={idx} />
+            {playlist.items.map((video, idx) => (
+              <PlaylistVideoItem
+                key={idx}
+                thumbnailUrl={video.snippet.thumbnails.high.url}
+                title={video.snippet.title}
+                videoId={video.snippet.resourceId.videoId}
+                index={idx}
+              />
             ))}
           </div>
         </motion.div>
