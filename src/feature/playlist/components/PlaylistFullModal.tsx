@@ -3,14 +3,20 @@ import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItem from './PlayListVideoItem'
 import useYoutubePlayListVideoInfo from '../api/useYoutubePlayListVideoInfo'
+import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
 
-const PlaylistFullModal = ({ videoId = 'JSFG-IE8n_c', playlistId = 'RDJSFG-IE8n_c', myself = false }) => {
+const PlaylistFullModal = ({ playlistId = 'PLGhOCcpfhWjfoZCf1iNRHFm8U9Xjc9RRQ', myself = false }) => {
   const { current, isFullOpen } = usePlaylistStore()
-  const { data: playlist, isLoading, error } = useYoutubePlayListVideoInfo(playlistId)
+  const { data: playlist, isLoading: playlistIsLoading, error: playlistError } = useYoutubePlayListVideoInfo(playlistId)
+  const { data: playlistInfo, isLoading: playlistInfoIsLoading, error: playlistInfoError } = useYoutubePlayListInfo(playlistId)
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error occurred</div>
-  console.log(playlist.items[0])
+  if (playlistIsLoading) return <div>Loading...</div>
+  if (playlistError) return <div>Error occurred</div>
+
+  if (playlistInfoIsLoading) return <div>Loading...</div>
+  if (playlistInfoError) return <div>Error occurred</div>
+
+  console.log(playlistInfo)
 
   return (
     <AnimatePresence>
@@ -22,17 +28,20 @@ const PlaylistFullModal = ({ videoId = 'JSFG-IE8n_c', playlistId = 'RDJSFG-IE8n_
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="fixed bottom-[56px] top-[300px] z-50 flex w-[430px] flex-col bg-white shadow-xl"
         >
-          {/* 헤더 */}
-          <PlaylistHeader />
+          <PlaylistHeader
+            playlistTitle={playlistInfo.items[0].snippet.title}
+            channelTitle={playlistInfo.items[0].snippet.channelTitle}
+            videoCount={playlistInfo.items[0].contentDetails.itemCount}
+          />
 
           {/* 바디 (스크롤 영역)*/}
           <div className="scrollbar-hide flex-1 overflow-y-auto px-[2px]">
-            {playlist.items.map((video, idx) => (
+            {playlist.items.map((playlistId, idx: number) => (
               <PlaylistVideoItem
                 key={idx}
-                thumbnailUrl={video.snippet.thumbnails.high.url}
-                title={video.snippet.title}
-                videoId={video.snippet.resourceId.videoId}
+                thumbnailUrl={playlistId.snippet.thumbnails.high.url}
+                title={playlistId.snippet.title}
+                videoId={playlistId.snippet.resourceId.videoId}
                 index={idx}
               />
             ))}

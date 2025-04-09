@@ -4,7 +4,7 @@ import { EllipsisVertical } from 'lucide-react'
 import { formatViewCount, formatUploadDate } from '@/shared/util/format'
 import '../util/scroll.css'
 // 썸네일 URL, title, 조회수, 업로드일
-const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId }: IPlaylistVideoItemProps) => {
+const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, views, createdAt }: IPlaylistVideoItemProps) => {
   const { currentIndex, setCurrentIndex } = usePlaylistStore()
   const isActive = index === currentIndex
 
@@ -24,7 +24,7 @@ const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId }: IPlaylistVid
           <EllipsisVertical size={14} className="flex-shrink-0 stroke-gray-dark" />
         </div>
         <p className="text-[12px] font-medium leading-[16px] text-gray-medium-dark">
-          {/* 조회수 {formatViewCount(views)} • {formatUploadDate(createdAt)} */}
+          {views && createdAt && `조회수 ${formatViewCount(views)} • ${formatUploadDate(createdAt)}`}
         </p>
       </div>
     </div>

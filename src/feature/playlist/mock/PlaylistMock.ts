@@ -1,9 +1,6 @@
 // mock/playlistMock.ts
 export const PlaylistMock = {
   id: '1',
-  title: '내 플레이리스트',
-  ownerName: '안요셉',
-  isPublic: true,
   videos: [
     {
       id: 'JSFG-IE8n_c',
