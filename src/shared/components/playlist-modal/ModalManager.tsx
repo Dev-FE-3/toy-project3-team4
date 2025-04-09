@@ -4,7 +4,7 @@ import PlayListModal from './PlayListModal'
 import NewPlayListModal from '../newplaylist-modal/NewPlayListModal'
 import { Button } from '@/shared/lib/shadcn/ui/button'
 
-const ModalManager = ({ videoId = 'TEST' }) => {
+const ModalManager = ({ videoId = 't8P-zdkoeJA' }) => {
   const [isPlayListOpen, setPlayListOpen] = useState(false)
   const [isNewPlayListOpen, setNewPlayListOpen] = useState(false)
 

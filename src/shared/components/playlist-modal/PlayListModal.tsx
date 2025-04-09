@@ -9,10 +9,17 @@ import 'swiper/css'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import { useFindPlayList } from './api/useFindPlayList'
 import { motion } from 'framer-motion'
+import { useAddVideoToPlaylist } from './api/useAddVideoToPlayList'
+import { IPlayListItem } from './type/IPlayListItem'
+import { useDeleteVideoToPlayList } from './api/useDeleteVideoToPlayList'
+import { useQueryClient } from '@tanstack/react-query'
 
-const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayListModalProps) => {
+const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalProps) => {
   const [container, setContainer] = useState<HTMLElement | null>(null)
   const userId = useAuthStore((store) => store.user?.id) || 21
+  const { mutate: addVideoToPlaylist } = useAddVideoToPlaylist()
+  const { mutate: deleteVideoToPlayList } = useDeleteVideoToPlayList()
+  const queryClient = useQueryClient()
 
   const { data: playList, isLoading, error } = useFindPlayList(userId)
 
@@ -21,12 +28,35 @@ const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayLi
     setContainer(target)
   }, [])
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return ''
   if (error) return <div>Error occurred</div>
 
   const addToPlayList = (playListId: number) => {
-    console.log(videoId)
-    console.log(playListId)
+    addVideoToPlaylist(
+      { playlistId: playListId, videoId: videoId },
+      {
+        onSuccess: () => {
+          alert('플레이리스트에 추가됐어요!')
+          queryClient.invalidateQueries({ queryKey: ['find-playList', userId] })
+        },
+        onError: () => {
+          alert('추가에 실패했어요. 다시 시도해보세요.')
+        },
+      },
+    )
+  }
+
+  const removeToPlayList = (playListId: number) => {
+    deleteVideoToPlayList(
+      { playlistId: playListId, videoId: videoId },
+      {
+        onSuccess: () => {
+          alert('삭제 완료!')
+          queryClient.invalidateQueries({ queryKey: ['find-playList', userId] })
+        },
+        onError: () => alert('삭제 실패 ㅠㅠ'),
+      },
+    )
   }
 
   const addNewPlayList = () => {
@@ -34,6 +64,8 @@ const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayLi
   }
 
   if (!container) return null
+
+  console.log(playList)
 
   const modalContent = (
     <motion.div
@@ -64,7 +96,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayLi
             modules={[FreeMode, Mousewheel]}
             className="min-h-0 w-full flex-1"
           >
-            {playList.map((item, index: number) => {
+            {playList.map((item: IPlayListItem, index: number) => {
               return (
                 <SwiperSlide key={index}>
                   <div className="flex items-center justify-between py-2">
@@ -79,7 +111,35 @@ const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayLi
                         <span className="mt-1 text-xs text-gray-medium-dark">{item.access ? '공개' : '비공개'}</span>
                       </div>
                     </div>
-                    <BookmarkPlus onClick={() => addToPlayList(item.id)} size={24} className="cursor-pointer stroke-gray-dark" />
+                    {item.videolist.find((element) => element.video_id === videoId) ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 20 21"
+                        fill="none"
+                        onClick={() => removeToPlayList(item.id)}
+                        className="cursor-pointer"
+                      >
+                        <path
+                          d="M15.8333 18L9.99996 14.6667L4.16663 18V4.66667C4.16663 4.22464 4.34222 3.80072 4.65478 3.48816C4.96734 3.17559 5.39127 3 5.83329 3H14.1666C14.6087 3 15.0326 3.17559 15.3451 3.48816C15.6577 3.80072 15.8333 4.22464 15.8333 4.66667V18Z"
+                          fill="#525252"
+                          stroke="#525252"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M7.5 8.83317L9.16667 10.4998L12.5 7.1665"
+                          stroke="white"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    ) : (
+                      <BookmarkPlus onClick={() => addToPlayList(item.id)} size={24} className="cursor-pointer stroke-gray-dark" />
+                    )}
                   </div>
                 </SwiperSlide>
               )
