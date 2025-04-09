@@ -1,4 +1,4 @@
-import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 import { IPlaylistVideoItemProps } from '../types/IPlayList'
 import { EllipsisVertical } from 'lucide-react'
 import { formatViewCount, formatUploadDate } from '@/shared/util/format'

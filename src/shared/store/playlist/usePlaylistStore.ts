@@ -1,6 +1,6 @@
 // stores/usePlaylistStore.ts
 import { IPlayList } from '@/feature/playlist/types/IPlayList'
-import { createDevtoolsStore } from '../store/createDevtoolsStore'
+import { createDevtoolsStore } from '../createDevtoolsStore'
 
 interface PlaylistState {
   current: IPlayList | null

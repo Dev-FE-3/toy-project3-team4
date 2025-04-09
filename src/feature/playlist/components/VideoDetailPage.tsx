@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { fetchPlaylistById } from '../services/fetchPlaylist'
-import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 import PlaylistPlayer from './PlaylistPlayer'
 import PlaylistFullModal from './PlaylistFullModal'
 import PlaylistMiniModal from './PlaylistMiniModal'

@@ -1,5 +1,5 @@
 // components/PlaylistPlayer.tsx
-import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 
 const PlaylistPlayer = () => {
   const { current, currentIndex } = usePlaylistStore()

@@ -1,4 +1,4 @@
-import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
 import { Lock, Globe, X } from 'lucide-react'
 
 const PlaylistHeader = () => {
