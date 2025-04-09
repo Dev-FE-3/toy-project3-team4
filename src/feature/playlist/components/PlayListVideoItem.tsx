@@ -1,20 +1,17 @@
-import { usePlaylistStore } from '../stores/usePlaylistStore'
-import { IVideo } from '../types/IPlayList'
+import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
+import { IPlaylistVideoItemProps } from '../types/IPlayList'
 import { EllipsisVertical } from 'lucide-react'
+import { formatViewCount, formatUploadDate } from '@/shared/util/format'
+import '../util/scroll.css'
 
-interface PlaylistVideoItemProps {
-  video: IVideo
-  index: number
-}
-
-const PlaylistVideoItem = ({ video, index }: PlaylistVideoItemProps) => {
+const PlaylistVideoItem = ({ video, index }: IPlaylistVideoItemProps) => {
   const { currentIndex, setCurrentIndex } = usePlaylistStore()
   const isActive = index === currentIndex
 
   return (
     <div
       id={`video-${index}`}
-      className={`flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-100' : ''}`}
+      className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
       onClick={() => setCurrentIndex(index)}
     >
       {/* 썸네일 */}
@@ -23,11 +20,11 @@ const PlaylistVideoItem = ({ video, index }: PlaylistVideoItemProps) => {
       {/* 텍스트 영역 */}
       <div className="flex flex-1 flex-col justify-between gap-[8px] overflow-hidden">
         <div className="flex items-start justify-between gap-[10px]">
-          <h3 className="font-[Pretendard] text-[14px] font-medium leading-[20px] text-[#262729]">{video.title}</h3>
-          <EllipsisVertical className="h-[14px] w-[14px] flex-shrink-0 text-gray-600" />
+          <h3 className="text-[14px] font-medium leading-[20px]">{video.title}</h3>
+          <EllipsisVertical size={14} className="flex-shrink-0 stroke-gray-dark" />
         </div>
-        <p className="font-[Pretendard] text-[12px] font-medium leading-[16px] text-[#78787E]">
-          조회수 {video.views.toLocaleString()}회 • {video.createdAt}
+        <p className="text-[12px] font-medium leading-[16px]">
+          조회수 {formatViewCount(video.views)} • {formatUploadDate(video.createdAt)}
         </p>
       </div>
     </div>

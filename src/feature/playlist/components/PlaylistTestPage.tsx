@@ -1,6 +1,6 @@
 // src/playlist/components/PlaylistTestPage.tsx
 import { useState } from 'react'
-import { usePlaylistStore } from '../stores/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
 import { PlaylistMock } from '../mock/PlaylistMock'
 import VideoDetailPage from './VideoDetailPage'
 

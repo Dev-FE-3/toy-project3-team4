@@ -99,15 +99,6 @@ body {
   }
 }
 
-/* global.css 또는 tailwind.css 안에 */
-.scrollbar-hide {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
 @layer base {
   * {
     @apply border-border;

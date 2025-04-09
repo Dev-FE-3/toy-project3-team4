@@ -13,3 +13,8 @@ export interface IPlayList {
   isPublic: boolean
   videos: IVideo[]
 }
+
+export interface IPlaylistVideoItemProps {
+  video: IVideo
+  index: number
+}

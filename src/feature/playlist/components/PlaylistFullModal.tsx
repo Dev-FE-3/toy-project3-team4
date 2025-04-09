@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { usePlaylistStore } from '../stores/usePlaylistStore.ts'
+import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItem from './PlayListVideoItem'
 

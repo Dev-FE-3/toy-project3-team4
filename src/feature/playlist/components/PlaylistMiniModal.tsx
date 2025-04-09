@@ -1,4 +1,4 @@
-import { usePlaylistStore } from '../stores/usePlaylistStore'
+import { usePlaylistStore } from '@/shared/store/usePlaylistStore'
 import { ListMusic, ChevronUp } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
