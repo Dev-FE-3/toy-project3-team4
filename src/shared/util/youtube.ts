@@ -5,6 +5,7 @@ const YOUTUBE_KEY = import.meta.env.VITE_YOUTUBE_KEY
 /** 유튜브 비디오 ID로 정보 가져오기 */
 export const fetchYoutubeVideoInfo = async (videoId: string) => {
   const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&id=${videoId}&key=${YOUTUBE_KEY}`)
+
   return response.data
 }
 
@@ -16,7 +17,7 @@ export const fetchYoutubePlayListInfo = async (playListId: string) => {
 
 /** 유튜브 재생목록 내 비디오들 정보 */
 export const fetchYoutubePlayListVideoInfo = async (playListId: string) => {
-  const response = await axios.get(`/api/youtube/playlistItems?part=snippet&playlistId=${playListId}&maxResults=10&key=${YOUTUBE_KEY}`)
+  const response = await axios.get(`/api/youtube/playlistItems?part=snippet&playlistId=${playListId}&maxResults=5&key=${YOUTUBE_KEY}`)
   return response.data
 }
 
@@ -47,7 +48,9 @@ export const fetchYoutubeChannelPlayList = async (channelId: string) => {
 }
 
 /** 유튜브 인기 동영상 (한국) */
-export const fetchYoutubePopularVideo = async () => {
-  const response = await axios.get(`/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=10&key=${YOUTUBE_KEY}`)
+export const fetchYoutubePopularVideo = async ({ pageParam }: { pageParam: string }) => {
+  const response = await axios.get(
+    `/api/youtube/videos?part=snippet,statistics&chart=mostPopular&regionCode=KR&maxResults=5&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+  )
   return response.data
 }

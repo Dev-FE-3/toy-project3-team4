@@ -22,7 +22,7 @@ const insertUser = async (user: User) => {
 
 // ✅ React Query Mutation Hook
 export const useUpsertUser = () => {
-  const setUserId = useAuthStore((state) => state.setUserId)
+  const setUser = useAuthStore((state) => state.setUser)
 
   return useMutation({
     mutationFn: async (user: User) => {
@@ -35,7 +35,7 @@ export const useUpsertUser = () => {
       // ✅ 기존이든 신규든 다시 조회해서 user_id 가져옴
       const users = await fetchUserByUid(user.id)
       if (users.length > 0) {
-        setUserId(users[0].id)
+        setUser(users[0])
       }
     },
   })
