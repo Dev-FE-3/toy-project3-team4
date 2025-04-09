@@ -21,7 +21,7 @@ const NewPlayListModal = ({ video_id, closeModal }: INewPlayListModalProps) => {
 
   const modalContent = (
     <motion.div
-      className="absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2"
+      className="absolute inset-0 z-50 flex items-center justify-center"
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.9, opacity: 0 }}

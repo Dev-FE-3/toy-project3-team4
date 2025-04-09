@@ -37,7 +37,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId = 'TEST' }: IPlayLi
 
   const modalContent = (
     <motion.div
-      className="absolute bottom-[10px] left-1/2 z-50 -translate-x-1/2"
+      className="absolute inset-0 z-50 mb-4 flex items-end justify-center"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 100, opacity: 0 }}
