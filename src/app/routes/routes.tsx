@@ -5,6 +5,7 @@ import Design from '@/feature/design/Design'
 import AppSettings from '@/feature/app-settings'
 import Login from '@/feature/login'
 import AuthCallback from '@/feature/auth/AuthCallback'
+import PlayListView from '@/feature/playlist'
 import Search from '@/feature/search'
 
 function AppRoutes() {
@@ -17,6 +18,7 @@ function AppRoutes() {
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/design-guide" element={<Design />} />
           <Route path="/settings" element={<AppSettings />} />
+          <Route path="/playlist" element={<PlayListView />} />
           <Route path="/search" element={<Search />} />
         </Route>
       </Routes>
