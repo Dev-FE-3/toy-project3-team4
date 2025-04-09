@@ -29,6 +29,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   overflow-y: scroll;
+  color: var(--basic-black);
 }
 
 /* 다크모드 적용 */

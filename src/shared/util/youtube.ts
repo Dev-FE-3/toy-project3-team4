@@ -17,7 +17,7 @@ export const fetchYoutubePlayListInfo = async (playListId: string) => {
 
 /** 유튜브 재생목록 내 비디오들 정보 */
 export const fetchYoutubePlayListVideoInfo = async (playListId: string) => {
-  const response = await axios.get(`/api/youtube/playlistItems?part=snippet&playlistId=${playListId}&maxResults=10&key=${YOUTUBE_KEY}`)
+  const response = await axios.get(`/api/youtube/playlistItems?part=snippet&playlistId=${playListId}&maxResults=5&key=${YOUTUBE_KEY}`)
   return response.data
 }
 
