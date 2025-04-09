@@ -4,7 +4,7 @@ import useChannelInfo from '../api/useChannelInfo'
 import VideoThumbnail from '@/shared/components/video/VideoThumnail'
 import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import VideoInfo from '@/shared/components/video/VideoInfo'
-import HomeSkeleton from './HomeSkeleton'
+import VideoItemSkeleton from './VideoItemSkeleton'
 
 const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
   const { data: channelData, isLoading: isChannelLoading } = useChannelInfo(item.snippet.channelId)
@@ -14,7 +14,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ item }) => {
     console.log('bookmark clicked')
   }
 
-  if (isChannelLoading) return <HomeSkeleton />
+  if (isChannelLoading) return <VideoItemSkeleton />
 
   return (
     <li className="mb-5 w-full">

@@ -1,4 +1,4 @@
-const HomeSkeleton = () => {
+const VideoItemSkeleton = () => {
   return (
     <li className="mb-5 w-full animate-pulse">
       {/* 썸네일 스켈레톤 */}
@@ -23,4 +23,4 @@ const HomeSkeleton = () => {
   )
 }
 
-export default HomeSkeleton
+export default VideoItemSkeleton

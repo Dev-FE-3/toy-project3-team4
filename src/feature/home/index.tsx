@@ -3,7 +3,7 @@ import { useVideoList } from './api/useVideoList'
 import { useInfiniteScroll } from './hooks/useInfiniteScroll'
 import { YouTubeVideoItem } from './type/IVideoTypes'
 import VideoItem from './components/VideoItem'
-import HomeSkeleton from './components/HomeSkeleton'
+import VideoItemSkeleton from './components/VideoItemSkeleton'
 
 const Home: React.FC = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } = useVideoList()
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       {data?.pages.map((page) => page.items.map((item: YouTubeVideoItem) => <VideoItem key={item.id} item={item} />))}
       {isFetchingNextPage && (
         <li className="mb-5 w-full">
-          <HomeSkeleton />
+          <VideoItemSkeleton />
         </li>
       )}
     </ul>
