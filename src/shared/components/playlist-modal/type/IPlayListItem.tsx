@@ -1,7 +1,7 @@
 export interface IPlayListItem {
   id: number
   name: string
-  access: boolean
+  access: string
   videolist: [
     {
       video_id: string

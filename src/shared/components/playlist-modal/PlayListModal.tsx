@@ -106,7 +106,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
                       />
                       <div className="flex w-[250px] flex-col justify-center">
                         <p className="text-sm font-bold">{item.name}</p>
-                        <span className="mt-1 text-xs text-gray-medium-dark">{item.access ? '공개' : '비공개'}</span>
+                        <span className="mt-1 text-xs text-gray-medium-dark">{item.access === 'Y' ? '공개' : '비공개'}</span>
                       </div>
                     </div>
                     {item.videolist.find((element) => element.video_id === videoId) ? (
