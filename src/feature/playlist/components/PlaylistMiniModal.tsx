@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ListMusic, ChevronUp } from 'lucide-react'
-import { MiniModalProps } from '../types/IPlayList'
+import { IMiniModalProps } from '../types/IPlayList'
 
-const PlaylistMiniModal = ({ currentIndex, playlist, nextVideo, onOpenFull }: MiniModalProps) => {
+const PlaylistMiniModal = ({ currentIndex, playlist, nextVideo, onOpenFull }: IMiniModalProps) => {
   if (!playlist.length) return null
 
   return (

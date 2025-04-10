@@ -1,6 +1,6 @@
-import { VideoItem } from '../types/IPlayList'
+import { IVideoItem } from '../types/IPlayList'
 
-const PlaylistPlayer = ({ video }: { video: VideoItem }) => {
+const PlaylistPlayer = ({ video }: { video: IVideoItem }) => {
   if (!video) return null
 
   return (
