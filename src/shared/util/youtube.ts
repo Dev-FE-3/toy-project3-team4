@@ -66,7 +66,7 @@ export const fetchYoutubeSearch = async ({
   type: 'video' | 'playlist'
 }) => {
   const response = await axios.get(
-    `/api/youtube/search?part=snippet&type=${type}&q=${searchParams}&order=viewCount&relevanceLanguage=ko&regionCode=KR&safeSearch=strict&maxResults=3&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+    `/api/youtube/search?part=snippet&type=${type}&q=${searchParams}&order=viewCount&relevanceLanguage=ko&regionCode=KR&safeSearch=strict&maxResults=5&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
   )
   return response.data
 }
