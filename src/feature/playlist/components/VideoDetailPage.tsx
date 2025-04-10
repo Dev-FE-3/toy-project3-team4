@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import PlaylistPlayer from './PlaylistPlayer'
+// import PlaylistPlayer from './PlaylistPlayer'
 import PlaylistFullModal from './PlaylistFullModal'
 import PlaylistMiniModal from './PlaylistMiniModal'
 import { fetchYoutubePlayListVideoInfo } from '@/shared/util/youtube'
@@ -15,10 +15,9 @@ type YouTubePlaylistItem = {
   }
 }
 
-const VideoDetailPage = () => {
-  const [params] = useSearchParams()
-  const playlistId = 'PLGhOCcpfhWjfoZCf1iNRHFm8U9Xjc9RRQ'
-  const videoId = params.get('video')!
+const VideoDetailPage = ({ videoId = 'xMilZv-Clms', playlistId = 'PLPhtNKiHTFyrufM8X57tcrOe18Seq3kZD', myself }) => {
+  // const [params] = useSearchParams()
+  // const videoId = params.get('video')!
 
   const [playlist, setPlaylist] = useState<IVideoItem[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -45,12 +44,12 @@ const VideoDetailPage = () => {
     init()
   }, [playlistId, videoId])
 
-  const currentVideo = playlist[currentIndex]
+  // const currentVideo = playlist[currentIndex]
   const nextVideo = playlist[currentIndex + 1]
 
   return (
     <div className="relative">
-      <PlaylistPlayer video={currentVideo} />
+      {/* <PlaylistPlayer video={currentVideo} /> */}
       {isFullOpen ? (
         <PlaylistFullModal
           playlistId={playlistId}
