@@ -28,6 +28,7 @@ const NewPlayListModal = ({ videoId, closeModal }: INewPlayListModalProps) => {
       {
         onSuccess: () => {
           alert('새 플레이리스트 생성!')
+          closeModal()
         },
         onError: () => {
           alert('추가에 실패했어요. 다시 시도해보세요.')
