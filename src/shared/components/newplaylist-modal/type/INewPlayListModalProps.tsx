@@ -1,4 +1,4 @@
 export default interface INewPlayListModalProps {
-  video_id: string
+  videoId: string
   closeModal: () => void
 }

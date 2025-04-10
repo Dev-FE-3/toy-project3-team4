@@ -45,7 +45,7 @@ const ModalManager = ({ videoId = 't8P-zdkoeJA' }) => {
                 setNewPlayListOpen(false)
                 setPlayListOpen(true)
               }}
-              video_id={videoId}
+              videoId={videoId}
             />
           </motion.div>
         )}

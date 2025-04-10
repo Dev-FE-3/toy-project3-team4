@@ -4,9 +4,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { motion } from 'framer-motion'
 import INewPlayListModalProps from './type/INewPlayListModalProps'
+import { useNewPlayList } from './api/useNewPlayList'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 
-const NewPlayListModal = ({ video_id, closeModal }: INewPlayListModalProps) => {
+const NewPlayListModal = ({ videoId, closeModal }: INewPlayListModalProps) => {
   const [container, setContainer] = useState<HTMLElement | null>(null)
+  const [access, setAccess] = useState('Y') // 공개 여부 상태
+  const [title, setTitle] = useState('') // 제목 상태 추가
+  const userId = useAuthStore((store) => store.user?.id) || 21
+  const { mutate: addNewPlayList } = useNewPlayList()
 
   useEffect(() => {
     const target = document.getElementById('view-container')
@@ -16,7 +22,18 @@ const NewPlayListModal = ({ video_id, closeModal }: INewPlayListModalProps) => {
   if (!container) return null
 
   const newPlayList = () => {
-    console.log(video_id)
+    //새 플레이리스트 생성과 동시에 선택된 동영상 id insert
+    addNewPlayList(
+      { userId, title, access, videoId },
+      {
+        onSuccess: () => {
+          alert('새 플레이리스트 생성!')
+        },
+        onError: () => {
+          alert('추가에 실패했어요. 다시 시도해보세요.')
+        },
+      },
+    )
   }
 
   const modalContent = (
@@ -32,12 +49,17 @@ const NewPlayListModal = ({ video_id, closeModal }: INewPlayListModalProps) => {
 
         <div className="mt-5 rounded-lg border px-[12px] py-[8px]">
           <h6 className="text-sm text-gray-medium-dark">제목</h6>
-          케이팝
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="재생목록"
+            className="w-full border-none text-base outline-none"
+          />
         </div>
 
         <div className="mt-2 rounded-lg border px-[12px] py-[8px]">
           <h6 className="text-sm text-gray-medium-dark">공개 상태</h6>
-          <Select defaultValue="Y">
+          <Select value={access} onValueChange={(val) => setAccess(val)}>
             <SelectTrigger className="h-auto border-none p-0 text-lg shadow-none focus:outline-none focus:ring-0">
               <SelectValue />
             </SelectTrigger>

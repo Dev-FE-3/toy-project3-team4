@@ -65,8 +65,6 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
 
   if (!container) return null
 
-  console.log(playList)
-
   const modalContent = (
     <motion.div
       className="absolute inset-0 z-50 mb-4 flex items-end justify-center"
