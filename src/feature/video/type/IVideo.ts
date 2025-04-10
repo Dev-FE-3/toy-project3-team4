@@ -17,10 +17,9 @@ export interface ICommentListProps {
 
 // ✅ 댓글 렌더링 할 때
 export interface ICommentProps {
-  userId: number
-  userImg: string
+  userId?: number
   comment: string
-  createdAt: string
+  createdAt?: string
 }
 
 // ✅ Supabase에 댓글 저장 할 때 payload 타입 (POST)

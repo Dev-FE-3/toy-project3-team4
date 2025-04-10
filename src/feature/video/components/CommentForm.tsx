@@ -1,29 +1,23 @@
-import { useUserList } from '@/feature/home/api/useUserList'
 import { Input } from '@/shared/lib/shadcn/ui/input'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { useState } from 'react'
 
 import { ICommentFormProps } from '../type/IVideo'
 import { postComment } from '../service/comment'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import { CircleUserRound } from 'lucide-react'
 
 const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   const [comment, setComment] = useState('')
-  // 임시 유저 id
-  const userId = 12
-  // 임시 유저  data
-  const { data: users, isLoading: isUsersLoading, error: userError } = useUserList()
 
-  if (isUsersLoading) return <p>Loading...</p>
-  if (userError) return <p>Error...</p>
-
-  // 임시 유저  img
-  const userImg = users[1].img
+  const user = useAuthStore((state) => state.user)
 
   // 댓글 슈퍼베이스에 저장하기
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (comment === '') {
+    console.log(user?.id)
+    if (comment === '' || user?.id === undefined) {
+      //user id가 없을때 즉 로그인 안돼 있을 떄 일단 못 달게 해놓음
       return
     }
 
@@ -31,7 +25,7 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
       const newCommnet = await postComment({
         video_id: videoId,
         content: comment,
-        user_id: userId,
+        user_id: user.id,
       })
       onSuccess(newCommnet)
       setComment('')
@@ -43,8 +37,10 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   return (
     <form className="flex items-center justify-between gap-[5px] pb-[15px]" onSubmit={handleSubmit}>
       <Avatar className="h-[25px] w-[25px]">
-        <AvatarImage className="rounded-full border border-gray-medium object-cover" src={userImg} />
-        <AvatarFallback>User</AvatarFallback>
+        <AvatarImage className="rounded-full border border-gray-medium object-cover" src={user?.img} />
+        <AvatarFallback>
+          <CircleUserRound /> {/* 유저 img가 없을때 나오는 아이콘  */}
+        </AvatarFallback>
       </Avatar>
 
       <label htmlFor="comment" className="sr-only">

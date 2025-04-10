@@ -7,8 +7,8 @@ import { useYoutubeChannel } from './api/useYoutubeChannel'
 import { useYoutubeVideoInfo } from './api/useYoutubeVideoInfo'
 import CommentContainer from './components/CommentContainer'
 import { formatTimeAgo, formatViewCount } from './service/formatters'
-import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import LikeButton from './components/LikeButton'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 
 const Video: React.FC = () => {
   const [searchParams] = useSearchParams()
@@ -17,17 +17,11 @@ const Video: React.FC = () => {
   const playlistId = searchParams.get('playlist') ?? ''
   const isMyPlayList = searchParams.get('myself') ?? false
 
+  const user = useAuthStore((state) => state.user) || { id: 0 }
+
   const { data: video, isLoading: isVideoLoading, error: videoError } = useYoutubeVideoInfo(videoId)
 
   const channelId = video?.items?.[0]?.snippet?.channelId
-
-  // 전역으로 저장된 유저 정보 가져오기
-  // const user = useAuthStore((state) => state.user)
-  // const auth = useAuthStore((state) => state.auth)
-  // console.log(user)
-  // console.log(auth)
-
-  const userId = 19
 
   const { data: channel, isLoading: isChannelLoading, error: channelError } = useYoutubeChannel(channelId)
 
@@ -77,15 +71,11 @@ const Video: React.FC = () => {
             <h1>{videoChannelTitle}</h1>
           </div>
 
-          <FollowButton userId={userId} channelId={channelId} />
+          <FollowButton userId={user.id} channelId={channelId} />
         </section>
 
         <section className="flex gap-[10px] px-[15px] py-[8px]">
-          {/* <Button className="h-[30px] w-[74px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
-            <Heart />
-            {formatLikeCount(videoLikeCount)}
-          </Button> */}
-          <LikeButton videoId={videoId} userId={userId} />
+          <LikeButton videoId={videoId} userId={user.id} />
           <Button className="h-[30px] w-[62px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
             <Share2 fill="#525252" />
             공유
