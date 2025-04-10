@@ -6,6 +6,21 @@ export interface IVideoItem {
   thumbnailUrl: string
   ownerName: string
 }
+export interface ILocalPlaylist {
+  id: number
+  name: string
+  user_id: string // Supabase row owner
+  uid: string // 사용자 uid (auth.users.id)
+  access: boolean
+  created_at: string
+}
+
+export interface ILocalVideoItem {
+  id: number
+  video_id: string
+  playlist_id: number
+  created_at: string
+}
 
 export interface IPlaylistProps {
   playlistId: string
