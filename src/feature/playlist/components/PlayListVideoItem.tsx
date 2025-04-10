@@ -1,18 +1,14 @@
-import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
-import { IPlaylistVideoItemProps } from '../types/IPlayList'
+import { VideoItemProps } from '../types/IPlayList'
 import { EllipsisVertical } from 'lucide-react'
+
 import { formatViewCount, formatUploadDate } from '@/shared/util/format'
 import '../util/scroll.css'
 // 썸네일 URL, title, 조회수, 업로드일
-const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, views, createdAt }: IPlaylistVideoItemProps) => {
-  const { currentIndex, setCurrentIndex } = usePlaylistStore()
-  const isActive = index === currentIndex
-
+const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, onClick, isActive, views, createdAt }: VideoItemProps) => {
   return (
     <div
-      id={`video-${index}`}
       className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
-      onClick={() => setCurrentIndex(index)}
+      onClick={onClick}
     >
       {/* 썸네일 */}
       <img src={thumbnailUrl} alt={title} className="h-[112px] w-[180px] rounded-md object-cover" />
