@@ -1,7 +1,10 @@
-import NewPlayListModal from '@/shared/components/newplaylist-modal/NewPlayListModal'
-import PlayListModal from '@/shared/components/playlist-modal/PlayListModal'
+import ModalManager from '@/shared/components/playlist-modal/ModalManager'
+import { Button } from '@/shared/lib/shadcn/ui/button'
+import { usePlayListModalStore } from '@/shared/store/modal/usePlayListModalStore'
 
 const Design = () => {
+  const openPlayList = usePlayListModalStore((state) => state.openPlayList)
+
   return (
     <>
       <p className="bg-basic-white text-basic-black">bg-basic-white text-basic-black 입니다</p>
@@ -16,8 +19,13 @@ const Design = () => {
       <p className="text-main-warning">text-main-warning 입니다</p>
       <p className="text-main-success">text-main-success 입니다</p>
 
-      <PlayListModal />
-      <NewPlayListModal />
+      <div className="mt-4">
+        <Button onClick={openPlayList} className="bg-main-primary text-basic-white">
+          플레이리스트 모달 열기
+        </Button>
+      </div>
+
+      <ModalManager />
     </>
   )
 }
