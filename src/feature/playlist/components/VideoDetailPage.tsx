@@ -15,10 +15,7 @@ type YouTubePlaylistItem = {
   }
 }
 
-const VideoDetailPage = ({ videoId = 'xMilZv-Clms', playlistId = 'PLPhtNKiHTFyrufM8X57tcrOe18Seq3kZD', myself }) => {
-  // const [params] = useSearchParams()
-  // const videoId = params.get('video')!
-
+const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: string; playlistId: string; myself?: boolean }) => {
   const [playlist, setPlaylist] = useState<IVideoItem[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFullOpen, setIsFullOpen] = useState(true)
@@ -44,12 +41,10 @@ const VideoDetailPage = ({ videoId = 'xMilZv-Clms', playlistId = 'PLPhtNKiHTFyru
     init()
   }, [playlistId, videoId])
 
-  // const currentVideo = playlist[currentIndex]
   const nextVideo = playlist[currentIndex + 1]
 
   return (
     <div className="relative">
-      {/* <PlaylistPlayer video={currentVideo} /> */}
       {isFullOpen ? (
         <PlaylistFullModal
           playlistId={playlistId}
