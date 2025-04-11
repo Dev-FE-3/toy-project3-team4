@@ -9,6 +9,7 @@ import CommentContainer from './components/CommentContainer'
 import { formatTimeAgo, formatViewCount } from './service/formatters'
 import LikeButton from './components/LikeButton'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import VideoDetailPage from '../playlist/components/VideoDetailPage'
 
 const Video: React.FC = () => {
   const [searchParams] = useSearchParams()
@@ -88,16 +89,7 @@ const Video: React.FC = () => {
 
         {/* ✅ 댓글 */}
         <CommentContainer id={videoId} />
-        {playlistId ? (
-          <>
-            playlist 값이 있네?
-            <div>이건 플리ID {playlistId}</div>
-            <div>이건 비디오 ID {videoId}</div>
-            <div>이건 플리 확인(false:유튜브 / true : 슈퍼베이스) {isMyPlayList}</div>
-          </>
-        ) : (
-          <> playlist 값이 없네?</>
-        )}
+        {playlistId && <VideoDetailPage videoId={videoId} playlistId={playlistId} myself={isMyPlayList} />}
       </article>
     </main>
   )
