@@ -3,9 +3,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { useState } from 'react'
 
 import { ICommentFormProps } from '../type/IVideo'
-import { postComment } from '../service/comment'
+
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import { CircleUserRound } from 'lucide-react'
+import { postComment } from '../api/useCommentList'
 
 const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   const [comment, setComment] = useState('')
