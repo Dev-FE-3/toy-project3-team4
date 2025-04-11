@@ -7,7 +7,6 @@ import '../util/scroll.css'
 const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, onClick, isActive, views, createdAt }: IVideoItemProps) => {
   return (
     <div
-      data-testid={`playlist-item-${videoId}`}
       className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
       onClick={onClick}
     >
