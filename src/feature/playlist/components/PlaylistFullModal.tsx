@@ -1,10 +1,30 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItem from './PlayListVideoItem'
-import useYoutubeVideoInfo from '../api/useYoutubeVideoInfo'
-import { IPlaylistProps } from '../types/IPlayList'
+import { Dispatch, SetStateAction } from 'react'
 
-const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }) => {
+//추후 수정할 가능성 있어서 Type폴더로 빼지 않음
+export interface IPlaylistFullModalProps {
+  playlistInfo: {
+    items: {
+      snippet: {
+        title: string
+        channelTitle: string
+      }
+    }[]
+  }
+  myself: boolean
+  playlist: {
+    id: string
+    title: string
+    thumbnailUrl: string
+  }[]
+  currentIndex: number
+  setCurrentIndex: Dispatch<SetStateAction<number>>
+  setIsFullOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }: IPlaylistFullModalProps) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -26,21 +46,14 @@ const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCu
 
         <div className="scrollbar-hide flex-1 overflow-y-auto px-[2px]">
           {playlist.map((video, idx) => {
-            const { data: videoData } = useYoutubeVideoInfo(video.id)
-            const views = videoData?.items[0]?.statistics?.viewCount ?? null
-            const createdAt = videoData?.items[0]?.snippet?.publishedAt ?? null
-
             return (
               <PlaylistVideoItem
                 key={video.id}
-                index={idx}
                 thumbnailUrl={video.thumbnailUrl}
                 title={video.title}
                 videoId={video.id}
                 onClick={() => setCurrentIndex(idx)}
                 isActive={idx === currentIndex}
-                views={views}
-                createdAt={createdAt}
               />
             )
           })}

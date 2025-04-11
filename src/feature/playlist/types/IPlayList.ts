@@ -6,30 +6,6 @@ export interface IVideoItem {
   thumbnailUrl: string
   ownerName: string
 }
-export interface ILocalPlaylist {
-  id: number
-  name: string
-  user_id: string // Supabase row owner
-  uid: string // 사용자 uid (auth.users.id)
-  access: boolean
-  created_at: string
-}
-
-export interface ILocalVideoItem {
-  id: number
-  video_id: string
-  playlist_id: number
-  created_at: string
-}
-
-export interface IPlaylistProps {
-  playlistInfo: string
-  myself: boolean
-  playlist: IVideoItem[]
-  currentIndex: number
-  setCurrentIndex: (index: number) => void
-  setIsFullOpen: (open: boolean) => void
-}
 
 export interface IMiniModalProps {
   currentIndex: number
@@ -39,7 +15,6 @@ export interface IMiniModalProps {
 }
 
 export interface IVideoItemProps {
-  index: number
   thumbnailUrl: string
   title: string
   videoId: string

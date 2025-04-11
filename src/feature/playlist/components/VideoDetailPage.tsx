@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PlaylistFullModal from './PlaylistFullModal'
 import PlaylistMiniModal from './PlaylistMiniModal'
-import { fetchYoutubePlayListVideoInfo } from '@/shared/util/youtube'
 import { IVideoItem } from '../types/IPlayList'
 import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
 import useYoutubePlayListVideoInfo from '../api/useYoutubePlayListVideoInfo'

@@ -1,10 +1,14 @@
 import { IVideoItemProps } from '../types/IPlayList'
 import { EllipsisVertical } from 'lucide-react'
-
 import { formatViewCount, formatUploadDate } from '@/shared/util/format'
 import '../util/scroll.css'
-// 썸네일 URL, title, 조회수, 업로드일
-const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, onClick, isActive, views, createdAt }: IVideoItemProps) => {
+import useYoutubeVideoInfo from '../api/useYoutubeVideoInfo'
+
+const PlaylistVideoItem = ({ thumbnailUrl, title, videoId, onClick, isActive }: Omit<IVideoItemProps, 'views' | 'createdAt'>) => {
+  const { data: videoData } = useYoutubeVideoInfo(videoId)
+  const views = videoData?.items[0]?.statistics?.viewCount ?? null
+  const createdAt = videoData?.items[0]?.snippet?.publishedAt ?? null
+
   return (
     <div
       className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
