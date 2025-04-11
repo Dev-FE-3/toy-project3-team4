@@ -23,7 +23,7 @@ export interface ILocalVideoItem {
 }
 
 export interface IPlaylistProps {
-  playlistId: string
+  playlistInfo: string
   myself: boolean
   playlist: IVideoItem[]
   currentIndex: number

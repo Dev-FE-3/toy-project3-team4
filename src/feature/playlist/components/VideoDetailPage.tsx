@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-// import PlaylistPlayer from './PlaylistPlayer'
 import PlaylistFullModal from './PlaylistFullModal'
 import PlaylistMiniModal from './PlaylistMiniModal'
 import { fetchYoutubePlayListVideoInfo } from '@/shared/util/youtube'
 import { IVideoItem } from '../types/IPlayList'
+import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
+import useYoutubePlayListVideoInfo from '../api/useYoutubePlayListVideoInfo'
 
 type YouTubePlaylistItem = {
   snippet: {
@@ -19,6 +19,8 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
   const [playlist, setPlaylist] = useState<IVideoItem[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFullOpen, setIsFullOpen] = useState(true)
+  const { data: playlistInfo, isLoading: playlistInfoLoading, error: playlistInfoError } = useYoutubePlayListInfo(playlistId)
+  const { data: playlistVideoInfo, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = useYoutubePlayListVideoInfo(playlistId)
 
   useEffect(() => {
     const init = async () => {
@@ -41,13 +43,19 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
     init()
   }, [playlistId, videoId])
 
+  if (playlistInfoLoading) return <div>Loading...</div>
+  if (playlistInfoError) return <div>Error occurred</div>
+
+  if (playlistVideoInfoLoading) return <div>Loading...</div>
+  if (playlistVideoInfoError) return <div>Error occurred</div>
+
   const nextVideo = playlist[currentIndex + 1]
 
   return (
     <div className="relative">
       {isFullOpen ? (
         <PlaylistFullModal
-          playlistId={playlistId}
+          playlistInfo={playlistInfo}
           playlist={playlist}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}

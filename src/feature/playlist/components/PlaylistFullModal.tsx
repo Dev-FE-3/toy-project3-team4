@@ -1,13 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItemContainer from './PlaylistVideoItemContainer'
-import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
 import { IPlaylistProps } from '../types/IPlayList'
 
-const PlaylistFullModal = ({ playlistId, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }: IPlaylistProps) => {
-  const { data: playlistInfo } = useYoutubePlayListInfo(playlistId)
-
-  if (!playlistInfo) return null
+const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }) => {
+  //console.log('playlistInfo', playlistInfo)
+  //console.log('playlist', playlist)
 
   return (
     <AnimatePresence>
