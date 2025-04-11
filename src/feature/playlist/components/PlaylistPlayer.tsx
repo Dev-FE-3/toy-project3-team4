@@ -1,11 +1,7 @@
-// components/PlaylistPlayer.tsx
-import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
+import { IVideoItem } from '../types/IPlayList'
 
-const PlaylistPlayer = () => {
-  const { current, currentIndex } = usePlaylistStore()
-  if (!current) return null
-
-  const video = current.videos[currentIndex]
+const PlaylistPlayer = ({ video }: { video: IVideoItem }) => {
+  if (!video) return null
 
   return (
     <div className="relative aspect-video w-full">

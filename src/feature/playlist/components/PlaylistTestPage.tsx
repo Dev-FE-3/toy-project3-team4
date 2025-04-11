@@ -1,14 +1,10 @@
-// src/playlist/components/PlaylistTestPage.tsx
 import { useState } from 'react'
-import { usePlaylistStore } from '@/shared/store/playlist/usePlaylistStore'
-import { PlaylistMock } from '../mock/PlaylistMock'
 import VideoDetailPage from './VideoDetailPage'
 
 const PlaylistTestPage = () => {
   const [isOpened, setIsOpened] = useState(false)
 
   const open = () => {
-    usePlaylistStore.getState().openPlaylist(PlaylistMock)
     setIsOpened(true)
   }
 
