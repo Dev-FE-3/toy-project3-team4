@@ -7,6 +7,7 @@ import { Dispatch, SetStateAction } from 'react'
 export interface IPlaylistFullModalProps {
   playlistInfo: {
     items: {
+      id: string
       snippet: {
         title: string
         channelTitle: string
@@ -49,10 +50,11 @@ const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCu
             return (
               <PlaylistVideoItem
                 key={video.id}
-                thumbnailUrl={video.thumbnailUrl}
+                onClick={() => setCurrentIndex(idx)}
+                playListId={playlistInfo.items[0].id}
                 title={video.title}
                 videoId={video.id}
-                onClick={() => setCurrentIndex(idx)}
+                thumbnailUrl={video.thumbnailUrl}
                 isActive={idx === currentIndex}
               />
             )

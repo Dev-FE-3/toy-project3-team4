@@ -15,6 +15,7 @@ export interface IMiniModalProps {
 }
 
 export interface IVideoItemProps {
+  playListId: string
   thumbnailUrl: string
   title: string
   videoId: string
