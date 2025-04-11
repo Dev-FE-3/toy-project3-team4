@@ -75,13 +75,13 @@ const Video: React.FC = () => {
           <FollowButton userId={user.id} channelId={channelId} />
         </section>
 
-        <section className="flex gap-[10px] px-[15px] py-[8px]">
+        <section className="flex gap-[10px] px-[15px] py-[16px] pb-[12px]">
           <LikeButton videoId={videoId} userId={user.id} />
-          <Button className="h-[30px] w-[62px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
             <Share2 fill="#525252" />
             공유
           </Button>
-          <Button onClick={saveButton} className="h-[30px] w-[62px] rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Button onClick={saveButton} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
             <Bookmark />
             저장
           </Button>
