@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { Bookmark, Share2 } from 'lucide-react'
@@ -9,10 +9,13 @@ import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import VideoDetailPage from '../playlist/components/VideoDetailPage'
 import { formatUploadDate, formatViewCount } from '@/shared/util/format'
 import { useVideoDetail } from './service/useVideoDetail'
+import { usePlayListModalStore } from '@/shared/store/modal/usePlayListModalStore'
+import ModalManager from '@/shared/components/playlist-modal/ModalManager'
 
 const Video: React.FC = () => {
   const [searchParams] = useSearchParams()
 
+  const openPlayList = usePlayListModalStore((state) => state.openPlayList)
   const videoId = searchParams.get('video') ?? ''
   const playlistId = searchParams.get('playlist') ?? ''
   const isMyPlayList = searchParams.get('myself') ?? false
@@ -23,11 +26,6 @@ const Video: React.FC = () => {
 
   if (isLoading) return <div>loading...</div>
   if (error || !video) return <div>Error</div>
-
-  const saveButton = () => {
-    // 재생목록에 영상 저장
-    console.log('저장 버튼 클릭!')
-  }
 
   return (
     <main className="h-dvh w-full">
@@ -52,13 +50,16 @@ const Video: React.FC = () => {
         </p>
 
         <section className="flex items-center justify-between px-[15px]">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
-              <AvatarFallback>User</AvatarFallback>
-            </Avatar>
-            <h1>{video.channelTitle}</h1>
-          </div>
+          <Link to={'/'}>
+            <div className="flex items-center gap-4">
+              {/* 나중에 다른 사람 채널 링크로 변경 예정  */}
+              <Avatar className="h-10 w-10">
+                <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
+                <AvatarFallback>User</AvatarFallback>
+              </Avatar>
+              <h1>{video.channelTitle}</h1>
+            </div>
+          </Link>
 
           <FollowButton userId={user.id} channelId={video.channelId} />
         </section>
@@ -69,7 +70,7 @@ const Video: React.FC = () => {
             <Share2 fill="#525252" />
             공유
           </Button>
-          <Button onClick={saveButton} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
             <Bookmark />
             저장
           </Button>
@@ -78,6 +79,7 @@ const Video: React.FC = () => {
         {/* ✅ 댓글 */}
         <CommentContainer id={videoId} />
         {playlistId && <VideoDetailPage videoId={videoId} playlistId={playlistId} myself={isMyPlayList} />}
+        <ModalManager videoId={videoId} />
       </article>
     </main>
   )
