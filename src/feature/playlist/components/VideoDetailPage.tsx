@@ -5,7 +5,6 @@ import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
 import useYoutubePlayListVideoInfo from '../api/useYoutubePlayListVideoInfo'
 
 const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: string; playlistId: string; myself?: boolean }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [isFullOpen, setIsFullOpen] = useState(true)
   const { data: playlistInfo, isLoading: playlistInfoLoading, error: playlistInfoError } = useYoutubePlayListInfo(playlistId)
   const { data: playList, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = useYoutubePlayListVideoInfo(playlistId)
@@ -19,14 +18,7 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
   return (
     <div className="relative">
       {isFullOpen ? (
-        <PlaylistFullModal
-          playlistInfo={playlistInfo}
-          playlist={playList}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          setIsFullOpen={setIsFullOpen}
-          myself={true}
-        />
+        <PlaylistFullModal playlistInfo={playlistInfo} playlist={playList} setIsFullOpen={setIsFullOpen} myself={true} />
       ) : (
         <PlaylistMiniModal playlist={playList} onOpenFull={() => setIsFullOpen(true)} />
       )}

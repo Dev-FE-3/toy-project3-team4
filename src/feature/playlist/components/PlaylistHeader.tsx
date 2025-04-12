@@ -1,15 +1,13 @@
 import { X, Globe, Lock } from 'lucide-react'
 import { IPlaylistHeaderProps } from '../types/IPlayList'
 
-const PlaylistHeader = ({ playlistTitle, channelTitle, videoCount, currentIndex, onClose, myself, isPublic }: IPlaylistHeaderProps) => {
+const PlaylistHeader = ({ playlistTitle, channelTitle, myself, isPublic, onClose }: IPlaylistHeaderProps) => {
   return (
     <div className="flex items-start justify-between border-b p-[15px]">
       {/* 텍스트 정보 */}
       <div className="flex flex-col items-start gap-[3px]">
         {/* 제목 */}
-        <h2 className="truncate text-lg font-semibold text-gray-dark">
-          {playlistTitle} ({currentIndex + 1}/{videoCount})
-        </h2>
+        <h2 className="truncate text-lg font-semibold text-gray-dark">{playlistTitle}</h2>
 
         {/* 공개여부 + 채널명 */}
         <div className="flex items-center gap-[6px] text-xs font-normal text-gray-medium-dark">

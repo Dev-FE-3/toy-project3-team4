@@ -1,5 +1,3 @@
-// src/types/playlist.ts
-
 export interface IVideoItem {
   id: string
   title: string
@@ -16,10 +14,8 @@ export interface IVideoItemProps {
   thumbnailUrl: string
   title: string
   videoId: string
-  isActive: boolean
   views?: number | null
   createdAt?: string | null
-  onClick: () => void
 }
 
 // 이미 정의된 IVideoItemProps 기반으로 views, createdAt 제외한 타입
@@ -30,8 +26,6 @@ export type TVideoItemContainerProps = Omit<IVideoItemProps, 'views' | 'createdA
 export interface IPlaylistHeaderProps {
   playlistTitle: string
   channelTitle: string
-  videoCount: number
-  currentIndex: number
   myself: boolean
   isPublic: boolean
   onClose: () => void

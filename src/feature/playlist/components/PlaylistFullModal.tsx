@@ -24,12 +24,10 @@ export interface IPlaylistFullModalProps {
     title: string
     thumbnailUrl: string
   }[]
-  currentIndex: number
-  setCurrentIndex: Dispatch<SetStateAction<number>>
   setIsFullOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }: IPlaylistFullModalProps) => {
+const PlaylistFullModal = ({ playlistInfo, myself, playlist, setIsFullOpen }: IPlaylistFullModalProps) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -42,8 +40,6 @@ const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCu
         <PlaylistHeader
           playlistTitle={playlistInfo.items[0].snippet.title}
           channelTitle={playlistInfo.items[0].snippet.channelTitle}
-          videoCount={playlistInfo.pageInfo.resultsPerPage}
-          currentIndex={currentIndex}
           onClose={() => setIsFullOpen(false)}
           myself={myself}
           isPublic={true}
@@ -54,14 +50,7 @@ const PlaylistFullModal = ({ playlistInfo, myself, playlist, currentIndex, setCu
             return (
               // Link to supabase || youtube 구분해줘야함 myself 넣어서
               <Link to={`/watch?video=${video.id}&playlist=${playlistInfo.items[0].id}`} key={index}>
-                <PlaylistVideoItem
-                  key={video.id}
-                  onClick={() => setCurrentIndex(index)}
-                  title={video.title}
-                  videoId={video.id}
-                  thumbnailUrl={video.thumbnailUrl}
-                  isActive={index === currentIndex}
-                />
+                <PlaylistVideoItem key={video.id} title={video.title} videoId={video.id} thumbnailUrl={video.thumbnailUrl} />
               </Link>
             )
           })}
