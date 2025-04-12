@@ -18,19 +18,13 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFullOpen, setIsFullOpen] = useState(true)
   const { data: playlistInfo, isLoading: playlistInfoLoading, error: playlistInfoError } = useYoutubePlayListInfo(playlistId)
-  const { data: playlistVideoInfo, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = useYoutubePlayListVideoInfo(playlistId)
+  const { data: playList, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = useYoutubePlayListVideoInfo(playlistId)
 
   if (playlistInfoLoading) return ''
   if (playlistInfoError) return ''
   if (playlistVideoInfoLoading) return ''
   if (playlistVideoInfoError) return ''
-
-  const playList: IVideoItem[] = (playlistVideoInfo.items as YouTubePlaylistItem[]).map((item) => ({
-    id: item.snippet.resourceId.videoId,
-    title: item.snippet.title,
-    thumbnailUrl: item.snippet.thumbnails.high.url,
-    ownerName: item.snippet.videoOwnerChannelTitle,
-  }))
+  if (!playList) return ''
 
   const nextVideo = playList[currentIndex + 1]
 

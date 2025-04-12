@@ -11,6 +11,7 @@ const PlaylistVideoItem = ({ playListId, thumbnailUrl, title, videoId, onClick, 
   const createdAt = videoData?.items[0]?.snippet?.publishedAt ?? null
 
   return (
+    // Link to supabase || youtube 구분해줘야함 myself 넣어서
     <Link to={`/watch?video=${videoId}&playlist=${playListId}`}>
       <div
         className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
