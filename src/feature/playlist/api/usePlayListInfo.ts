@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchYoutubePlayListInfo } from '@/shared/util/youtube'
 
-const useYoutubePlayListInfo = (playlistId: string) => {
+const usePlayListInfo = (playlistId: string) => {
   return useQuery({
     queryKey: ['youtubePlaylistInfo', playlistId],
     queryFn: () => fetchYoutubePlayListInfo(playlistId),
@@ -10,4 +10,4 @@ const useYoutubePlayListInfo = (playlistId: string) => {
   })
 }
 
-export default useYoutubePlayListInfo
+export default usePlayListInfo

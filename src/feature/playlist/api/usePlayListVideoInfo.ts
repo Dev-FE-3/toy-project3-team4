@@ -11,7 +11,7 @@ type YouTubePlaylistItem = {
   }
 }
 
-const useYoutubePlayListVideoInfo = (playlistId: string) => {
+const usePlayListVideoInfo = (playlistId: string) => {
   return useQuery<IVideoItem[]>({
     queryKey: ['youtubePlaylistVideos', playlistId],
     queryFn: async () => {
@@ -29,4 +29,4 @@ const useYoutubePlayListVideoInfo = (playlistId: string) => {
   })
 }
 
-export default useYoutubePlayListVideoInfo
+export default usePlayListVideoInfo
