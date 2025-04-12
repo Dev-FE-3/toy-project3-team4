@@ -20,6 +20,9 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
   const { data: playlistInfo, isLoading: playlistInfoLoading, error: playlistInfoError } = useYoutubePlayListInfo(playlistId)
   const { data: playList, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = useYoutubePlayListVideoInfo(playlistId)
 
+  console.log('playlistInfo', playlistInfo)
+  console.log('playList', playList)
+
   if (playlistInfoLoading) return ''
   if (playlistInfoError) return ''
   if (playlistVideoInfoLoading) return ''
