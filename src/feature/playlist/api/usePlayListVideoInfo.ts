@@ -13,7 +13,7 @@ type YouTubePlaylistItem = {
 
 const usePlayListVideoInfo = (playListId: string, myself: boolean) => {
   return useQuery<IVideoItem[]>({
-    queryKey: ['youtubePlaylistVideos', playListId],
+    queryKey: ['youtubePlaylistVideos', myself ? 'me' : 'yt', playListId],
     queryFn: async () => {
       const raw = await fetchYoutubePlayListVideoInfo(playListId)
       const items = raw.items as YouTubePlaylistItem[]

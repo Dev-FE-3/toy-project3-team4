@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchYoutubePlayListInfo } from '@/shared/util/youtube'
 
-const usePlayListInfo = (playlistId: string, myself: boolean) => {
+const usePlayListInfo = (playListId: string, myself: boolean) => {
   return useQuery({
-    queryKey: ['playlistInfo', myself ? 'me' : 'yt', playlistId],
+    queryKey: ['playlistInfo', myself ? 'me' : 'yt', playListId],
     queryFn: async () => {
-      const data = await fetchYoutubePlayListInfo(playlistId)
+      const data = await fetchYoutubePlayListInfo(playListId)
 
       // 여기서 필요한 값만 추려서 리턴
       return {
@@ -14,7 +14,7 @@ const usePlayListInfo = (playlistId: string, myself: boolean) => {
         id: data.items[0].id,
       }
     },
-    enabled: !!playlistId,
+    enabled: !!playListId,
     staleTime: 1000 * 60 * 5,
   })
 }
