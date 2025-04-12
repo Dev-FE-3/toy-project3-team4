@@ -14,9 +14,6 @@ export interface IPlaylistFullModalProps {
         channelTitle: string
       }
     }[]
-    pageInfo: {
-      resultsPerPage: number
-    }
   }
   myself: boolean
   playlist: {
