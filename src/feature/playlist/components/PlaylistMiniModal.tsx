@@ -1,9 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ListMusic, ChevronUp } from 'lucide-react'
 import { IMiniModalProps } from '../types/IPlayList'
+import { useSearchParams } from 'react-router-dom'
 
-const PlaylistMiniModal = ({ currentIndex, playlist, nextVideo, onOpenFull }: IMiniModalProps) => {
+const PlaylistMiniModal = ({ playlist, onOpenFull }: IMiniModalProps) => {
+  const [searchParams] = useSearchParams()
+  const currentVideoId = searchParams.get('video') || 'xMilZv-Clms'
+
   if (!playlist.length) return null
+
+  const currentIndexInPlaylist = playlist.findIndex((video) => video.id === currentVideoId)
 
   return (
     <AnimatePresence>
@@ -18,9 +24,11 @@ const PlaylistMiniModal = ({ currentIndex, playlist, nextVideo, onOpenFull }: IM
         <ListMusic className="h-5 w-5 text-[#262729]" />
         <div className="flex flex-col justify-center">
           <p className="text-[10px] text-gray-500">다음: playlist</p>
-          <p className="max-w-[280px] truncate font-[ABeeZee] text-[14px] leading-[20px] text-[#262729]">{nextVideo?.title || '다음 영상 없음'}</p>
+          <p className="max-w-[280px] truncate font-[ABeeZee] text-[14px] leading-[20px] text-[#262729]">
+            {playlist[currentIndexInPlaylist + 1].title || '다음 영상 없음'}
+          </p>
           <p className="text-[12px] text-gray-500">
-            {playlist[0]?.ownerName} ({currentIndex + 1}/{playlist.length})
+            {playlist[currentIndexInPlaylist]?.ownerName} ({currentIndexInPlaylist + 1}/{playlist.length})
           </p>
         </div>
         <div className="ml-auto">

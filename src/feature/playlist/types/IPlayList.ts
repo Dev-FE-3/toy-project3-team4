@@ -8,9 +8,7 @@ export interface IVideoItem {
 }
 
 export interface IMiniModalProps {
-  currentIndex: number
   playlist: IVideoItem[]
-  nextVideo?: IVideoItem
   onOpenFull: () => void
 }
 
