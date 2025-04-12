@@ -9,7 +9,7 @@ export interface IVideoItem {
 
 export interface IMiniModalProps {
   videoId: string
-  playlist: IVideoItem[]
+  playList: IVideoItem[]
   onOpenFull: () => void
 }
 
@@ -30,12 +30,12 @@ export interface IPlaylistHeaderProps {
 }
 
 export interface IPlaylistFullModalProps {
-  playlist: {
+  playList: {
     id: string
     title: string
     thumbnailUrl: string
   }[]
-  playlistInfo: {
+  playListInfo: {
     items: {
       id: string
       snippet: {

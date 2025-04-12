@@ -4,23 +4,26 @@ import PlaylistMiniModal from './PlaylistMiniModal'
 import usePlayListInfo from '../api/usePlayListInfo'
 import usePlayListVideoInfo from '../api/usePlayListVideoInfo'
 
-const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: string; playlistId: string; myself?: boolean }) => {
+const VideoDetailPage = ({ videoId, playListId, myself = false }: { videoId: string; playListId: string; myself?: boolean }) => {
   const [isFullOpen, setIsFullOpen] = useState(true)
-  const { data: playlistInfo, isLoading: playlistInfoLoading, error: playlistInfoError } = usePlayListInfo(playlistId)
-  const { data: playList, isLoading: playlistVideoInfoLoading, error: playlistVideoInfoError } = usePlayListVideoInfo(playlistId)
+  const { data: playListInfo, isLoading: playListInfoLoading, error: playListInfoError } = usePlayListInfo(playListId)
+  const { data: playList, isLoading: playListVideoInfoLoading, error: playListVideoInfoError } = usePlayListVideoInfo(playListId)
 
-  if (playlistInfoLoading) return ''
-  if (playlistInfoError) return ''
-  if (playlistVideoInfoLoading) return ''
-  if (playlistVideoInfoError) return ''
+  if (playListInfoLoading) return ''
+  if (playListInfoError) return ''
+  if (playListVideoInfoLoading) return ''
+  if (playListVideoInfoError) return ''
   if (!playList) return ''
+
+  // console.log('playListInfo', playListInfo)
+  // console.log('playList', playList)
 
   return (
     <div className="relative">
       {isFullOpen ? (
-        <PlaylistFullModal playlistInfo={playlistInfo} playlist={playList} setIsFullOpen={setIsFullOpen} myself={true} />
+        <PlaylistFullModal playListInfo={playListInfo} playList={playList} setIsFullOpen={setIsFullOpen} myself={true} />
       ) : (
-        <PlaylistMiniModal videoId={videoId} playlist={playList} onOpenFull={() => setIsFullOpen(true)} />
+        <PlaylistMiniModal videoId={videoId} playList={playList} onOpenFull={() => setIsFullOpen(true)} />
       )}
     </div>
   )

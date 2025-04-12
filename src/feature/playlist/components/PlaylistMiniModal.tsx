@@ -2,10 +2,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ListMusic, ChevronUp } from 'lucide-react'
 import { IMiniModalProps } from '../types/IPlayList'
 
-const PlaylistMiniModal = ({ videoId, playlist, onOpenFull }: IMiniModalProps) => {
-  if (!playlist.length) return null
+const PlaylistMiniModal = ({ videoId, playList, onOpenFull }: IMiniModalProps) => {
+  if (!playList.length) return null
 
-  const currentIndexInPlaylist = playlist.findIndex((video) => video.id === videoId)
+  const currentIndexInPlaylist = playList.findIndex((video) => video.id === videoId)
 
   return (
     <AnimatePresence>
@@ -21,10 +21,10 @@ const PlaylistMiniModal = ({ videoId, playlist, onOpenFull }: IMiniModalProps) =
         <div className="flex flex-col justify-center">
           <p className="text-[10px] text-gray-500">다음: playlist</p>
           <p className="max-w-[280px] truncate font-[ABeeZee] text-[14px] leading-[20px] text-[#262729]">
-            {playlist[currentIndexInPlaylist + 1].title || '다음 영상 없음'}
+            {playList[currentIndexInPlaylist + 1].title || '다음 영상 없음'}
           </p>
           <p className="text-[12px] text-gray-500">
-            {playlist[currentIndexInPlaylist]?.ownerName} ({currentIndexInPlaylist + 1}/{playlist.length})
+            {playList[currentIndexInPlaylist]?.ownerName} ({currentIndexInPlaylist + 1}/{playList.length})
           </p>
         </div>
         <div className="ml-auto">

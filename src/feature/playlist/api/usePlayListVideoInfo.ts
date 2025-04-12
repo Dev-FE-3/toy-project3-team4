@@ -11,11 +11,11 @@ type YouTubePlaylistItem = {
   }
 }
 
-const usePlayListVideoInfo = (playlistId: string) => {
+const usePlayListVideoInfo = (playListId: string) => {
   return useQuery<IVideoItem[]>({
-    queryKey: ['youtubePlaylistVideos', playlistId],
+    queryKey: ['youtubePlaylistVideos', playListId],
     queryFn: async () => {
-      const raw = await fetchYoutubePlayListVideoInfo(playlistId)
+      const raw = await fetchYoutubePlayListVideoInfo(playListId)
       const items = raw.items as YouTubePlaylistItem[]
       return items.map((item) => ({
         id: item.snippet.resourceId.videoId,
@@ -24,7 +24,7 @@ const usePlayListVideoInfo = (playlistId: string) => {
         ownerName: item.snippet.videoOwnerChannelTitle,
       }))
     },
-    enabled: !!playlistId,
+    enabled: !!playListId,
     staleTime: 1000 * 60 * 5,
   })
 }
