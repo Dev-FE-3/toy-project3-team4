@@ -20,7 +20,7 @@ const VideoDetailPage = ({ videoId, playlistId, myself = false }: { videoId: str
       {isFullOpen ? (
         <PlaylistFullModal playlistInfo={playlistInfo} playlist={playList} setIsFullOpen={setIsFullOpen} myself={true} />
       ) : (
-        <PlaylistMiniModal playlist={playList} onOpenFull={() => setIsFullOpen(true)} />
+        <PlaylistMiniModal videoId={videoId} playlist={playList} onOpenFull={() => setIsFullOpen(true)} />
       )}
     </div>
   )

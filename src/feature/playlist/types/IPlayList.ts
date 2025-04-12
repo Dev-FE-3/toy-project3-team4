@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export interface IVideoItem {
   id: string
   title: string
@@ -6,22 +8,18 @@ export interface IVideoItem {
 }
 
 export interface IMiniModalProps {
+  videoId: string
   playlist: IVideoItem[]
   onOpenFull: () => void
 }
 
 export interface IVideoItemProps {
-  thumbnailUrl: string
-  title: string
   videoId: string
+  title: string
+  thumbnailUrl: string
   views?: number | null
   createdAt?: string | null
 }
-
-// 이미 정의된 IVideoItemProps 기반으로 views, createdAt 제외한 타입
-// src/types/playlist.ts
-
-export type TVideoItemContainerProps = Omit<IVideoItemProps, 'views' | 'createdAt'>
 
 export interface IPlaylistHeaderProps {
   playlistTitle: string
@@ -29,4 +27,23 @@ export interface IPlaylistHeaderProps {
   myself: boolean
   isPublic: boolean
   onClose: () => void
+}
+
+export interface IPlaylistFullModalProps {
+  playlist: {
+    id: string
+    title: string
+    thumbnailUrl: string
+  }[]
+  playlistInfo: {
+    items: {
+      id: string
+      snippet: {
+        title: string
+        channelTitle: string
+      }
+    }[]
+  }
+  myself: boolean
+  setIsFullOpen: Dispatch<SetStateAction<boolean>>
 }

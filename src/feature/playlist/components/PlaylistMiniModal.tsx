@@ -1,15 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ListMusic, ChevronUp } from 'lucide-react'
 import { IMiniModalProps } from '../types/IPlayList'
-import { useSearchParams } from 'react-router-dom'
 
-const PlaylistMiniModal = ({ playlist, onOpenFull }: IMiniModalProps) => {
-  const [searchParams] = useSearchParams()
-  const currentVideoId = searchParams.get('video') || 'xMilZv-Clms'
-
+const PlaylistMiniModal = ({ videoId, playlist, onOpenFull }: IMiniModalProps) => {
   if (!playlist.length) return null
 
-  const currentIndexInPlaylist = playlist.findIndex((video) => video.id === currentVideoId)
+  const currentIndexInPlaylist = playlist.findIndex((video) => video.id === videoId)
 
   return (
     <AnimatePresence>

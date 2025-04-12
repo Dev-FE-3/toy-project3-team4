@@ -5,7 +5,7 @@ import '../util/scroll.css'
 import useYoutubeVideoInfo from '../api/useYoutubeVideoInfo'
 import { useSearchParams } from 'react-router-dom'
 
-const PlaylistVideoItem = ({ title, thumbnailUrl, videoId }: Omit<IVideoItemProps, 'views' | 'createdAt'>) => {
+const PlaylistVideoItem = ({ videoId, title, thumbnailUrl }: Omit<IVideoItemProps, 'views' | 'createdAt'>) => {
   const [searchParams] = useSearchParams()
   const currentVideoId = searchParams.get('video') || '-aqv-mpWjag'
   const { data: videoData } = useYoutubeVideoInfo(videoId)

@@ -1,30 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistVideoItem from './PlayListVideoItem'
-import { Dispatch, SetStateAction } from 'react'
 import { Link } from 'react-router-dom'
+import { IPlaylistFullModalProps } from '../types/IPlayList'
 
-//추후 수정할 가능성 있어서 Type폴더로 빼지 않음
-export interface IPlaylistFullModalProps {
-  playlistInfo: {
-    items: {
-      id: string
-      snippet: {
-        title: string
-        channelTitle: string
-      }
-    }[]
-  }
-  myself: boolean
-  playlist: {
-    id: string
-    title: string
-    thumbnailUrl: string
-  }[]
-  setIsFullOpen: Dispatch<SetStateAction<boolean>>
-}
-
-const PlaylistFullModal = ({ playlistInfo, myself, playlist, setIsFullOpen }: IPlaylistFullModalProps) => {
+const PlaylistFullModal = ({ playlist, playlistInfo, myself, setIsFullOpen }: IPlaylistFullModalProps) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -47,7 +27,7 @@ const PlaylistFullModal = ({ playlistInfo, myself, playlist, setIsFullOpen }: IP
             return (
               // Link to supabase || youtube 구분해줘야함 myself 넣어서
               <Link to={`/watch?video=${video.id}&playlist=${playlistInfo.items[0].id}`} key={index}>
-                <PlaylistVideoItem key={video.id} title={video.title} videoId={video.id} thumbnailUrl={video.thumbnailUrl} />
+                <PlaylistVideoItem key={video.id} videoId={video.id} title={video.title} thumbnailUrl={video.thumbnailUrl} />
               </Link>
             )
           })}
