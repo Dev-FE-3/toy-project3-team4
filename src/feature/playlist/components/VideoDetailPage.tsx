@@ -5,18 +5,19 @@ import usePlayListInfo from '../api/usePlayListInfo'
 import usePlayListVideoInfo from '../api/usePlayListVideoInfo'
 
 const VideoDetailPage = ({ videoId, playListId, myself = false }: { videoId: string; playListId: string; myself?: boolean }) => {
+  const { data: playListInfo, isLoading: playListInfoLoading, error: playListInfoError } = usePlayListInfo(playListId, myself)
+  const { data: playList, isLoading: playListVideoInfoLoading, error: playListVideoInfoError } = usePlayListVideoInfo(playListId, myself)
   const [isFullOpen, setIsFullOpen] = useState(true)
-  const { data: playListInfo, isLoading: playListInfoLoading, error: playListInfoError } = usePlayListInfo(playListId)
-  const { data: playList, isLoading: playListVideoInfoLoading, error: playListVideoInfoError } = usePlayListVideoInfo(playListId)
 
   if (playListInfoLoading) return ''
   if (playListInfoError) return ''
   if (playListVideoInfoLoading) return ''
   if (playListVideoInfoError) return ''
   if (!playList) return ''
+  if (!playListInfo) return ''
 
-  // console.log('playListInfo', playListInfo)
-  // console.log('playList', playList)
+  console.log('playListInfo', playListInfo)
+  console.log('playList', playList)
 
   return (
     <div className="relative">

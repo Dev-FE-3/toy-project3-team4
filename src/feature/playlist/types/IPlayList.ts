@@ -30,19 +30,11 @@ export interface IPlaylistHeaderProps {
 }
 
 export interface IPlaylistFullModalProps {
-  playList: {
-    id: string
-    title: string
-    thumbnailUrl: string
-  }[]
+  playList: IVideoItem[]
   playListInfo: {
-    items: {
-      id: string
-      snippet: {
-        title: string
-        channelTitle: string
-      }
-    }[]
+    title: string
+    channelTitle: string
+    id: string
   }
   myself: boolean
   setIsFullOpen: Dispatch<SetStateAction<boolean>>

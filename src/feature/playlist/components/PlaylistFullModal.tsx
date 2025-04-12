@@ -15,8 +15,8 @@ const PlaylistFullModal = ({ playList, playListInfo, myself, setIsFullOpen }: IP
         className="fixed bottom-[56px] top-[300px] z-50 flex w-[430px] flex-col bg-white shadow-xl"
       >
         <PlaylistHeader
-          playlistTitle={playListInfo.items[0].snippet.title}
-          channelTitle={playListInfo.items[0].snippet.channelTitle}
+          playlistTitle={playListInfo.title}
+          channelTitle={playListInfo.channelTitle}
           onClose={() => setIsFullOpen(false)}
           myself={myself}
           isPublic={true}
@@ -26,7 +26,7 @@ const PlaylistFullModal = ({ playList, playListInfo, myself, setIsFullOpen }: IP
           {playList.map((video, index) => {
             return (
               // Link to supabase || youtube 구분해줘야함 myself 넣어서
-              <Link to={`/watch?video=${video.id}&playlist=${playListInfo.items[0].id}`} key={index}>
+              <Link to={`/watch?video=${video.id}&playlist=${playListInfo.id}`} key={index}>
                 <PlaylistVideoItem key={video.id} videoId={video.id} title={video.title} thumbnailUrl={video.thumbnailUrl} />
               </Link>
             )
