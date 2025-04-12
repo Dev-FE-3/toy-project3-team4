@@ -7,7 +7,7 @@ const PlaylistHeader = ({ playlistTitle, channelTitle, myself, isPublic, onClose
       {/* 텍스트 정보 */}
       <div className="flex flex-col items-start gap-[3px]">
         {/* 제목 */}
-        <h2 className="truncate text-lg font-semibold text-gray-dark">{playlistTitle}</h2>
+        <h2 className="line-clamp-2 max-w-[300px] text-lg font-semibold text-gray-dark">{playlistTitle}</h2>
 
         {/* 공개여부 + 채널명 */}
         <div className="flex items-center gap-[6px] text-xs font-normal text-gray-medium-dark">
