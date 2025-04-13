@@ -1,20 +1,41 @@
-export interface IVideo {
+// src/types/playlist.ts
+
+export interface IVideoItem {
   id: string
   title: string
   thumbnailUrl: string
-  views: number
-  createdAt: string
-}
-
-export interface IPlayList {
-  id: string
-  title: string
   ownerName: string
-  isPublic: boolean
-  videos: IVideo[]
 }
 
-export interface IPlaylistVideoItemProps {
-  video: IVideo
-  index: number
+export interface IMiniModalProps {
+  currentIndex: number
+  playlist: IVideoItem[]
+  nextVideo?: IVideoItem
+  onOpenFull: () => void
+}
+
+export interface IVideoItemProps {
+  playListId: string
+  thumbnailUrl: string
+  title: string
+  videoId: string
+  isActive: boolean
+  views?: number | null
+  createdAt?: string | null
+  onClick: () => void
+}
+
+// 이미 정의된 IVideoItemProps 기반으로 views, createdAt 제외한 타입
+// src/types/playlist.ts
+
+export type TVideoItemContainerProps = Omit<IVideoItemProps, 'views' | 'createdAt'>
+
+export interface IPlaylistHeaderProps {
+  playlistTitle: string
+  channelTitle: string
+  videoCount: number
+  currentIndex: number
+  myself: boolean
+  isPublic: boolean
+  onClose: () => void
 }
