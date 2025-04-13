@@ -1,8 +1,8 @@
 import { fetchYoutubeSearch } from '@/shared/util/youtube'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import SearchType from '../type/ISearchType'
+import { SearchParams } from '../type/SearchParams'
 
-const useSearch = ({ keyword, type }: SearchType) => {
+const useSearch = ({ keyword, type }: SearchParams) => {
   return useInfiniteQuery({
     queryKey: ['youtubeSearch', keyword, type],
     queryFn: ({ pageParam = '' }) => fetchYoutubeSearch({ pageParam, searchParams: keyword, type }),
