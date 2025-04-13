@@ -1,7 +1,6 @@
 import { SetURLSearchParams } from 'react-router-dom'
+import { SearchType } from '../type/SearchType'
 import { YouTubeSearchPlaylistItem, YouTubeSearchVideoItem } from '../type/ISearchResultItemTypes'
-
-export type SearchType = 'video' | 'playlist'
 
 export const getSearchParams = (searchParams: URLSearchParams) => {
   const keyword = searchParams.get('q') || ''

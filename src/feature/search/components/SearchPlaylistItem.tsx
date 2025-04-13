@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import useChannelInfo from '@/feature/home/api/useChannelInfo'
 import usePlaylistInfo from '../api/usePlaylistInfo'
 import usePlaylistVideos from '../api/usePlaylistVideos'
-import createPlaylistFromYouTube from '../service/createPlaylistFromYouTube'
+import createPlaylistFromYouTube from '../api/createPlaylistFromYouTube'
 import PlaylistThumbnail from '@/shared/components/playlist/PlaylistThumnail'
 import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import PlaylistInfo from '@/shared/components/playlist/PlaylistInfo'
@@ -11,6 +11,7 @@ import VideoItemSkeleton from '@/feature/home/components/VideoItemSkeleton'
 import { YouTubeSearchPlaylistItem } from '../type/ISearchResultItemTypes'
 import { Bookmark } from 'lucide-react'
 import Alert from '@/shared/components/alert/Alert'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 
 interface SearchPlayListItemProps {
   item: YouTubeSearchPlaylistItem
@@ -43,26 +44,20 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
         const result = await refetch()
 
         if (result.data) {
-          const response = await createPlaylistFromYouTube(result.data.items, item.snippet.title)
-          if ('type' in response) {
-            if (response.type === 'USER_NOT_FOUND') {
-              setAlertInfo({
-                title: '안내',
-                description: response.message,
-                onConfirm: () => {
-                  navigate('/login')
-                },
-              })
-            } else {
-              setAlertInfo({
-                title: '안내',
-                description: response.message,
-              })
-            }
+          const user = useAuthStore.getState().user
+          if (user) {
+            const response = await createPlaylistFromYouTube(result.data.items, item.snippet.title, user.id)
+            setAlertInfo({
+              title: '안내',
+              description: response.message,
+            })
           } else {
             setAlertInfo({
-              title: '성공',
-              description: '플레이리스트가 저장되었습니다.',
+              title: '안내',
+              description: '로그인 후 이용해주세요.',
+              onConfirm: () => {
+                navigate('/login')
+              },
             })
           }
         }

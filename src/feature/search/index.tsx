@@ -3,12 +3,12 @@ import { useSearchParams } from 'react-router-dom'
 import { useInfiniteScroll } from '../home/hooks/useInfiniteScroll'
 import { getSearchParams, isSearchPlaylistItem, updateSearchType } from './service/handleSearchParams'
 import { YouTubeSearchPlaylistItem, YouTubeSearchVideoItem } from './type/ISearchResultItemTypes'
-import SearchTypeEnum from './type/SearchTypeEnum'
 import useSearch from './api/useSearch'
 import SearchTypeButtons from './components/SearchTypeButtons'
 import SearchVideoItem from './components/SearchVideoItem'
 import SearchPlayListItem from './components/SearchPlaylistItem'
 import VideoItemSkeleton from '../home/components/VideoItemSkeleton'
+import SearchType from './type/SearchType'
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -17,7 +17,7 @@ const Search = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useSearch({ keyword, type })
 
   const handleTypeChange = useCallback(
-    (newType: SearchTypeEnum) => {
+    (newType: SearchType) => {
       updateSearchType(setSearchParams, newType, keyword)
     },
     [keyword, setSearchParams],
