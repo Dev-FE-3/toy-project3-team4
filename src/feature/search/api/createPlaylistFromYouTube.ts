@@ -17,11 +17,19 @@ const createPlaylistFromYouTube = async (videoList: PlaylistVideoItem[], playlis
     }
 
     // 1. 플레이리스트 정보 저장
-    const playlistResponse = await axiosInstance.post('/playlist', {
-      name: playlistTitle,
-      access: true, // 기본값 공개
-      user_id: userId,
-    })
+    const playlistResponse = await axiosInstance.post(
+      '/playlist',
+      {
+        name: playlistTitle,
+        access: true, // 기본값 공개
+        user_id: userId,
+      },
+      {
+        headers: {
+          Prefer: 'return=representation',
+        },
+      },
+    )
 
     const savedPlaylistId = playlistResponse.data[0]?.id
 
