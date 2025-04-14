@@ -24,7 +24,7 @@ export interface YouTubeStatistics {
 
 // 기본 비디오 아이템 (홈 화면용)
 export interface YouTubeVideoItem {
-  id: string
+  id: string | { videoId: string }
   snippet: YouTubeSnippet
   statistics: YouTubeStatistics
 }
