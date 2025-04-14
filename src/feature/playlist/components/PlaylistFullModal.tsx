@@ -26,7 +26,7 @@ const PlaylistFullModal = ({ playList, playListInfo, myself, setIsFullOpen }: IP
           {playList.map((video, index) => {
             return (
               // Link to supabase || youtube 구분해줘야함 myself 넣어서
-              <Link to={`/watch?video=${video.id}&playlist=${playListInfo.id}`} key={index}>
+              <Link to={`/watch?video=${video.id}&playlist=${playListInfo.id}${myself ? '&myself=true' : ''}`} key={index}>
                 <PlaylistVideoItem key={video.id} videoId={video.id} title={video.title} thumbnailUrl={video.thumbnailUrl} />
               </Link>
             )
