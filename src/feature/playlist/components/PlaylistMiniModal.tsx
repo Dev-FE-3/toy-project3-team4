@@ -24,7 +24,7 @@ const PlaylistMiniModal = ({ videoId, playList, onOpenFull }: IMiniModalProps) =
             {playList[currentIndexInPlaylist + 1].title || '다음 영상 없음'}
           </p>
           <p className="text-[12px] text-gray-500">
-            {playList[currentIndexInPlaylist]?.ownerName} ({currentIndexInPlaylist + 1}/{playList.length})
+            {playList[currentIndexInPlaylist]?.ownerName || '내 채널'} ({currentIndexInPlaylist + 1}/{playList.length})
           </p>
         </div>
         <div className="ml-auto">
