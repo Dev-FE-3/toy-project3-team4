@@ -7,6 +7,7 @@ import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import VideoInfo from '@/shared/components/video/VideoInfo'
 import VideoItemSkeleton from './VideoItemSkeleton'
 import MoreOptions from '@/shared/components/more-options/MoreOptions'
+import { StyledIcon } from '@/shared/components/more-options/utils/icon'
 
 const VideoItem = memo(({ item, onVideoSelect }: VideoItemProps) => {
   const { data: channelData, isLoading: isChannelLoading } = useChannelInfo(item.snippet.channelId)
@@ -18,7 +19,7 @@ const VideoItem = memo(({ item, onVideoSelect }: VideoItemProps) => {
 
   const menuItems = [
     {
-      icon: <Bookmark size={20} className="cursor-pointer stroke-gray-dark" strokeWidth={1.5} />,
+      icon: StyledIcon(Bookmark),
       label: '플레이리스트에 추가',
       onClick: handleBookmarkClick,
     },

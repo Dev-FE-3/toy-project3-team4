@@ -8,6 +8,7 @@ import VideoItemSkeleton from '@/feature/home/components/VideoItemSkeleton'
 import { YouTubeSearchVideoItem } from '../type/ISearchResultItemTypes'
 import { Bookmark } from 'lucide-react'
 import MoreOptions from '@/shared/components/more-options/MoreOptions'
+import { StyledIcon } from '@/shared/components/more-options/utils/icon'
 
 interface SearchVideoItemProps {
   item: YouTubeSearchVideoItem
@@ -26,7 +27,7 @@ const SearchVideoItem = memo(({ item, onVideoSelect }: SearchVideoItemProps) => 
 
   const menuItems = [
     {
-      icon: <Bookmark size={20} className="cursor-pointer stroke-gray-dark" strokeWidth={1.5} />,
+      icon: StyledIcon(Bookmark),
       label: '플레이리스트에 추가',
       onClick: handleBookmarkClick,
     },
