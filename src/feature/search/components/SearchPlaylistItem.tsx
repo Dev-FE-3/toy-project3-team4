@@ -13,6 +13,7 @@ import { Bookmark } from 'lucide-react'
 import Alert from '@/shared/components/alert/Alert'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import MoreOptions from '@/shared/components/more-options/MoreOptions'
+import { StyledIcon } from '@/shared/components/more-options/utils/icon'
 
 interface SearchPlayListItemProps {
   item: YouTubeSearchPlaylistItem
@@ -71,7 +72,7 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
 
   const menuItems = [
     {
-      icon: <Bookmark size={20} className="cursor-pointer stroke-gray-dark" strokeWidth={1.5} />,
+      icon: StyledIcon(Bookmark),
       label: '플레이리스트 저장',
       onClick: handleBookmarkClick,
     },
