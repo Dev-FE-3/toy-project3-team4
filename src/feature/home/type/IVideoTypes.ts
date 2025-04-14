@@ -1,19 +1,4 @@
-export interface YouTubeVideoItem {
-  id: string
-  snippet: {
-    channelId: string
-    channelTitle: string
-    publishedAt: string
-    title: string
-    description: string
-    thumbnails: {
-      high: { url: string }
-    }
-  }
-  statistics: {
-    viewCount: string
-  }
-}
+import { YouTubeVideoItem } from '@/shared/type/IYouTubeTypes'
 
 export interface VideoItemProps {
   item: YouTubeVideoItem
