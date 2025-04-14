@@ -1,6 +1,6 @@
 import React from 'react'
 import { useVideoList } from './api/useVideoList'
-import { useInfiniteScroll } from './hooks/useInfiniteScroll'
+import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll'
 import { YouTubeVideoItem } from './type/IVideoTypes'
 import VideoItem from './components/VideoItem'
 import VideoItemSkeleton from './components/VideoItemSkeleton'
@@ -9,9 +9,9 @@ const Home: React.FC = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, error } = useVideoList()
 
   useInfiniteScroll({
-    isFetchingNextPage,
     hasNextPage,
-    fetchNextPage,
+    isFetchingNextPage,
+    onLoadMore: fetchNextPage,
   })
 
   // 에러 처리 추후 수정 필요
