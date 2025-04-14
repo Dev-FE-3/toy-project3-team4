@@ -50,3 +50,8 @@ export interface ILikeButtonProps {
   videoId: string
   userId: number
 }
+
+export interface IFollowPaylodad {
+  user_id: number
+  channel: string
+}

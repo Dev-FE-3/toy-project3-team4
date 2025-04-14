@@ -19,12 +19,12 @@ const VideoItem = React.memo(({ item }: VideoItemProps) => {
 
   return (
     <li className="mb-5 w-full">
-      <VideoThumbnail videoId={item.id} thumbnailUrl={item.snippet.thumbnails.high.url} />
+      <VideoThumbnail videoId={typeof item.id === 'string' ? item.id : item.id.videoId} thumbnailUrl={item.snippet.thumbnails.high.url} />
 
       <div className="flex items-start gap-3">
         <ChannelAvatar channelId={item.snippet.channelId} channelThumbnail={channelThumbnail} />
         <VideoInfo
-          videoId={item.id}
+          videoId={typeof item.id === 'string' ? item.id : item.id.videoId}
           title={item.snippet.title}
           viewCount={Number(item.statistics.viewCount)}
           publishedAt={item.snippet.publishedAt}

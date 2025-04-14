@@ -1,14 +1,21 @@
 import { IVideoItemProps } from '../types/IPlayList'
 import { EllipsisVertical } from 'lucide-react'
-
 import { formatViewCount, formatUploadDate } from '@/shared/util/format'
 import '../util/scroll.css'
-// 썸네일 URL, title, 조회수, 업로드일
-const PlaylistVideoItem = ({ index, thumbnailUrl, title, videoId, onClick, isActive, views, createdAt }: IVideoItemProps) => {
+import useYoutubeVideoInfo from '../api/useYoutubeVideoInfo'
+import { useSearchParams } from 'react-router-dom'
+
+const PlaylistVideoItem = ({ videoId, title, thumbnailUrl }: Omit<IVideoItemProps, 'views' | 'createdAt'>) => {
+  const [searchParams] = useSearchParams()
+  const currentVideoId = searchParams.get('video') || '-aqv-mpWjag'
+  const { data: videoData } = useYoutubeVideoInfo(videoId)
+
+  const views = videoData?.items[0]?.statistics?.viewCount ?? null
+  const createdAt = videoData?.items[0]?.snippet?.publishedAt ?? null
+
   return (
     <div
-      className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${isActive ? 'bg-gray-light' : ''}`}
-      onClick={onClick}
+      className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${videoId === currentVideoId ? 'bg-gray-light' : ''}`}
     >
       {/* 썸네일 */}
       <img src={thumbnailUrl} alt={title} className="h-[112px] w-[180px] rounded-md object-cover" />

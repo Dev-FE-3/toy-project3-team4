@@ -1,8 +1,7 @@
-// src/App.tsx 또는 pages/index.tsx
-import PlaylistTestPage from './components/PlaylistTestPage'
+import VideoDetailPage from './components/VideoDetailPage'
 
 const PlayListView = () => {
-  return <PlaylistTestPage />
+  return <VideoDetailPage videoId="-aqv-mpWjag" playListId="PLPhtNKiHTFyrufM8X57tcrOe18Seq3kZD" />
 }
 
 export default PlayListView

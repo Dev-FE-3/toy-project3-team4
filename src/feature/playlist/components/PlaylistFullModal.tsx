@@ -1,14 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistHeader from './PlaylistHeader'
-import PlaylistVideoItemContainer from './PlaylistVideoItemContainer'
-import useYoutubePlayListInfo from '../api/useYoutubePlayListInfo'
-import { IPlaylistProps } from '../types/IPlayList'
+import PlaylistVideoItem from './PlayListVideoItem'
+import { Link } from 'react-router-dom'
+import { IPlaylistFullModalProps } from '../types/IPlayList'
 
-const PlaylistFullModal = ({ playlistId, myself, playlist, currentIndex, setCurrentIndex, setIsFullOpen }: IPlaylistProps) => {
-  const { data: playlistInfo } = useYoutubePlayListInfo(playlistId)
-
-  if (!playlistInfo) return null
-
+const PlaylistFullModal = ({ playList, playListInfo, myself, setIsFullOpen }: IPlaylistFullModalProps) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -19,27 +15,22 @@ const PlaylistFullModal = ({ playlistId, myself, playlist, currentIndex, setCurr
         className="fixed bottom-[56px] top-[300px] z-50 flex w-[430px] flex-col bg-white shadow-xl"
       >
         <PlaylistHeader
-          playlistTitle={playlistInfo.items[0].snippet.title}
-          channelTitle={playlistInfo.items[0].snippet.channelTitle}
-          videoCount={playlist.length}
-          currentIndex={currentIndex}
+          playlistTitle={playListInfo.title}
+          channelTitle={playListInfo.channelTitle}
           onClose={() => setIsFullOpen(false)}
           myself={myself}
           isPublic={true}
         />
 
         <div className="scrollbar-hide flex-1 overflow-y-auto px-[2px]">
-          {playlist.map((video, idx) => (
-            <PlaylistVideoItemContainer
-              key={video.id}
-              index={idx}
-              thumbnailUrl={video.thumbnailUrl}
-              title={video.title}
-              videoId={video.id}
-              onClick={() => setCurrentIndex(idx)}
-              isActive={idx === currentIndex}
-            />
-          ))}
+          {playList.map((video, index) => {
+            return (
+              // Link to supabase || youtube 구분해줘야함 myself 넣어서
+              <Link to={`/watch?video=${video.id}&playlist=${playListInfo.id}${myself ? '&myself=true' : ''}`} key={index}>
+                <PlaylistVideoItem key={video.id} videoId={video.id} title={video.title} thumbnailUrl={video.thumbnailUrl} />
+              </Link>
+            )
+          })}
         </div>
       </motion.div>
     </AnimatePresence>
