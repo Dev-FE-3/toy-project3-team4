@@ -1,12 +1,11 @@
 import Comment from './Comment'
 import './../util/video.css'
-// import { useUserList } from '@/feature/home/api/useUserList'
 import { ICommentListProps } from '../type/IVideo'
 import { formatUploadDate } from '@/shared/util/format'
 
 const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment }) => {
   // 새로운 댓글을 입력시 보여주기 위함
-  const fullList = newlyAddedComment ? [newlyAddedComment, ...(comments ?? [])] : (comments ?? [])
+  const fullList = newlyAddedComment ? [newlyAddedComment, ...comments] : comments
 
   return (
     <ul className="custom-scrollbar mt-[15px] max-h-[350px] overflow-y-auto px-[15px]">
