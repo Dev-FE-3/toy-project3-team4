@@ -17,7 +17,7 @@ const Video: React.FC = () => {
 
   const openPlayList = usePlayListModalStore((state) => state.openPlayList)
   const videoId = searchParams.get('video') ?? ''
-  const playlistId = searchParams.get('playlist') ?? ''
+  const playListId = searchParams.get('playlist') ?? ''
   const isMyPlayList = searchParams.get('myself') ?? false
 
   const user = useAuthStore((state) => state.user) || { id: 0 }
@@ -78,7 +78,7 @@ const Video: React.FC = () => {
 
         {/* ✅ 댓글 */}
         <CommentContainer id={videoId} />
-        {playlistId && <VideoDetailPage videoId={videoId} playlistId={playlistId} myself={isMyPlayList} />}
+        {playListId && <VideoDetailPage videoId={videoId} playListId={playListId} myself={isMyPlayList === 'true'} />}
         <ModalManager videoId={videoId} />
       </article>
     </main>
