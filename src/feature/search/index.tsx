@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useInfiniteScroll } from '../home/hooks/useInfiniteScroll'
+import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll'
 import { getSearchParams, isSearchPlaylistItem, updateSearchType } from './service/handleSearchParams'
 import { YouTubeSearchPlaylistItem, YouTubeSearchVideoItem } from './type/ISearchResultItemTypes'
 import useSearch from './api/useSearch'
@@ -24,9 +24,9 @@ const Search = () => {
   )
 
   useInfiniteScroll({
-    isFetchingNextPage,
     hasNextPage,
-    fetchNextPage,
+    isFetchingNextPage,
+    onLoadMore: fetchNextPage,
   })
 
   if (error) return <p>{(error as Error).message}</p>

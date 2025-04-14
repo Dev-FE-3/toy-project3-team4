@@ -8,6 +8,7 @@ import Login from '@/feature/login'
 import AuthCallback from '@/feature/auth/AuthCallback'
 import PlayListView from '@/feature/playlist'
 import Search from '@/feature/search'
+import Follow from '@/feature/follow'
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
           <Route path="/settings" element={<AppSettings />} />
           <Route path="/playlist" element={<PlayListView />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/follow" element={<Follow />} />
         </Route>
       </Routes>
     </Router>

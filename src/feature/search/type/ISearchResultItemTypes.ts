@@ -1,35 +1,3 @@
-export interface YouTubeSearchVideoItem {
-  id: {
-    videoId: string
-  }
-  snippet: {
-    title: string
-    description: string
-    thumbnails: {
-      high: {
-        url: string
-      }
-    }
-    channelId: string
-    channelTitle: string
-    publishedAt: string
-  }
-}
+import { YouTubeSearchVideoItem, YouTubeSearchPlaylistItem } from '@/shared/type/IYouTubeTypes'
 
-export interface YouTubeSearchPlaylistItem {
-  id: {
-    playlistId: string
-  }
-  snippet: {
-    title: string
-    description: string
-    thumbnails: {
-      high: {
-        url: string
-      }
-    }
-    channelId: string
-    channelTitle: string
-    publishedAt: string
-  }
-}
+export type { YouTubeSearchVideoItem, YouTubeSearchPlaylistItem }
