@@ -54,3 +54,19 @@ export const fetchYoutubePopularVideo = async ({ pageParam }: { pageParam: strin
   )
   return response.data
 }
+
+/** 유튜브 검색 */
+export const fetchYoutubeSearch = async ({
+  pageParam,
+  searchParams,
+  type = 'playlist',
+}: {
+  pageParam: string
+  searchParams: string
+  type: 'video' | 'playlist'
+}) => {
+  const response = await axios.get(
+    `/api/youtube/search?part=snippet&type=${type}&q=${searchParams}&order=viewCount&relevanceLanguage=ko&regionCode=KR&safeSearch=strict&maxResults=5&pageToken=${pageParam}&key=${YOUTUBE_KEY}`,
+  )
+  return response.data
+}

@@ -7,6 +7,7 @@ import AppSettings from '@/feature/app-settings'
 import Login from '@/feature/login'
 import AuthCallback from '@/feature/auth/AuthCallback'
 import PlayListView from '@/feature/playlist'
+import Search from '@/feature/search'
 
 function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ function AppRoutes() {
           <Route path="/watch" element={<Video />} />
           <Route path="/settings" element={<AppSettings />} />
           <Route path="/playlist" element={<PlayListView />} />
+          <Route path="/search" element={<Search />} />
         </Route>
       </Routes>
     </Router>
