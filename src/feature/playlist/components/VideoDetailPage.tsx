@@ -5,6 +5,7 @@ import usePlayListInfo from '../api/usePlayListInfo'
 import usePlayListVideoInfo from '../api/usePlayListVideoInfo'
 
 const VideoDetailPage = ({ videoId, playListId, myself = false }: { videoId: string; playListId: string; myself?: boolean }) => {
+  console.log('myself', myself)
   const { data: playListInfo, isLoading: playListInfoLoading, error: playListInfoError } = usePlayListInfo(playListId, myself)
   const { data: playList, isLoading: playListVideoInfoLoading, error: playListVideoInfoError } = usePlayListVideoInfo(playListId, myself)
   const [isFullOpen, setIsFullOpen] = useState(true)
