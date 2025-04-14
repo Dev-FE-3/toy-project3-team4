@@ -9,11 +9,13 @@ import SearchVideoItem from './components/SearchVideoItem'
 import SearchPlayListItem from './components/SearchPlaylistItem'
 import VideoItemSkeleton from '../home/components/VideoItemSkeleton'
 import SearchType from './type/SearchType'
+import ModalManager from '@/shared/components/playlist-modal/ModalManager'
+import { useVideoState } from '../home/hooks/useVideoState'
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const { type, keyword } = getSearchParams(searchParams)
-
+  const { videoId, handleVideoSelect } = useVideoState()
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } = useSearch({ keyword, type })
 
   const handleTypeChange = useCallback(
@@ -45,7 +47,7 @@ const Search = () => {
         isSearchPlaylistItem(item) ? (
           <SearchPlayListItem key={item.id.playlistId} item={item} />
         ) : (
-          <SearchVideoItem key={item.id.videoId} item={item} />
+          <SearchVideoItem key={item.id.videoId} item={item} onVideoSelect={handleVideoSelect} />
         ),
       ),
     )
@@ -54,6 +56,7 @@ const Search = () => {
     <>
       <SearchTypeButtons currentType={type} onTypeChange={handleTypeChange} />
       <ul className="flex min-h-screen flex-col items-center p-[15px]">{isLoading ? renderSkeletons() : renderSearchResults()}</ul>
+      <ModalManager videoId={videoId} />
     </>
   )
 }
