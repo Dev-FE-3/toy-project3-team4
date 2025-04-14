@@ -70,3 +70,9 @@ export const fetchYoutubeSearch = async ({
   )
   return response.data
 }
+
+/** 유튜브 채널의 비디오 목록 */
+export const fetchYoutubeChannelVideos = async (channelId: string) => {
+  const response = await axios.get(`/api/youtube/search?part=snippet&channelId=${channelId}&order=date&type=video&maxResults=2&key=${YOUTUBE_KEY}`)
+  return response.data
+}
