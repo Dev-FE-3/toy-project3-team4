@@ -34,7 +34,7 @@ const Video: React.FC = () => {
           <iframe
             height="240"
             className="w-full border-0"
-            src={`https://www.youtube.com/embed/${videoId}`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
             title={video.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
