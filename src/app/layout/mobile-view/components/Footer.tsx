@@ -2,9 +2,10 @@ import { Plus } from 'lucide-react'
 import { Avatar } from '@/shared/lib/shadcn/ui/avatar'
 import { AvatarImage } from '@radix-ui/react-avatar'
 import NavItem from './NavItem'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 
 const Footer = () => {
-  const profileImage = '/image/download/background.svg'
+  const profileImage = useAuthStore((state) => state.user?.img) ?? '/image/download/background.svg'
 
   return (
     <nav className="fixed bottom-0 z-50 mx-auto flex h-[56px] w-[430px] items-center justify-center gap-10 border-t border-gray-light-medium bg-basic-white px-[15px] py-[8px]">
