@@ -12,7 +12,7 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
       {fullList?.length !== 0 ? (
         fullList?.map((comment, index) => (
           <li key={index}>
-            <Comment comment={comment.content} userId={comment.user_id} createdAt={formatUploadDate(comment.created_at)} />
+            <Comment comment={comment.content} userId={comment.user_id} createdAt={formatUploadDate(comment.created_at || '방금전')} />
           </li>
         ))
       ) : (
