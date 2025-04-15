@@ -12,6 +12,8 @@ import { YouTubeSearchPlaylistItem } from '../type/ISearchResultItemTypes'
 import { Bookmark } from 'lucide-react'
 import Alert from '@/shared/components/alert/Alert'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import MoreOptions from '@/shared/components/more-options/MoreOptions'
+import { StyledIcon } from '@/shared/components/more-options/utils/icon'
 
 interface SearchPlayListItemProps {
   item: YouTubeSearchPlaylistItem
@@ -68,6 +70,14 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
     })
   }, [refetch, item.snippet.title, navigate])
 
+  const menuItems = [
+    {
+      icon: StyledIcon(Bookmark),
+      label: '플레이리스트 저장',
+      onClick: handleBookmarkClick,
+    },
+  ]
+
   // 비디오 정보가 로딩 중일 때는 스켈레톤 UI를 보여줌
   if (isChannelLoading || isPlaylistLoading || isVideoLoading) return <VideoItemSkeleton />
 
@@ -89,8 +99,7 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
         <div className="flex items-start gap-3">
           <ChannelAvatar channelId={item.snippet.channelId} channelThumbnail={channelThumbnail} />
           <PlaylistInfo videoId={firstVideoId} playlistId={item.id.playlistId} title={item.snippet.title} publishedAt={item.snippet.publishedAt} />
-
-          <Bookmark size={20} className="cursor-pointer stroke-gray-dark" strokeWidth={1.5} onClick={handleBookmarkClick} />
+          <MoreOptions items={menuItems} />
         </div>
       </li>
       {alertInfo && mainElement && (

@@ -4,6 +4,8 @@ import VideoItemSkeleton from '@/feature/home/components/VideoItemSkeleton'
 import VideoItem from '@/feature/home/components/VideoItem'
 import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll'
 import { usePagination } from '../hooks/usePagination'
+import ModalManager from '@/shared/components/playlist-modal/ModalManager'
+import { useVideoState } from '@/feature/home/hooks/useVideoState'
 
 interface FollowingFeedProps {
   channels: FollowingChannel[]
@@ -13,6 +15,7 @@ const ITEMS_PER_PAGE = 5
 
 const FollowingFeed = ({ channels }: FollowingFeedProps) => {
   const { data: allVideos, isLoading: isLoadingVideos, isError } = useFollowingVideos(channels)
+  const { videoId, handleVideoSelect } = useVideoState()
 
   const {
     currentData: videos,
@@ -42,11 +45,14 @@ const FollowingFeed = ({ channels }: FollowingFeedProps) => {
   }
 
   return (
-    <ul className="mx-[15px]">
-      {videos.map((video) => (
-        <VideoItem key={video.id.videoId} item={video} />
-      ))}
-    </ul>
+    <>
+      <ul className="mx-[15px]">
+        {videos.map((video) => (
+          <VideoItem key={video.id.videoId} item={video} onVideoSelect={handleVideoSelect} />
+        ))}
+      </ul>
+      <ModalManager videoId={videoId} />
+    </>
   )
 }
 
