@@ -28,57 +28,55 @@ const Video: React.FC = () => {
   if (error || !video) return <></>
 
   return (
-    <main className="h-dvh w-full">
-      <article className="aspect-video w-full">
-        <section>
-          <iframe
-            height="240"
-            className="w-full border-0"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-            title={video.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
-        </section>
+    <article className="aspect-video w-full">
+      <section>
+        <iframe
+          height="240"
+          className="w-full border-0"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          title={video.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </section>
 
-        <header className="px-[15px] pt-[15px] font-bold">{video.title}</header>
+      <header className="px-[15px] pt-[15px] font-bold">{video.title}</header>
 
-        <p className="px-[15px] pb-[8px] pt-[8px] text-xs">
-          <span>조회수 {formatViewCount(video.viewCount)} • </span>
-          <time dateTime={video.publishedAt}>{formatUploadDate(video.publishedAt)}</time>
-        </p>
+      <p className="px-[15px] pb-[8px] pt-[8px] text-xs">
+        <span>조회수 {formatViewCount(video.viewCount)} • </span>
+        <time dateTime={video.publishedAt}>{formatUploadDate(video.publishedAt)}</time>
+      </p>
 
-        <section className="flex items-center justify-between px-[15px]">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
-              <AvatarFallback>User</AvatarFallback>
-            </Avatar>
-            <h1>{video.channelTitle}</h1>
-          </div>
+      <section className="flex items-center justify-between px-[15px]">
+        <div className="flex items-center gap-4">
+          <Avatar className="h-10 w-10">
+            <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
+            <AvatarFallback>User</AvatarFallback>
+          </Avatar>
+          <h1>{video.channelTitle}</h1>
+        </div>
 
-          <FollowButton userId={user.id} channelId={video.channelId} />
-        </section>
+        <FollowButton userId={user.id} channelId={video.channelId} />
+      </section>
 
-        <section className="flex gap-[10px] px-[15px] py-[16px] pb-[12px]">
-          <LikeButton videoId={videoId} userId={user.id} />
-          <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
-            <Share2 fill="#525252" />
-            공유
-          </Button>
-          <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
-            <Bookmark />
-            저장
-          </Button>
-        </section>
+      <section className="flex gap-[10px] px-[15px] py-[16px] pb-[12px]">
+        <LikeButton videoId={videoId} userId={user.id} />
+        <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Share2 fill="#525252" />
+          공유
+        </Button>
+        <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+          <Bookmark />
+          저장
+        </Button>
+      </section>
 
-        {/* ✅ 댓글 */}
-        <CommentContainer id={videoId} />
-        {playListId && <VideoDetailPage videoId={videoId} playListId={playListId} myself={isMyPlayList === 'true'} />}
-        <ModalManager videoId={videoId} />
-      </article>
-    </main>
+      {/* ✅ 댓글 */}
+      <CommentContainer id={videoId} />
+      {playListId && <VideoDetailPage videoId={videoId} playListId={playListId} myself={isMyPlayList === 'true'} />}
+      <ModalManager videoId={videoId} />
+    </article>
   )
 }
 export default Video

@@ -8,7 +8,7 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
   const fullList = newlyAddedComment ? [newlyAddedComment, ...comments] : comments
 
   return (
-    <ul className="custom-scrollbar mt-[15px] max-h-[350px] overflow-y-auto px-[15px]">
+    <ul className="custom-scrollbar mt-[15px] max-h-[calc(100vh_-_56px_-_56px_-_240px_-_175px_-_61px_-_25px)] overflow-y-auto px-[15px]">
       {fullList?.length !== 0 ? (
         fullList?.map((comment, index) => (
           <li key={index}>
