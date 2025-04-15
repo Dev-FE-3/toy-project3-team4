@@ -55,6 +55,10 @@ const useFollowingVideos = (channels: FollowingChannel[]) => {
 
         return {
           ...video,
+          snippet: {
+            ...video.snippet,
+            title: videoInfo?.snippet?.title || video.snippet.title,
+          },
           channelInfo,
           statistics: videoInfo?.statistics || { viewCount: '0' },
         }
