@@ -16,7 +16,7 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   // 댓글 슈퍼베이스에 저장하기
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(user?.id)
+
     if (comment === '' || user?.id === undefined) {
       //user id가 없을때 즉 로그인 안돼 있을 떄 일단 못 달게 해놓음
       return
@@ -40,7 +40,7 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
       <Avatar className="h-[25px] w-[25px]">
         <AvatarImage className="rounded-full border border-gray-medium object-cover" src={user?.img} />
         <AvatarFallback>
-          <CircleUserRound /> {/* 유저 img가 없을때 나오는 아이콘  */}
+          <CircleUserRound />
         </AvatarFallback>
       </Avatar>
 

@@ -9,8 +9,8 @@ const CommentContainer: React.FC<ICommentContainerProps> = ({ id }) => {
 
   const { data: comments, isLoading: isCommentsLoading, error: commentsError, refetch } = useCommentList(id)
 
-  if (isCommentsLoading) return <div>Loading...</div>
-  if (commentsError) return <div>Error</div>
+  if (isCommentsLoading) return <></>
+  if (commentsError) return <></>
 
   const handleNewComment = async (comment: ICommentPayload) => {
     setNewComment(comment) // 임시로 추가된 댓글 넣어주기

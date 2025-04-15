@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { Bookmark, Share2 } from 'lucide-react'
@@ -24,8 +24,8 @@ const Video: React.FC = () => {
 
   const { data: video, isLoading, error } = useVideoDetail(videoId)
 
-  if (isLoading) return <div>loading...</div>
-  if (error || !video) return <div>Error</div>
+  if (isLoading) return <></>
+  if (error || !video) return <></>
 
   return (
     <main className="h-dvh w-full">
@@ -45,21 +45,18 @@ const Video: React.FC = () => {
         <header className="px-[15px] pt-[15px] font-bold">{video.title}</header>
 
         <p className="px-[15px] pb-[8px] pt-[8px] text-xs">
-          <span>조회수 {formatViewCount(video.viewCount)}회 • </span>
+          <span>조회수 {formatViewCount(video.viewCount)} • </span>
           <time dateTime={video.publishedAt}>{formatUploadDate(video.publishedAt)}</time>
         </p>
 
         <section className="flex items-center justify-between px-[15px]">
-          <Link to={'/'}>
-            <div className="flex items-center gap-4">
-              {/* 나중에 다른 사람 채널 링크로 변경 예정  */}
-              <Avatar className="h-10 w-10">
-                <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
-                <AvatarFallback>User</AvatarFallback>
-              </Avatar>
-              <h1>{video.channelTitle}</h1>
-            </div>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Avatar className="h-10 w-10">
+              <AvatarImage className="rounded-full border border-gray-medium object-cover" src={video.channelImg} />
+              <AvatarFallback>User</AvatarFallback>
+            </Avatar>
+            <h1>{video.channelTitle}</h1>
+          </div>
 
           <FollowButton userId={user.id} channelId={video.channelId} />
         </section>
