@@ -3,6 +3,7 @@ import FollowingList from './components/FollowingList'
 import UserNotFound from './components/UserNotFound'
 import FollowingFeed from './components/FollowingFeed'
 import { useFollowingChannels } from './api/useFollowingChannels'
+import EmptyFollowing from './components/EmptyFollowing'
 
 const Follow = () => {
   const user = useAuthStore((state) => state.user)
@@ -12,7 +13,7 @@ const Follow = () => {
     return <UserNotFound />
   }
 
-  if (!data) return null
+  if (!data || data.length === 0) return <EmptyFollowing />
 
   return (
     <>
