@@ -1,5 +1,4 @@
 import { EllipsisVertical, ListVideo } from 'lucide-react'
-
 import { useVideoInfo } from '../api/useVideoInfo'
 import { Link } from 'react-router-dom'
 
@@ -7,18 +6,16 @@ interface IPlayListIemProps {
   id: number
   name: string
   access: string
-  created_at: string
   count: number
 }
 
-const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, created_at, count }) => {
+const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) => {
   const { data: video, isLoading: videoLoading, error: videoError } = useVideoInfo(id)
 
-  if (videoLoading || videoError) return <></>
+  if (videoLoading || videoError || !video || video.length < 2) return <></>
 
   const videoThumbnail = video[0]
-  const playListId = video[1].playlist_id
-  const videoId = video[1].video_id
+  const { playlist_id: playListId, video_id: videoId } = video[1]
 
   return (
     <li key={id} className="flex h-[120px] justify-between gap-[15px]">
@@ -35,10 +32,10 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, created_a
 
       <section className="mt-[5px] flex w-[205px] justify-between gap-[10px]">
         <Link to={`/watch?video=${videoId}&playlist=${playListId}&myself=true`}>
-          <h3 className="flex w-[180px] flex-col gap-[8px]">
+          <div className="flex w-[180px] flex-col gap-[8px]">
             <h3 className="text-[14px] font-semibold">{name}</h3>
-            <h3 className="text-[12px] text-gray-medium-dark">{access === 'true' ? '공개' : '비공개'}</h3>
-          </h3>
+            <p className="text-[12px] text-gray-medium-dark">{access === 'true' ? '공개' : '비공개'}</p>
+          </div>
         </Link>
         <EllipsisVertical size={15} strokeWidth={2} className="stroke-gray-dark" />
       </section>

@@ -4,14 +4,15 @@ import TabMenu from './components/TebMenu'
 import { useState } from 'react'
 import { usePlayList } from './api/usePlaylistInfo'
 import PlayListItem from './components/PlayLisyItem'
+import UserNotFound from '../follow/components/UserNotFound'
 
 const Channel = () => {
   const [selectedTab, setSelectedTab] = useState<`video` | `playlist`>('video')
 
   const user = useAuthStore((state) => state.user)
-  const { data: playList, isLoading: playListLoading, error: playListError } = usePlayList(user.id)
+  const { data: playList, isLoading: playListLoading, error: playListError } = usePlayList(user?.id || 0)
 
-  if (!user) return console.log('유저 정보가 없어요')
+  if (!user) return <UserNotFound />
   if (playListLoading) return <></>
   if (playListError) return <></>
 
@@ -24,11 +25,7 @@ const Channel = () => {
       {selectedTab === 'video' && <p className="flex justify-center">업로드된 영상이 없습니다.</p>}
 
       {selectedTab === 'playlist' && (
-        <ul>
-          {playList?.map((item) => (
-            <PlayListItem id={item.id} name={item.name} access={item.access} created_at={item.created_at} count={playList?.length} />
-          ))}
-        </ul>
+        <ul>{playList?.map((item) => <PlayListItem id={item.id} name={item.name} access={item.access} count={playList?.length} />)}</ul>
       )}
     </article>
   )
