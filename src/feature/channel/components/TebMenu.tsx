@@ -15,7 +15,7 @@ const TabMenu: React.FC<ITabMenuProps> = ({ onChangeTab }) => {
   }
 
   return (
-    <div className="flex justify-between text-gray-500">
+    <div className="mb-[15px] flex justify-between text-gray-500">
       <div>
         <button
           onClick={() => handleTabClick('video')}
