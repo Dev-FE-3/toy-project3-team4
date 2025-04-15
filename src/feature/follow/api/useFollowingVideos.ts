@@ -15,7 +15,7 @@ const useFollowingVideos = (channels: FollowingChannel[]) => {
     })),
   })
 
-  // 2. 각 채널의 비디오 목록 가져오기
+  // 2. 각 채널의 비디오 목록 가져오기(조회수 없음)
   const videoQueries = useQueries({
     queries: channels.map((channel) => ({
       queryKey: ['channelVideo', channel.channel],
@@ -32,7 +32,7 @@ const useFollowingVideos = (channels: FollowingChannel[]) => {
     .map((video) => video?.id.videoId)
     .filter(Boolean)
 
-  // 4. 모든 비디오 정보 가져오기
+  // 4. 모든 비디오 정보 가져오기(조회수, 디코딩된 제목 필요)
   const { data: videoInfos, isLoading: isVideoInfoLoading } = useQuery({
     queryKey: ['videoInfos', videoIds],
     queryFn: () => fetchYoutubeVideoInfo(videoIds.join(',')),
@@ -55,6 +55,10 @@ const useFollowingVideos = (channels: FollowingChannel[]) => {
 
         return {
           ...video,
+          snippet: {
+            ...video.snippet,
+            title: videoInfo?.snippet?.title || video.snippet.title,
+          },
           channelInfo,
           statistics: videoInfo?.statistics || { viewCount: '0' },
         }
