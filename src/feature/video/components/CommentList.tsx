@@ -10,8 +10,8 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
   return (
     <ul className="custom-scrollbar mt-[15px] max-h-[350px] overflow-y-auto px-[15px]">
       {fullList?.length !== 0 ? (
-        fullList?.map((comment) => (
-          <li key={comment.user_id}>
+        fullList?.map((comment, index) => (
+          <li key={index}>
             <Comment comment={comment.content} userId={comment.user_id} createdAt={formatUploadDate(comment.created_at)} />
           </li>
         ))
