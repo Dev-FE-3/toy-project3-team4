@@ -1,6 +1,8 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Search, ChevronLeft, X } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
+import Alert from '@/shared/components/alert/Alert'
+import { AlertInfo } from '@/shared/components/alert/type/IAlertInfo'
 
 type HeaderType = 'default' | 'searchInput' | 'searchIcon'
 const DEFAULT_HEADER_PATHS = ['/', '/follow', '/channel', '/settings']
@@ -13,6 +15,8 @@ const Header = () => {
   const [type, setType] = useState<HeaderType>('default')
   const [previousType, setPreviousType] = useState<HeaderType>('default')
   const [searchQuery, setSearchQuery] = useState('')
+
+  const [alertInfo, setAlertInfo] = useState<AlertInfo | null>(null)
 
   // URL이 변경될 때마다 헤더 타입 체크
   useEffect(() => {
@@ -76,7 +80,11 @@ const Header = () => {
     if (e.key === 'Enter') {
       const inputValue = searchInputRef.current?.value.trim()
       if (!inputValue) {
-        alert('검색어를 입력해주세요')
+        setAlertInfo({
+          title: '안내',
+          description: '검색어를 입력해주세요',
+          hideCancelButton: true,
+        })
         return
       }
 
@@ -144,7 +152,23 @@ const Header = () => {
     ),
   }
 
-  return <header className={`${baseHeaderClass} ${type === 'searchInput' ? 'gap-2' : 'justify-between'}`}>{headerContent[type]}</header>
+  return (
+    <>
+      <header className={`${baseHeaderClass} ${type === 'searchInput' ? 'gap-2' : 'justify-between'}`}>{headerContent[type]}</header>
+      {alertInfo && (
+        <Alert
+          title={alertInfo.title}
+          description={alertInfo.description}
+          hideCancelButton={alertInfo.hideCancelButton}
+          onConfirm={() => {
+            alertInfo.onConfirm?.()
+            setAlertInfo(null)
+          }}
+          onCancel={() => setAlertInfo(null)}
+        />
+      )}
+    </>
+  )
 }
 
 export default Header

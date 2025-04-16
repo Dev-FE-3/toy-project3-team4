@@ -1,18 +1,19 @@
 import { memo, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Bookmark } from 'lucide-react'
 import useChannelInfo from '@/feature/home/api/useChannelInfo'
 import usePlaylistInfo from '../api/usePlaylistInfo'
 import usePlaylistVideos from '../api/usePlaylistVideos'
 import createPlaylistFromYouTube from '../api/createPlaylistFromYouTube'
+import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import PlaylistThumbnail from '@/shared/components/playlist/PlaylistThumnail'
 import ChannelAvatar from '@/shared/components/video/ChannelAvatar'
 import PlaylistInfo from '@/shared/components/playlist/PlaylistInfo'
 import VideoItemSkeleton from '@/feature/home/components/VideoItemSkeleton'
-import { YouTubeSearchPlaylistItem } from '../type/ISearchResultItemTypes'
-import { Bookmark } from 'lucide-react'
 import Alert from '@/shared/components/alert/Alert'
-import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 import MoreOptions from '@/shared/components/more-options/MoreOptions'
+import { YouTubeSearchPlaylistItem } from '../type/ISearchResultItemTypes'
+import { AlertInfo } from '@/shared/components/alert/type/IAlertInfo'
 import { StyledIcon } from '@/shared/components/more-options/utils/icon'
 
 interface SearchPlayListItemProps {
@@ -21,13 +22,7 @@ interface SearchPlayListItemProps {
 
 const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
   const navigate = useNavigate()
-  const [alertInfo, setAlertInfo] = useState<{
-    title: string
-    description: string
-    hideCancelButton?: boolean
-    onConfirm?: () => void
-    onCancel?: () => void
-  } | null>(null)
+  const [alertInfo, setAlertInfo] = useState<AlertInfo | null>(null)
 
   const { data: channelInfo, isLoading: isChannelLoading } = useChannelInfo(item.snippet.channelId)
   const { data: playlistInfo, isLoading: isPlaylistLoading } = usePlaylistInfo(item.id.playlistId)
@@ -84,8 +79,6 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
   // 채널 정보가 없거나 비디오 정보가 없으면 렌더링하지 않음
   if (!channelThumbnail || videoCount === undefined) return null
 
-  const mainElement = document.querySelector('#view-container') as HTMLElement
-
   return (
     <>
       <li className="mb-5 w-full">
@@ -102,9 +95,8 @@ const SearchPlayListItem = memo(({ item }: SearchPlayListItemProps) => {
           <MoreOptions items={menuItems} />
         </div>
       </li>
-      {alertInfo && mainElement && (
+      {alertInfo && (
         <Alert
-          container={mainElement}
           title={alertInfo.title}
           description={alertInfo.description}
           hideCancelButton={alertInfo.hideCancelButton}
