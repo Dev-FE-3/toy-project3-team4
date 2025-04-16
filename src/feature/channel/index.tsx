@@ -26,7 +26,11 @@ const Channel = () => {
 
       {selectedTab === 'playlist' && (
         <ul>
-          {playList?.map((item, index) => <PlayListItem index={index} id={item.id} name={item.name} access={item.access} count={playList?.length} />)}
+          {playList?.map((item, index) => (
+            <li key={index} className="flex h-[120px] justify-between gap-[15px]">
+              <PlayListItem id={item.id} name={item.name} access={item.access} count={playList?.length} />
+            </li>
+          ))}
         </ul>
       )}
     </article>
