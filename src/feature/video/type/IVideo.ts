@@ -11,7 +11,7 @@ export interface ICommentFormProps {
 
 // ✅ 댓글 리스트 렌더링 시 사용하는 Props
 export interface ICommentListProps {
-  comments?: ICommentList[]
+  comments: ICommentList[]
   newlyAddedComment?: ICommentPayload | null
 }
 

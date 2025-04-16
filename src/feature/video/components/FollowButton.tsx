@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { deleteFollowChannel, postFollowChannel, useIsFollowingChannel } from '../api/useIsFollowingChannel'
-// import { deleteFollowChannel, postFollowChannel } from '../service/following'
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { UserRoundPlus, UserRoundX } from 'lucide-react'
 import { IFollowButtonProps } from '../type/IVideo'
