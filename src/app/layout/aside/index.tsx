@@ -7,13 +7,13 @@ const Aside = () => {
         <img src="/public/image/logo/logo.svg" alt="로고" className="w-24" />
       </section>
       <section className="text-5xl font-bold">
-        <p>
+        <p className="text-[#262728]">
           스트리밍 <span className="text-main-primary">1등</span> 플랫폼
         </p>
         <p className="text-main-primary">플레이요!</p>
         <div className="mt-4 flex flex-wrap gap-1">
           <Button className="bg-main-warning text-white hover:bg-red-600"># 신규 콘텐츠 업데이트</Button>
-          <Button className="bg-main-primary text-basic-white hover:bg-blue-600"># 인기 급상승</Button>
+          <Button className="bg-main-primary text-white hover:bg-blue-600"># 인기 급상승</Button>
           <Button className="bg-main-success text-white hover:bg-purple-600"># 오직 플레이요에서</Button>
         </div>
       </section>
