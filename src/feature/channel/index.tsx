@@ -25,7 +25,9 @@ const Channel = () => {
       {selectedTab === 'video' && <p className="flex justify-center">업로드된 영상이 없습니다.</p>}
 
       {selectedTab === 'playlist' && (
-        <ul>{playList?.map((item) => <PlayListItem id={item.id} name={item.name} access={item.access} count={playList?.length} />)}</ul>
+        <ul>
+          {playList?.map((item, index) => <PlayListItem index={index} id={item.id} name={item.name} access={item.access} count={playList?.length} />)}
+        </ul>
       )}
     </article>
   )

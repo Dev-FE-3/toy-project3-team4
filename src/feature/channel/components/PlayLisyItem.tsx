@@ -3,13 +3,14 @@ import { useVideoInfo } from '../api/useVideoInfo'
 import { Link } from 'react-router-dom'
 
 interface IPlayListIemProps {
+  index: number
   id: number
   name: string
   access: string
   count: number
 }
 
-const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) => {
+const PlayListItem: React.FC<IPlayListIemProps> = ({ index, id, name, access, count }) => {
   const { data: video, isLoading: videoLoading, error: videoError } = useVideoInfo(id)
 
   if (videoLoading || videoError || !video || video.length < 2) return <></>
@@ -18,7 +19,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
   const { playlist_id: playListId, video_id: videoId } = video[1]
 
   return (
-    <li key={id} className="flex h-[120px] justify-between gap-[15px]">
+    <li key={index} className="flex h-[120px] justify-between gap-[15px]">
       <section className="relative w-[180px]">
         <Link to={`/watch?video=${videoId}&playlist=${playListId}&myself=true`}>
           <div className="ml-2 mr-2 h-[50px] rounded-[5px] bg-[#E0E0E2]"></div>
