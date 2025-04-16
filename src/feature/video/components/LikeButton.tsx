@@ -9,7 +9,7 @@ const LikeButton = ({ videoId, userId }: ILikeButtonProps) => {
 
   return (
     <>
-      <Button onClick={() => toggleLike()} disabled={isPending} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+      <Button onClick={() => toggleLike()} disabled={isPending} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium">
         {isLiked ? <Heart fill="#525252" /> : <Heart />} {formatLikeCount(likeCount || 0)}
       </Button>
     </>
