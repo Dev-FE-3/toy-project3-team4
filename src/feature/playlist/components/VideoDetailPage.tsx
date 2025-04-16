@@ -19,9 +19,6 @@ const VideoDetailPage = ({ videoId, playListId, myself = false }: { videoId: str
   if (!playList) return ''
   if (!playListInfo) return ''
 
-  console.log('playListInfo', playListInfo)
-  console.log('playList', playList)
-
   return (
     <div className="relative">
       {isFullOpen ? (

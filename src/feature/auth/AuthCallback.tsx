@@ -28,7 +28,7 @@ const AuthCallback = () => {
     fetchSession()
   }, [navigate, setAuth, upsertUser])
 
-  return <p>로그인 처리 중...</p>
+  return <p></p>
 }
 
 export default AuthCallback
