@@ -101,7 +101,11 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
                     <div className="flex gap-4">
                       <img
                         className="size-16 rounded-lg"
-                        src={`https://img.youtube.com/vi/${item.videolist[0].video_id}/maxresdefault.jpg`}
+                        src={
+                          item.videolist[0]
+                            ? `https://img.youtube.com/vi/${item.videolist[0].video_id}/maxresdefault.jpg`
+                            : '/public/image/default/thumbnail.png'
+                        }
                         alt="재생목록 사진"
                       />
                       <div className="flex w-[250px] flex-col justify-center">
