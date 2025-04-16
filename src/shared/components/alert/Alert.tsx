@@ -1,23 +1,13 @@
 import { createPortal } from 'react-dom'
 import { useEffect, useRef } from 'react'
-
-interface AlertProps {
-  title: string
-  description: string
-  onConfirm?: () => void
-  onCancel?: () => void
-  container?: HTMLElement
-  confirmText?: string
-  cancelText?: string
-  hideCancelButton?: boolean
-}
+import { AlertProps } from './type/IAlertInfo'
 
 const Alert = ({
   title,
   description,
   onConfirm,
   onCancel,
-  container,
+  container = document.querySelector('#view-container') as HTMLElement,
   confirmText = '확인',
   cancelText = '취소',
   hideCancelButton = true,
@@ -63,7 +53,7 @@ const Alert = ({
               </button>
             )}
             <button
-              className="rounded-md bg-main-primary px-4 py-2 text-sm font-medium text-basic-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="rounded-md bg-main-primary px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               onClick={onConfirm}
             >
               {confirmText}
