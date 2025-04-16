@@ -7,6 +7,7 @@ import AppSettings from '@/feature/app-settings'
 import Login from '@/feature/login'
 import AuthCallback from '@/feature/auth/AuthCallback'
 import PlayListView from '@/feature/playlist'
+import Channel from '@/feature/channel'
 import Search from '@/feature/search'
 import Follow from '@/feature/follow'
 
@@ -22,6 +23,7 @@ function AppRoutes() {
           <Route path="/watch" element={<Video />} />
           <Route path="/settings" element={<AppSettings />} />
           <Route path="/playlist" element={<PlayListView />} />
+          <Route path="/channel" element={<Channel />} />
           <Route path="/search" element={<Search />} />
           <Route path="/follow" element={<Follow />} />
         </Route>
