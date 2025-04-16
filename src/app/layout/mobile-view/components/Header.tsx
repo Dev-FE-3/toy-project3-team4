@@ -164,7 +164,6 @@ const Header = () => {
             alertInfo.onConfirm?.()
             setAlertInfo(null)
           }}
-          onCancel={() => setAlertInfo(null)}
         />
       )}
     </>
