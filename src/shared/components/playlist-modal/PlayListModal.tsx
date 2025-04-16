@@ -24,7 +24,8 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
   const { data: playList, isLoading, error } = useFindPlayList(userId)
 
   useEffect(() => {
-    const target = document.getElementById('view-container')
+    // const target = document.getElementById('view-container')
+    const target = document.querySelector('nav')
     setContainer(target)
   }, [])
 
