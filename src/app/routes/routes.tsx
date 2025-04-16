@@ -10,6 +10,7 @@ import PlayListView from '@/feature/playlist'
 import Channel from '@/feature/channel'
 import Search from '@/feature/search'
 import Follow from '@/feature/follow'
+import PageNotFound from '@/shared/components/error/PageNotFound'
 
 function AppRoutes() {
   return (
@@ -26,6 +27,7 @@ function AppRoutes() {
           <Route path="/channel" element={<Channel />} />
           <Route path="/search" element={<Search />} />
           <Route path="/follow" element={<Follow />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </Router>

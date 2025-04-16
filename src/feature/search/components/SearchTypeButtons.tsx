@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import SearchTypeButtonProps from '../type/ISearchTypeButtonProps'
+import { SearchTypeButtonProps } from '../type/SearchTypeButtonProps'
 
 const SearchTypeButtons = memo(({ currentType, onTypeChange }: SearchTypeButtonProps) => {
   return (
