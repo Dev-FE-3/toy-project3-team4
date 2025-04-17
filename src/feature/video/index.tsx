@@ -27,6 +27,13 @@ const Video: React.FC = () => {
   if (isLoading) return <></>
   if (error || !video) return <></>
 
+  const clickedSaveButton = () => {
+    if (user.id === 0) {
+      return
+    }
+    openPlayList()
+  }
+
   return (
     <article className="aspect-video w-full">
       <section>
@@ -66,7 +73,10 @@ const Video: React.FC = () => {
           <Share2 fill="#525252" />
           공유
         </Button>
-        <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium">
+        <Button
+          onClick={clickedSaveButton}
+          className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium"
+        >
           <Bookmark />
           저장
         </Button>

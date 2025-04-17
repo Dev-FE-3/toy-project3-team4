@@ -12,13 +12,13 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   const [comment, setComment] = useState('')
 
   const user = useAuthStore((state) => state.user)
+  console.log(user)
 
   // 댓글 슈퍼베이스에 저장하기
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (comment === '' || user?.id === undefined) {
-      //user id가 없을때 즉 로그인 안돼 있을 떄 일단 못 달게 해놓음
       return
     }
 
@@ -52,10 +52,11 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
         name="comment"
         className="bg-basic-white text-[15px] placeholder:text-gray-medium"
         type="text"
-        placeholder="댓글 입력"
+        placeholder={user === null ? '로그인 후 이용 가능 합니다.' : '댓글 입력'}
         value={comment}
         autoComplete="off"
         onChange={(e) => setComment(e.target.value)}
+        disabled={user === null && true}
       />
     </form>
   )
