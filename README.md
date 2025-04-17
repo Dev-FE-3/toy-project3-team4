@@ -79,7 +79,7 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 ## 🔨 기술 스택
 
-### ✔️ Language
+### ✔️ Frontend Stack
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black">
 
@@ -155,7 +155,7 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 | 단계 | 설명 | 명령어 / 설정 |
 | -------- | -------- | -------- |
-| 1️⃣ 환경변수 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
+| 1️⃣ 설정 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
 | 2️⃣ 클론 | GitHub 저장소를 로컬로 복제 | `git clone https://github.com/Dev-FE-3/toy-project3-team4.git`<br>`cd toy-project3-team4` |
 | 3️⃣ 설치 | 프로젝트 의존성 설치 | `npm install` |
 | 4️⃣ 실행 | 개발 서버 실행 및 프로젝트 확인 | `npm run dev`<br>➡️ `http://localhost:5173` 기본 실행 |
