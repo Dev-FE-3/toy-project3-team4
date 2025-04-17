@@ -29,7 +29,9 @@ const Channel = () => {
       )}
 
       {selectedTab === 'playlist' &&
+
         (playList.length <= 0 ? (
+
           <section className="flex h-[534px] flex-col items-center justify-center gap-[30px]">
             <img className="w-[150px]" src="image/download/video-not-found.svg" />
             <p className="text-[14px] text-gray-medium">아직 생성된 플레이리스트가 없어요</p>
