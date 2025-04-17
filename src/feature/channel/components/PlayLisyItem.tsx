@@ -34,7 +34,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
         <Link to={`/watch?video=${videoId}&playlist=${playListId}&myself=true`}>
           <div className="flex w-[180px] flex-col gap-[8px]">
             <h3 className="text-[14px] font-semibold">{name}</h3>
-            <p className="text-[12px] text-gray-medium-dark">{access === 'true' ? '공개' : '비공개'}</p>
+            <p className="text-[12px] text-gray-medium-dark">{access === 'Y' ? '공개' : '비공개'}</p>
           </div>
         </Link>
         <EllipsisVertical size={15} strokeWidth={2} className="stroke-gray-dark" />
