@@ -18,7 +18,7 @@ const PlaylistVideoItem = ({ videoId, title, thumbnailUrl }: Omit<IVideoItemProp
       className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${videoId === currentVideoId ? 'bg-gray-light' : ''}`}
     >
       {/* 썸네일 */}
-      <img src={thumbnailUrl} alt={title} className="h-[112px] w-[180px] rounded-md object-cover" />
+      <img src={thumbnailUrl} alt={title} className="aspect-video w-[180px] rounded-md object-cover" />
 
       {/* 텍스트 영역 */}
       <div className="flex flex-1 flex-col justify-between gap-[8px] overflow-hidden">
