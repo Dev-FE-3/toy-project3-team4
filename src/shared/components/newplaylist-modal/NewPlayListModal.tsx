@@ -7,7 +7,7 @@ import INewPlayListModalProps from './type/INewPlayListModalProps'
 import { useNewPlayList } from './api/useNewPlayList'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
 
-const NewPlayListModal = ({ videoId, closeModal }: INewPlayListModalProps) => {
+const NewPlayListModal = ({ videoId, closeModal, setAlertInfo }: INewPlayListModalProps) => {
   const [container, setContainer] = useState<HTMLElement | null>(null)
   const [access, setAccess] = useState('Y') // 공개 여부 상태
   const [title, setTitle] = useState('') // 제목 상태 추가
@@ -27,11 +27,22 @@ const NewPlayListModal = ({ videoId, closeModal }: INewPlayListModalProps) => {
       { userId, title, access, videoId },
       {
         onSuccess: () => {
-          alert('새 플레이리스트 생성!')
-          closeModal()
+          setAlertInfo({
+            title: '안내',
+            description: '새 플레이리스트가 생성됐어요!',
+            onConfirm: () => {
+              closeModal()
+              setAlertInfo(null)
+            },
+          })
         },
         onError: () => {
-          alert('추가에 실패했어요. 다시 시도해보세요.')
+          setAlertInfo({
+            title: '안내',
+            description: '문제가 발생했습니다. 잠시 후 다시 시도해주세요.',
+            onConfirm: () => setAlertInfo(null),
+            hideCancelButton: true,
+          })
         },
       },
     )
