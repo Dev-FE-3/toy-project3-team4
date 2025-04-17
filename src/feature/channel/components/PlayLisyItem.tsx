@@ -16,6 +16,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
 
   const videoThumbnail = video[0]
   const { playlist_id: playListId, video_id: videoId } = video[1]
+  const videoItemsCount = video[2]
 
   return (
     <>
@@ -25,7 +26,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
           <img className="absolute top-[8px] w-[180px] rounded-[5px]" src={videoThumbnail} />
           <div className="absolute bottom-[20px] right-[9px] flex w-[48px] justify-center gap-[4px] rounded-[20px] bg-gray-900/40 px-[8px] py-[3px] text-white">
             <ListVideo />
-            <p>{count}</p>
+            <p>{videoItemsCount}</p>
           </div>
         </Link>
       </section>
