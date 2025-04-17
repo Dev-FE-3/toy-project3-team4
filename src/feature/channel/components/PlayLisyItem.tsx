@@ -18,7 +18,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
   const { playlist_id: playListId, video_id: videoId } = video[1]
 
   return (
-    <li key={id} className="flex h-[120px] justify-between gap-[15px]">
+    <>
       <section className="relative w-[180px]">
         <Link to={`/watch?video=${videoId}&playlist=${playListId}&myself=true`}>
           <div className="ml-2 mr-2 h-[50px] rounded-[5px] bg-[#E0E0E2]"></div>
@@ -39,7 +39,7 @@ const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) 
         </Link>
         <EllipsisVertical size={15} strokeWidth={2} className="stroke-gray-dark" />
       </section>
-    </li>
+    </>
   )
 }
 
