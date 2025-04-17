@@ -58,7 +58,7 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 ### 6. 플레이리스트 - _#저장_
 
-저장 클릭 시 플레이리스트를 생성하거나 추가할 수 있는 모달이 열리고, 리스트 클릭 시 영상들을 한 번에 확인하고 재생할 수 있는 모달 UI가 동작합니다.
+- 저장 클릭 시 플레이리스트를 생성하거나 추가할 수 있는 모달이 열리고, 리스트 클릭 시 영상들을 한 번에 확인하고 재생할 수 있는 모달 UI가 동작합니다.
 
 ![Image](https://github.com/user-attachments/assets/0661d674-2a11-4453-8612-ebba19c6e6b8)
 
@@ -86,7 +86,7 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 ### ✔️ Language
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black">
 
 ### ✔️ State management
 
@@ -176,7 +176,6 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 PlayO 프로젝트는 효율적인 협업과 안정적인 배포를 위해 다음과 같은 브랜치 전략을 사용합니다.
 
----
 
 ### 1. 브랜치 종류
 
@@ -184,27 +183,24 @@ PlayO 프로젝트는 효율적인 협업과 안정적인 배포를 위해 다�
 | ------------------ | ------------------------------------------------------ |
 | `main`             | 제품의 **최종 배포용 브랜치**. 항상 안정적인 상태 유지 |
 | `dev`              | 모든 기능이 모이는 **통합 개발 브랜치**                |
-| `feature/[기능명]` | **기능 단위로 분리**하여 개발하는 브랜치               |
+| `feat/[기능명]` | **기능 단위로 분리**하여 개발하는 브랜치               |
 
----
 
 ### 2. 브랜치 흐름
 
 | 병합 대상                  | Merge 방식                        |
 | -------------------------- | --------------------------------- |
-| `feature/[기능명]` → `dev` | **Squash Merge** (커밋 내역 정리) |
+| `feat/[기능명]` → `dev` | **Squash Merge** (커밋 내역 정리) |
 | `dev` → `main`             | **Merge** (정리된 커밋을 유지)    |
 
----
 
 ### 3. 브랜치 운영 방식
 
-1. `feature/[기능명]` 브랜치에서 개별 기능을 개발합니다.
+1. `feat/[기능명]` 브랜치에서 개별 기능을 개발합니다.
 2. 기능 개발이 완료되면 `dev` 브랜치로 **Squash Merge**하여 커밋을 정리합니다.
 3. `dev`에서 전체 기능 통합 및 테스트 후, 안정된 버전은 `main` 브랜치로 **Merge**하여 배포합니다.
 4. **Squash Merge 적용 이유**: 기능 단위로 커밋을 정리해 `dev` 브랜치를 깔끔하게 유지하고, 협업 시 이력 관리가 용이하도록 합니다.
 
----
 
 &nbsp;
 
