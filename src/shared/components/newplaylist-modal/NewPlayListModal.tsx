@@ -72,10 +72,10 @@ const NewPlayListModal = ({ videoId, closeModal }: INewPlayListModalProps) => {
         </div>
 
         <div className="mt-5 flex justify-end gap-2 text-sm">
-          <Button onClick={closeModal} className="bg-gray-light text-gray-dark shadow-none">
+          <Button onClick={closeModal} className="bg-gray-light text-gray-dark shadow-none hover:bg-gray-light-medium">
             취소
           </Button>
-          <Button onClick={newPlayList} className="bg-main-primary">
+          <Button onClick={newPlayList} className="bg-main-primary hover:bg-blue-600">
             저장
           </Button>
         </div>
