@@ -12,7 +12,6 @@ const CommentForm: React.FC<ICommentFormProps> = ({ onSuccess, videoId }) => {
   const [comment, setComment] = useState('')
 
   const user = useAuthStore((state) => state.user)
-  console.log(user)
 
   // 댓글 슈퍼베이스에 저장하기
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
