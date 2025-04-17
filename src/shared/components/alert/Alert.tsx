@@ -13,7 +13,7 @@ const Alert = ({
   hideCancelButton = true,
 }: AlertProps) => {
   const alertContent = (
-    <div className="fixed bottom-0 top-0 z-50 flex w-[430px] items-center justify-center bg-black/20" onClick={onCancel}>
+    <div className="fixed bottom-0 top-0 z-[999] flex w-[430px] items-center justify-center bg-black/20" onClick={onCancel}>
       <motion.div
         className="w-[355px] rounded-lg bg-basic-white p-6 shadow-lg"
         onClick={(e) => e.stopPropagation()}
