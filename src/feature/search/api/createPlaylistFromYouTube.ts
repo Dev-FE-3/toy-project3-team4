@@ -21,7 +21,7 @@ const createPlaylistFromYouTube = async (videoList: PlaylistVideoItem[], playlis
       '/playlist',
       {
         name: playlistTitle,
-        access: true, // 기본값 공개
+        access: 'Y', // 기본값 공개
         user_id: userId,
       },
       {
