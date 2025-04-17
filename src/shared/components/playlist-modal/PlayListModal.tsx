@@ -26,7 +26,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId, setAlertInfo }: IP
   const { data: playList, isLoading, error } = useFindPlayList(userId)
 
   useEffect(() => {
-    const target = document.querySelector('nav')
+    const target = document.querySelector('main')
     setContainer(target)
   }, [])
 
@@ -103,13 +103,17 @@ const PlayListModal = ({ closeModal, setModalStates, videoId, setAlertInfo }: IP
 
   const modalContent = (
     <motion.div
-      className="absolute inset-0 z-50 mb-4 flex items-end justify-center"
+      className="fixed bottom-0 top-0 z-[90] flex w-[430px] items-end justify-center pb-[10px]"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 100, opacity: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+      onClick={closeModal}
     >
-      <div className="max-h-[340px] w-[410px] rounded-md border border-gray-light-medium bg-basic-white px-[15px] pb-[5px] pt-[15px] shadow-lg">
+      <div
+        className="w-[410px] rounded-md border border-gray-light-medium bg-basic-white px-[15px] pb-[5px] pt-[15px] shadow-lg"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h4 className="flex items-center justify-between">
           <Button
             className="h-[32px] border border-gray-light-medium bg-basic-white px-[10px] py-[8px] text-sm text-gray-dark shadow-none hover:bg-gray-light-medium"
