@@ -15,7 +15,7 @@ const NewPlayListModal = ({ videoId, closeModal, setAlertInfo }: INewPlayListMod
   const { mutate: addNewPlayList } = useNewPlayList()
 
   useEffect(() => {
-    const target = document.getElementById('view-container')
+    const target = document.querySelector('main')
     setContainer(target)
   }, [])
 
@@ -49,14 +49,15 @@ const NewPlayListModal = ({ videoId, closeModal, setAlertInfo }: INewPlayListMod
   }
 
   const modalContent = (
-    <motion.div
-      className="absolute inset-0 z-50 flex items-center justify-center"
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.9, opacity: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      <div className="w-[355px] rounded-lg border bg-basic-white p-[20px] shadow-none">
+    <div className="fixed bottom-0 top-0 z-50 flex w-[430px] items-center justify-center bg-black/20">
+      <motion.div
+        className="w-[355px] rounded-lg bg-basic-white p-[20px] shadow-lg"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <h4 className="text-lg font-bold">새 플레이리스트</h4>
 
         <div className="mt-5 rounded-lg border px-[12px] py-[8px]">
@@ -86,12 +87,16 @@ const NewPlayListModal = ({ videoId, closeModal, setAlertInfo }: INewPlayListMod
           <Button onClick={closeModal} className="bg-gray-light text-gray-dark shadow-none hover:bg-gray-light-medium">
             취소
           </Button>
-          <Button onClick={newPlayList} className="bg-main-primary hover:bg-blue-600">
+          <Button
+            onClick={newPlayList}
+            disabled={!title.trim()}
+            className="bg-main-primary hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
+          >
             저장
           </Button>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 
   return ReactDOM.createPortal(modalContent, container)
