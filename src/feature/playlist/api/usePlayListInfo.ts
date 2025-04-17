@@ -3,9 +3,6 @@ import axiosInstance from '@/shared/lib/axios/axiosInstance'
 import { fetchYoutubePlayListInfo } from '@/shared/util/youtube'
 
 const fetchSupabasePlayListInfo = async (userId: number, playListId: string) => {
-  console.log('userId', userId)
-  console.log('playListId', playListId)
-
   const result = await axiosInstance.get(`/playlist`, {
     params: {
       user_id: `eq.${userId}`,
@@ -23,8 +20,6 @@ const fetchSupabasePlayListInfo = async (userId: number, playListId: string) => 
 }
 
 const usePlayListInfo = (userId: number | undefined, playListId: string, myself: boolean) => {
-  console.log('myself', myself)
-
   return useQuery({
     queryKey: ['playlistInfo', myself ? 'me' : 'yt', playListId],
     queryFn: async () => {
