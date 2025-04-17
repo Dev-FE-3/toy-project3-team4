@@ -39,7 +39,7 @@ const usePlayListVideoInfo = (playListId: string, myself: boolean) => {
           return {
             id: item.id,
             title: item.snippet.title,
-            thumbnailUrl: item.snippet.thumbnails.high.url,
+            thumbnailUrl: item.snippet.thumbnails.high.url || '/public/image/default/thumbnail.png',
             ownerName: item.snippet.channelTitle,
           }
         })
@@ -49,7 +49,7 @@ const usePlayListVideoInfo = (playListId: string, myself: boolean) => {
         return items.map((item) => ({
           id: item.snippet.resourceId.videoId,
           title: item.snippet.title,
-          thumbnailUrl: item.snippet.thumbnails.high.url,
+          thumbnailUrl: item.snippet.thumbnails.high.url || '/public/image/default/thumbnail.png',
           ownerName: item.snippet.videoOwnerChannelTitle,
         }))
       }

@@ -9,8 +9,8 @@ const ViewHistory = () => {
   const { data: view, isLoading, error } = useViewHistory()
   const youtubeLinks = useYoutubeLinkInfo(view)
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error occurred</div>
+  if (isLoading) return <div></div>
+  if (error) return <div></div>
 
   return (
     <article className="md-[15px] mt-[15px]">
