@@ -9,6 +9,9 @@ const FollowButton = ({ userId, channelId }: IFollowButtonProps) => {
   const [isPending, setIsPending] = useState(false)
 
   const handleToggleFollow = async () => {
+    if (!userId) {
+      return
+    }
     setIsPending(true)
     try {
       if (isFollowing) {
