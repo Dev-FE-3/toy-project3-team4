@@ -12,7 +12,7 @@ const PlaylistFullModal = ({ playList, playListInfo, myself, setIsFullOpen }: IP
         animate={{ y: '0%', opacity: 1 }}
         exit={{ y: '100%', opacity: 0 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed bottom-[56px] top-[300px] z-50 flex w-[430px] flex-col bg-white shadow-xl"
+        className="fixed bottom-[56px] top-[300px] z-50 flex w-[430px] flex-col bg-basic-white shadow-xl"
       >
         <PlaylistHeader
           playlistTitle={playListInfo.title}
