@@ -1,15 +1,9 @@
 import { EllipsisVertical, ListVideo } from 'lucide-react'
 import { useVideoInfo } from '../api/useVideoInfo'
 import { Link } from 'react-router-dom'
+import { IPlayListIemProps } from '../tpye/IChannel'
 
-interface IPlayListIemProps {
-  id: number
-  name: string
-  access: string
-  count: number
-}
-
-const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access, count }) => {
+const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access }) => {
   const { data: video, isLoading: videoLoading, error: videoError } = useVideoInfo(id)
 
   if (videoLoading || videoError || !video || video.length < 2) return <></>
