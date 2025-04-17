@@ -7,6 +7,7 @@ import { useUpsertUser } from './api/useUpsertUser'
 const AuthCallback = () => {
   const navigate = useNavigate()
   const setAuth = useAuthStore((state) => state.setAuth)
+  const setUser = useAuthStore((state) => state.setUser)
   const { mutate: upsertUser } = useUpsertUser()
 
   useEffect(() => {
@@ -15,18 +16,21 @@ const AuthCallback = () => {
 
       if (data.session) {
         const user = data.session.user
-        setAuth(user) // ✅ Zustand에 Supabase Auth 유저 정보 저장
+        setAuth(user)
 
         upsertUser(user, {
-          onSuccess: () => navigate('/'), // ✅ 성공 시 홈으로 이동
+          onSuccess: (userData) => {
+            setUser(userData)
+            navigate('/')
+          },
         })
       } else {
-        navigate('/login') // 세션 없으면 다시 로그인 페이지로
+        navigate('/login')
       }
     }
 
     fetchSession()
-  }, [navigate, setAuth, upsertUser])
+  }, [navigate, setAuth, setUser, upsertUser])
 
   return <p></p>
 }
