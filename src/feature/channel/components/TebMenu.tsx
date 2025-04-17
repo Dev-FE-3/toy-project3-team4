@@ -1,10 +1,7 @@
 import { Button } from '@/shared/lib/shadcn/ui/button'
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
-
-interface ITabMenuProps {
-  onChangeTab: (tab: 'video' | 'playlist') => void
-}
+import { ITabMenuProps } from '../tpye/IChannel'
 
 const TabMenu: React.FC<ITabMenuProps> = ({ onChangeTab }) => {
   const [activeTab, setActiveTab] = useState('video')
