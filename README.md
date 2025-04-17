@@ -155,10 +155,10 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 | 단계 | 설명 | 명령어 / 설정 |
 | -------- | -------- | -------- |
-| 1️⃣ 환경변수 설정 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
-| 2️⃣ 프로젝트 클론 | GitHub 저장소를 로컬로 복제 | `git clone https://github.com/Dev-FE-3/toy-project3-team4.git`<br>`cd toy-project3-team4` |
-| 3️⃣ 패키지 설치 | 프로젝트 의존성 설치 | `npm install` |
-| 4️⃣ 로컬 서버 실행 | 개발 서버 실행 및 프로젝트 확인 | `npm run dev`<br>➡️ `http://localhost:5173` 기본 실행 |
+| 1️⃣ 환경변수 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
+| 2️⃣ 클론 | GitHub 저장소를 로컬로 복제 | `git clone https://github.com/Dev-FE-3/toy-project3-team4.git`<br>`cd toy-project3-team4` |
+| 3️⃣ 설치 | 프로젝트 의존성 설치 | `npm install` |
+| 4️⃣ 실행 | 개발 서버 실행 및 프로젝트 확인 | `npm run dev`<br>➡️ `http://localhost:5173` 기본 실행 |
 
 > 🔐 `.env` 파일은 커밋하지 않도록 `.gitignore`에 포함되어 있어야 합니다.
 >
