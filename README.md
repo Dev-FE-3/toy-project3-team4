@@ -153,8 +153,8 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 ## ⚙️ 프로젝트 실행 가이드
 
-| 단계 | 설명 | 명령어 / 설정 |
-| -------- | -------- | -------- |
+| | 설명 | 명령어 / 설정 |
+| --------- | --- | --- |
 | 1️⃣ | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
 | 2️⃣ | GitHub 저장소를 로컬로 복제 | `git clone https://github.com/Dev-FE-3/toy-project3-team4.git`<br>`cd toy-project3-team4` |
 | 3️⃣ | 프로젝트 의존성 설치 | `npm install` |
