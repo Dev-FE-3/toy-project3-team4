@@ -15,7 +15,7 @@ const PlaylistVideoItem = ({ videoId, title, thumbnailUrl }: Omit<IVideoItemProp
 
   return (
     <div
-      className={`scrollbar-hide flex h-[132px] cursor-pointer items-start gap-[15px] px-[15px] py-[10px] ${videoId === currentVideoId ? 'bg-gray-light' : ''}`}
+      className={`scrollbar-hide flex h-[132px] items-start gap-[15px] px-[15px] py-[10px] ${title === 'Deleted video' ? 'cursor-not-allowed' : 'cursor-pointer'} ${videoId === currentVideoId ? 'bg-gray-light' : ''}`}
     >
       {/* 썸네일 */}
       <img src={thumbnailUrl} alt={title} className="aspect-video w-[180px] rounded-md object-cover" />
