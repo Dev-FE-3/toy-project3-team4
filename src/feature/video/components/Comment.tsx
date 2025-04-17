@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
-import { CircleUserRound, EllipsisVertical } from 'lucide-react'
+import { CircleUserRound, MoreVertical } from 'lucide-react'
 import { ICommentProps } from '../type/IVideo'
 import { useUserInfo } from '../api/useUserImg'
 
@@ -18,14 +18,14 @@ const Comment: React.FC<ICommentProps> = ({ comment, userId, createdAt }) => {
               <CircleUserRound />
             </AvatarFallback>
           </Avatar>
-          <div className="pl-[5px]">
+          <div className="pl-[10px] text-gray-dark">
             @{userInfo[1]} • {createdAt}
           </div>
         </div>
-        <EllipsisVertical size={15} strokeWidth={2} className="stroke-gray-dark" />
+        <MoreVertical size={15} strokeWidth={2} className="fill-gray-medium-dark" />
       </div>
 
-      <p className="mr-[15px] pl-[30px]">{comment}</p>
+      <p className="mr-[15px] pl-[35px]">{comment}</p>
     </article>
   )
 }

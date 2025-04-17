@@ -77,7 +77,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
       <div className="max-h-[340px] w-[410px] rounded-md border bg-basic-white px-[15px] pb-[5px] pt-[15px] shadow-lg">
         <h4 className="flex items-center justify-between">
           <Button
-            className="h-[32px] border border-gray-light-medium bg-basic-white px-[10px] py-[8px] text-sm text-gray-dark shadow-none"
+            className="h-[32px] border border-gray-light-medium bg-basic-white px-[10px] py-[8px] text-sm text-gray-dark shadow-none hover:bg-gray-light-medium"
             onClick={addNewPlayList}
           >
             <Plus />새 플레이리스트
@@ -101,7 +101,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId }: IPlayListModalPr
                   <div className="flex items-center justify-between py-2">
                     <div className="flex gap-4">
                       <img
-                        className="size-16 rounded-lg"
+                        className="size-16 rounded-lg object-cover"
                         src={
                           item.videolist[0]
                             ? `https://img.youtube.com/vi/${item.videolist[0].video_id}/maxresdefault.jpg`
