@@ -92,13 +92,13 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 
 <img src="https://img.shields.io/badge/supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white">
 
-### ✔️ Design System & Style
+### ✔️ Style
 
-<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/shadcn-black?style=for-the-badge&logo=shadcnui&logoColor=white">
+<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white"> <img src="https://img.shields.io/badge/shadcn-black?style=for-the-badge&logo=shadcnui&logoColor=white">
 
 ### ✔️ Tools
 
- <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=Zoom&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> 
+ <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=Zoom&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> 
 
 &nbsp;
 
@@ -154,8 +154,8 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 ## ⚙️ 프로젝트 실행 가이드
 
 | 단계 | 설명 | 명령어 / 설정 |
-| --- | --- | --- |
-| 1️⃣ 환경 변수 설정 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
+| -------- | -------- | -------- |
+| 1️⃣ 환경변수 설정 | API 키 등 민감 정보 보관을 위해 `.env` 파일 생성 후 환경 변수 설정 | `VITE_YOUTUBE_API_KEY=YOUR_API_KEY` |
 | 2️⃣ 프로젝트 클론 | GitHub 저장소를 로컬로 복제 | `git clone https://github.com/Dev-FE-3/toy-project3-team4.git`<br>`cd toy-project3-team4` |
 | 3️⃣ 패키지 설치 | 프로젝트 의존성 설치 | `npm install` |
 | 4️⃣ 로컬 서버 실행 | 개발 서버 실행 및 프로젝트 확인 | `npm run dev`<br>➡️ `http://localhost:5173` 기본 실행 |
@@ -184,10 +184,10 @@ PlayO 프로젝트는 효율적인 협업과 안정적인 배포를 위해 다�
 
 ### 2. 브랜치 흐름
 
-| 병합 대상                  | Merge 방식                        |
+| 병합 대상                  | Merge 방식                     |
 | -------------------------- | --------------------------------- |
-| `feat/[기능명]` → `dev` | **Squash Merge** (커밋 내역 정리) |
-| `dev` → `main`             | **Merge** (정리된 커밋을 유지)    |
+| `feat/[기능명]` → `dev` | **Merge** (정리된 커밋을 유지)) |
+| `dev` → `main`             | **Squash Merge** (커밋 내역 정리)    |
 
 
 ### 3. 브랜치 운영 방식
