@@ -20,12 +20,19 @@ const Video: React.FC = () => {
   const playListId = searchParams.get('playlist') ?? ''
   const isMyPlayList = searchParams.get('myself') ?? false
 
-  const user = useAuthStore((state) => state.user) || { id: 0 }
+  const user = useAuthStore((state) => state.user)
 
   const { data: video, isLoading, error } = useVideoDetail(videoId)
 
   if (isLoading) return <></>
   if (error || !video) return <></>
+
+  const clickedSaveButton = () => {
+    if (user == null) {
+      return
+    }
+    openPlayList()
+  }
 
   return (
     <article className="aspect-video w-full">
@@ -57,16 +64,19 @@ const Video: React.FC = () => {
           <h1>{video.channelTitle}</h1>
         </div>
 
-        <FollowButton userId={user.id} channelId={video.channelId} />
+        <FollowButton userId={user?.id || 0} channelId={video.channelId} />
       </section>
 
       <section className="flex gap-[10px] p-[15px]">
-        <LikeButton videoId={videoId} userId={user.id} />
+        <LikeButton videoId={videoId} userId={user?.id || 0} />
         <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium">
           <Share2 fill="#525252" />
           공유
         </Button>
-        <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium">
+        <Button
+          onClick={clickedSaveButton}
+          className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium"
+        >
           <Bookmark />
           저장
         </Button>

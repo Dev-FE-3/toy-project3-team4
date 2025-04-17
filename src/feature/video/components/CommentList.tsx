@@ -16,7 +16,7 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
           </li>
         ))
       ) : (
-        <li className="my-[15px] text-center">아직 댓글이 없습니다.</li>
+        <li className="my-[15px] text-center text-[14px] text-gray-medium-dark">여러분의 생각을 공유해주세요.</li>
       )}
     </ul>
   )

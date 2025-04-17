@@ -40,10 +40,7 @@ const TabMenu: React.FC<ITabMenuProps> = ({ onChangeTab }) => {
       </div>
 
       {activeTab === 'playlist' && (
-        <Button
-          className="h-[32px] border border-gray-light-medium bg-basic-white px-[10px] py-[8px] text-sm text-gray-dark shadow-none"
-          onClick={() => console.log('플리 추가 버튼 클릭')}
-        >
+        <Button className="h-[32px] border border-gray-light-medium bg-basic-white px-[10px] py-[8px] text-sm text-gray-dark shadow-none hover:bg-gray-light-medium">
           <Plus />새 플레이리스트
         </Button>
       )}
