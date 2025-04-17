@@ -1,6 +1,7 @@
 ## ✨ 프로젝트 소개
 
-<!-- 이미지 추가 -->
+![image](https://github.com/user-attachments/assets/9f7c6752-900c-441e-ba31-e874261cb486)
+
 
 > **🚀 PlayO — 실시간으로 만나는 맞춤형 콘텐츠 플랫폼** <br />
 
