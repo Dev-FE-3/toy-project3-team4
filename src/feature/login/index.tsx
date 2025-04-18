@@ -20,7 +20,7 @@ const Login = () => {
     <section className="flex flex-col items-center justify-center h-screen">
       {/* 메인로고 */}
       <article>
-        <img src="/image/logo/main-logo.png" alt="" className="p-6" />
+        <img src="/image/logo/main-logo.png" alt="메인이미지" className="px-8" />
       </article>
       <article className="mt-10 flex flex-col items-center gap-1 text-gray-dark">
         <p className="font-light">취향으로 가득 채우자!</p>
