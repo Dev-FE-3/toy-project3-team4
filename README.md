@@ -1,6 +1,7 @@
 ## ✨ 프로젝트 소개
 
-![image](https://github.com/user-attachments/assets/9f7c6752-900c-441e-ba31-e874261cb486)
+![image](https://github.com/user-attachments/assets/68cbaa9b-52d4-4f49-96e2-c669020b4c65)
+
 
 
 > **🚀 PlayO — 실시간으로 만나는 맞춤형 콘텐츠 플랫폼** <br />
@@ -21,60 +22,68 @@ PlayO는 유튜브 API를 기반으로 제작된 직관적이고 몰입감 있�
 | <img width="200px" src="https://avatars.githubusercontent.com/u/88638457?v=4" style="max-width: 100%;"> | <img width="200px" src="https://avatars.githubusercontent.com/u/103170787?v=4" style="max-width: 100%;"> | <img width="200px" src="https://avatars.githubusercontent.com/u/113437204?v=4" style="max-width: 100%;"> | <img width="200px" src="https://avatars.githubusercontent.com/u/182064852?v=4" style="max-width: 100%;"> |
 | :-: | :-: | :-: | :-: |
 | **[강준구](https://github.com/jungu0416)** | **[박현수](https://github.com/redbuttonking)** | **[안요셉](https://github.com/YosepAhn)** | **[전유진](https://github.com/mirinae700)** |
-| 👑 | 🎞️ | 🎧 | 💄 |
+| 폴더 구조<br>API 설계<br>로그인<br>앱 설정<br> 플레이리스트 저장 모달 | 동영상<br>(팔로우/좋아요/저장/댓글)<br>내 채널  | 플레이리스트 상세<br><br>README.md | 디자인<br> 레이아웃<br>홈/검색/팔로잉 |
 
 &nbsp;
 
 ## 🚀 페이지 소개 및 주요 기능
 
 ### 1. 소셜 로그인
-
-<!-- 작성 -->
+![소셜로그인 GIF](https://github.com/user-attachments/assets/138fcf3e-b09e-4195-9921-a2698a7159a1)
+> 소셜로그인을 통해  간편 로그인 경험, 자동 회원가입을 제공합니다. 
 
 &nbsp;
 
 ### 2. 홈 - _#인급동_
-
-<!-- 작성 -->
+![홈 GIF](https://github.com/user-attachments/assets/3d000ae1-c906-4cbd-92df-0d6342f1cd71)
+> YouTube Data API를 활용하여 한국의 인기 급상승 동영상을 실시간으로 제공하며, 무한 스크롤 구현으로 끊김 없는 콘텐츠 탐색 경험을 제공합니다.
 
 &nbsp;
 
 ### 3. 통합 검색 - _#동영상 #플레이리스트_
+![통합검색 GIF](https://github.com/user-attachments/assets/044b6f23-cf14-48b5-ab79-cf007b72328f)
+> YouTube Search API를 활용하여 다양한 주제에 대한 통합 검색 기능을 제공합니다.
 
-<!-- 작성 -->
+> 사용자는 동영상과 플레이리스트를 필터링하여 원하는 형태의 콘텐츠를 쉽게 찾아볼 수 있습니다.
 
 &nbsp;
 
 ### 4. 팔로우 / 팔로잉 - _#나만의\_피드 #구독목록_
+![팔로잉 GIF](https://github.com/user-attachments/assets/d1a6e5e6-ecf7-4fd0-8c57-197dea42377f)
+> 팔로잉 페이지에서는 사용자가 구독한 채널들의 동영상을 확인할 수 있습니다.
 
-<!-- 작성 -->
+> 최근 업로드된 영상이 우선적으로 표시되는 피드 형태로 구성하여 구독한 채널의 새로운 콘텐츠를 효과적으로 확인할 수 있습니다. 
 
 &nbsp;
 
 ### 5. 동영상 - _#댓글 #좋아요 #저장 #팔로잉_
-
-<!-- 작성 -->
+![동영상 GIF](https://github.com/user-attachments/assets/88be8706-97f9-4c54-a3be-0a453bc7d6dc)
+> 로그인 후 영상 재생, 좋아요, 채널 팔로우, 내 플레이리스트 저장, 댓글 작성이 가능합니다.
 
 &nbsp;
 
 ### 6. 플레이리스트 - _#저장_
-![Image](https://github.com/user-attachments/assets/0661d674-2a11-4453-8612-ebba19c6e6b8)
-> 저장 클릭 시 플레이리스트를 생성하거나 추가할 수 있는 모달이 열립니다.
+![플리1 GIF](https://github.com/user-attachments/assets/10a88818-1f06-4883-9860-f2ed2e6cba1b)
+> 저장 클릭 시 플레이리스트를 생성하거나 추가할 수 있는 있습니다.
 
-![Image](https://github.com/user-attachments/assets/bd1d2141-7756-4153-971b-89e8a48cd1a4)
-> 리스트 클릭 시 영상들을 한 번에 확인하고 재생할 수 있는 모달 UI가 동작합니다.
+&nbsp;
+
+![플리 2 GIF](https://github.com/user-attachments/assets/ff1f6028-9e2c-41e8-ad55-46013c082edc)
+> 리스트 클릭 시 영상들을  모달로 한 번에 확인하고 재생할 수 있습니다.
 
 &nbsp;
 
 ### 7. 내 채널 - _#나의\_동영상_ _#나만의\_플레이리스트_
-
-<!-- 작성 -->
+![내채널 GIF](https://github.com/user-attachments/assets/f9fde9f2-d8bc-41f0-ac54-7cae0ea1a4f2)
+> 내 정보와 업로드한 영상·플레이리스트를 확인하고, 저장한 플레이리스트에서 영상 상세 페이지로 이동해 재생할 수 있습니다. 
 
 &nbsp;
 
 ### 8. 앱 설정 - _#시청기록 #다크모드_
+![설정 GIF](https://github.com/user-attachments/assets/7100e1ae-38a2-419c-a3a4-d66d1dff0159)
+> 시청기록을 바탕으로 최근 본 영상을 확인 할 수 있습니다.
 
-<!-- 작성 -->
+> 다크모드를 활성화 하여 사용자의 시각환경을 조정할 수 있습니다.
 
 &nbsp;
 
