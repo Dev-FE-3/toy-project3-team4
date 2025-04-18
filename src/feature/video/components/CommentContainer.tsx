@@ -18,9 +18,8 @@ const CommentContainer: React.FC<ICommentContainerProps> = ({ id }) => {
   }
 
   return (
-    <section className="mx-[15px] rounded-xl bg-gray-light px-[15px] pt-[10px]">
+    <section className="mx-[15px] rounded-xl bg-gray-light px-[15px] py-[10px]">
       <CommentForm onSuccess={handleNewComment} videoId={id} />
-      <div className="h-[1px] w-full bg-gray-medium"></div>
       <CommentList comments={comments} newlyAddedComment={newComment} />
     </section>
   )

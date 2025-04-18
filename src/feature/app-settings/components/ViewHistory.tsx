@@ -9,14 +9,14 @@ const ViewHistory = () => {
   const { data: view, isLoading, error } = useViewHistory()
   const youtubeLinks = useYoutubeLinkInfo(view)
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error occurred</div>
+  if (isLoading) return <div></div>
+  if (error) return <div></div>
 
   return (
     <article className="md-[15px] mt-[15px]">
       <div className="flex items-center justify-between">
         <p className="text-[18px] font-semibold">시청기록</p>
-        <Button className="h-[32px] w-[62px] border border-solid border-gray-light-medium bg-basic-white text-[12px] text-gray-dark shadow-none hover:bg-basic-white hover:text-gray-dark">
+        <Button className="h-[32px] w-[62px] border border-solid border-gray-light-medium bg-basic-white text-[12px] text-gray-dark shadow-none hover:bg-basic-white hover:bg-gray-light-medium hover:text-gray-dark">
           모두보기
         </Button>
       </div>

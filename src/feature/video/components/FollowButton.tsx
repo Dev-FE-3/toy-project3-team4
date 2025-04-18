@@ -9,6 +9,9 @@ const FollowButton = ({ userId, channelId }: IFollowButtonProps) => {
   const [isPending, setIsPending] = useState(false)
 
   const handleToggleFollow = async () => {
+    if (!userId) {
+      return
+    }
     setIsPending(true)
     try {
       if (isFollowing) {
@@ -30,8 +33,8 @@ const FollowButton = ({ userId, channelId }: IFollowButtonProps) => {
       <Button
         onClick={handleToggleFollow}
         disabled={isPending}
-        className={`flex h-[30px] items-center gap-1 rounded-full px-9 py-1 text-sm font-normal ${
-          isFollowing ? 'w-[102px] bg-gray-light text-gray-dark' : 'w-[77px] bg-main-primary text-white'
+        className={`rounded-full py-4 text-sm font-medium ${
+          isFollowing ? 'w-[102px] bg-gray-light text-gray-dark hover:bg-gray-light-medium' : 'w-[77px] bg-main-primary text-white hover:bg-blue-600'
         }`}
       >
         {isPending ? (

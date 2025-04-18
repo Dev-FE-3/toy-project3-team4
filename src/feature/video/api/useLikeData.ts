@@ -22,7 +22,7 @@ export const useLikeData = (videoId: string, userId: number) => {
   const { mutate: toggleLike, isPending } = useMutation({
     mutationFn: async () => {
       if (!userId) {
-        throw new Error('로그인 후 이용해 주세요')
+        return
       }
       if (isLiked) {
         await unlikeVideo(videoId, userId)
@@ -35,11 +35,6 @@ export const useLikeData = (videoId: string, userId: number) => {
       // 좋아요를 눌렀다면 좋아요 수와 좋아요 여부가 바뀔 테니 캐시를 무효화(지움) => 그러면 다시 fetch 하게 됨
       queryClient.invalidateQueries({ queryKey: ['likeCount', videoId] })
       queryClient.invalidateQueries({ queryKey: ['hasLiked', videoId, userId] })
-    },
-    onError: (error) => {
-      if (error instanceof Error) {
-        console.log(error.message)
-      }
     },
   })
 

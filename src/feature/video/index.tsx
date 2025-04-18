@@ -20,12 +20,19 @@ const Video: React.FC = () => {
   const playListId = searchParams.get('playlist') ?? ''
   const isMyPlayList = searchParams.get('myself') ?? false
 
-  const user = useAuthStore((state) => state.user) || { id: 0 }
+  const user = useAuthStore((state) => state.user)
 
   const { data: video, isLoading, error } = useVideoDetail(videoId)
 
   if (isLoading) return <></>
   if (error || !video) return <></>
+
+  const clickedSaveButton = () => {
+    if (user == null) {
+      return
+    }
+    openPlayList()
+  }
 
   return (
     <article className="aspect-video w-full">
@@ -41,9 +48,9 @@ const Video: React.FC = () => {
         ></iframe>
       </section>
 
-      <header className="px-[15px] pt-[15px] font-bold">{video.title}</header>
+      <h1 className="px-[15px] pt-[15px] font-bold">{video.title}</h1>
 
-      <p className="px-[15px] pb-[8px] pt-[8px] text-xs">
+      <p className="px-[15px] pb-[15px] pt-[8px] text-xs">
         <span>조회수 {formatViewCount(video.viewCount)} • </span>
         <time dateTime={video.publishedAt}>{formatUploadDate(video.publishedAt)}</time>
       </p>
@@ -57,16 +64,19 @@ const Video: React.FC = () => {
           <h1>{video.channelTitle}</h1>
         </div>
 
-        <FollowButton userId={user.id} channelId={video.channelId} />
+        <FollowButton userId={user?.id || 0} channelId={video.channelId} />
       </section>
 
-      <section className="flex gap-[10px] px-[15px] py-[16px] pb-[12px]">
-        <LikeButton videoId={videoId} userId={user.id} />
-        <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+      <section className="flex gap-[10px] p-[15px]">
+        <LikeButton videoId={videoId} userId={user?.id || 0} />
+        <Button className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium">
           <Share2 fill="#525252" />
           공유
         </Button>
-        <Button onClick={openPlayList} className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark">
+        <Button
+          onClick={clickedSaveButton}
+          className="rounded-full bg-gray-light px-[9px] py-[7px] text-xs text-gray-dark hover:bg-gray-light-medium"
+        >
           <Bookmark />
           저장
         </Button>

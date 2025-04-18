@@ -17,10 +17,10 @@ const Login = () => {
   }
 
   return (
-    <section>
+    <section className="flex flex-col items-center justify-center h-screen">
       {/* 메인로고 */}
-      <article className="mt-44">
-        <img src="/image/logo/main-logo.png" alt="" className="p-6" />
+      <article>
+        <img src="/image/logo/main-logo.png" alt="메인이미지" className="px-8" />
       </article>
       <article className="mt-10 flex flex-col items-center gap-1 text-gray-dark">
         <p className="font-light">취향으로 가득 채우자!</p>
@@ -42,7 +42,7 @@ const Login = () => {
           GitHub 계정으로 로그인
         </Button>
       </article>
-      <article className="my-20 flex items-center justify-center gap-10 text-sm">
+      <article className="mt-20 flex items-center justify-center gap-4 text-sm">
         <span className="text-gray-medium-dark">당신의 취향을 공유해 주세요!</span>
         <Link to="/register" className="font-semibold text-main-primary">
           회원가입

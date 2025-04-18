@@ -8,7 +8,7 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
   const fullList = newlyAddedComment ? [newlyAddedComment, ...comments] : comments
 
   return (
-    <ul className="custom-scrollbar mt-[15px] max-h-[calc(100vh_-_56px_-_56px_-_240px_-_175px_-_61px_-_25px)] overflow-y-auto px-[15px]">
+    <ul className="custom-scrollbar mt-[15px] max-h-[calc(100vh-56px-56px-240px-184px-72px-30px)] flex-1 overflow-y-auto">
       {fullList?.length !== 0 ? (
         fullList?.map((comment, index) => (
           <li key={index}>
@@ -16,7 +16,7 @@ const CommentList: React.FC<ICommentListProps> = ({ comments, newlyAddedComment 
           </li>
         ))
       ) : (
-        <li className="my-[15px] text-center">아직 댓글이 없습니다.</li>
+        <li className="my-[15px] text-center text-[14px] text-gray-medium-dark">여러분의 생각을 공유해주세요.</li>
       )}
     </ul>
   )

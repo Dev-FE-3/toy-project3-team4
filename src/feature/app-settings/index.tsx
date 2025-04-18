@@ -2,11 +2,12 @@ import UserChannel from '@/shared/components/user-channel/UserChannel'
 import Settings from './components/Settings'
 import ViewHistory from './components/ViewHistory'
 import { useAuthStore } from '@/shared/store/auth/useAuthStore'
+import UserNotFound from '../follow/components/UserNotFound'
 
 const AppSettings = () => {
   const user = useAuthStore((state) => state.user)
 
-  if (!user) return null // 또는 로딩 중 표시
+  if (!user) return <UserNotFound />
 
   return (
     <section className="ml-[15px] mr-[15px]">
