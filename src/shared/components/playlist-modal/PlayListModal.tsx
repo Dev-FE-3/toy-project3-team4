@@ -144,7 +144,7 @@ const PlayListModal = ({ closeModal, setModalStates, videoId, setAlertInfo }: IP
                         src={
                           item.videolist[0]
                             ? `https://img.youtube.com/vi/${item.videolist[0].video_id}/maxresdefault.jpg`
-                            : '/public/image/default/thumbnail.png'
+                            : '/public/image/default/empty.png'
                         }
                         alt="재생목록 사진"
                       />
