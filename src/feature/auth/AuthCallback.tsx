@@ -31,8 +31,6 @@ const AuthCallback = () => {
 
     fetchSession()
   }, [navigate, setAuth, setUser, upsertUser])
-
-  return <p></p>
 }
 
 export default AuthCallback
