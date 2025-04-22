@@ -10,22 +10,23 @@ import Channel from '@/feature/channel'
 import Search from '@/feature/search'
 import Follow from '@/feature/follow'
 import PageNotFound from '@/shared/components/error/PageNotFound'
+import ROUTES from './constants/routes'
 
 function AppRoutes() {
   return (
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
-          <Route path="/watch" element={<Video />} />
-          <Route path="/settings" element={<AppSettings />} />
-          <Route path="/playlist" element={<PlayListView />} />
-          <Route path="/channel" element={<Channel />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/follow" element={<Follow />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route path={ROUTES.AUTH_CALLBACK} element={<AuthCallback />} />
+          <Route path={ROUTES.WATCH} element={<Video />} />
+          <Route path={ROUTES.SETTINGS} element={<AppSettings />} />
+          <Route path={ROUTES.PLAYLIST} element={<PlayListView />} />
+          <Route path={ROUTES.CHANNEL} element={<Channel />} />
+          <Route path={ROUTES.SEARCH} element={<Search />} />
+          <Route path={ROUTES.FOLLOW} element={<Follow />} />
+          <Route path={ROUTES.NOT_FOUND} element={<PageNotFound />} />
         </Route>
       </Routes>
     </Router>
