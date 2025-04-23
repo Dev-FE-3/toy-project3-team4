@@ -1,7 +1,5 @@
 ## ✨ 프로젝트 소개
-
-![image](https://github.com/user-attachments/assets/68cbaa9b-52d4-4f49-96e2-c669020b4c65)
-
+<img src="https://github.com/user-attachments/assets/68cbaa9b-52d4-4f49-96e2-c669020b4c65" width="100%">
 
 
 > **🚀 PlayO — 실시간으로 만나는 맞춤형 콘텐츠 플랫폼** <br />
