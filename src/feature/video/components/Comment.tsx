@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { CircleUserRound, MoreVertical } from 'lucide-react'
 import { ICommentProps } from '../type/IVideo'
-import { useUserInfo } from '../api/useUserImg'
+import { useUserImgInfo } from '../api/useUserImg'
 
 const Comment: React.FC<ICommentProps> = ({ comment, userId, createdAt }) => {
-  const { data: userInfo, isLoading: userInfoLoading, error: userInfoError } = useUserInfo(userId || 0)
+  const { data: userInfo, isLoading: userInfoLoading, error: userInfoError } = useUserImgInfo(userId || 0)
 
   if (userInfoLoading || userInfoError || !userInfo) return <></>
 

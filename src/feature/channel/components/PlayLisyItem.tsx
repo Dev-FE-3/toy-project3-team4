@@ -3,10 +3,11 @@ import { useVideoInfo } from '../api/useVideoInfo'
 import { Link } from 'react-router-dom'
 import { IPlayListIemProps } from '../tpye/IChannel'
 
-const PlayListItem: React.FC<IPlayListIemProps> = ({ id, name, access }) => {
+const PlayListItem = ({ id, name, access }: IPlayListIemProps) => {
   const { data: video, isLoading: videoLoading, error: videoError } = useVideoInfo(id)
 
-  if (videoLoading || videoError || !video || video.length < 2) return <></>
+  if (videoLoading || videoError) return <></>
+  if (!video || video.length < 2) return <></>
 
   const videoThumbnail = video[0]
   const { playlist_id: playListId, video_id: videoId } = video[1]
